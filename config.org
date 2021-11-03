@@ -1003,6 +1003,8 @@ Define org-capture templates.
 (setq org-capture-templates
       '(("t" "Normal task" entry (file "~/org/inbox.org")
          "* TODO %?\n  :PROPERTIES:\n  :CREATED: %U\n  :END:")
+        ("w" "Work task" entry (file "~/org/work.inbox.org")
+         "* TODO %?\n  :PROPERTIES:\n  :CREATED: %U\n  :END:")
         ("e" "E-Mail needing a reply" entry (file "~/org/emails.org")
          "* TODO Reply: %a\n  :PROPERTIES:\n  :CREATED: %U\n  :END:"
          :immediate-finish t)
