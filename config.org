@@ -578,7 +578,10 @@ Used especially for =crux-delete-file-and-buffer= and =crux-rename-file-and-buff
 Source: [[https://github.com/bbatsov/crux][GitHub: bbatsov/crux]]
 
 #+begin_src emacs-lisp
-(use-package crux)
+(use-package crux
+  :bind (:map prog-mode-map
+         ("C-c C-." . crux-duplicate-current-line-or-region)
+         ("C-c C-M-." . crux-duplicate-and-comment-current-line-or-region)))
 #+end_src
 
 ** which-key
