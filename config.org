@@ -581,7 +581,9 @@ Source: [[https://github.com/bbatsov/crux][GitHub: bbatsov/crux]]
 (use-package crux
   :bind (:map prog-mode-map
          ("C-c C-." . crux-duplicate-current-line-or-region)
-         ("C-c C-M-." . crux-duplicate-and-comment-current-line-or-region)))
+         ("C-c C-M-." . crux-duplicate-and-comment-current-line-or-region)
+         :map global-map
+         ("C-c M-r" . crux-rename-file-and-buffer)))
 #+end_src
 
 ** which-key
