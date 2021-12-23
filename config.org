@@ -1751,6 +1751,12 @@ Sadly since my workplace heavily uses Microsoft Office 365 including Outlook for
 
 ** Load mu4e
 
+Not all systems that I use have mu/mu4e installed. Either because I cannot really use it at work or because I'm running a native Windows instance or because I didn't completely setup the machine. Therefore I only load/execute the complete mu4e configuration if Emacs can find a =mu= executable.
+
+#+begin_src emacs-lisp
+(when (executable-find "mu") ;; Closed after all mu4e configuration
+#+end_src
+
 Not all distributions that I use have a enough up-to-date package of mu/maildir-utils in their repositories. Therefore on some system I compile and install it myself which ends in =/usr/local= instead of just =/usr.= Therefore I have a small function that finds the correct load-path for the mu4e package.
 
 #+begin_src emacs-lisp
@@ -1766,11 +1772,10 @@ Not all distributions that I use have a enough up-to-date package of mu/maildir-
             (t (error "mu4e not found!"))))))
 #+end_src
 
-Using the determined load path I now load mu4e itself if the =mu= executable is in path (useful for my work machine where I currently only have Evolution installed but not mu/mu4e) and bind it to a handy keybinding. Since I don't close the parenthesis of the ~use-package~ everything that follows this source code blocks is part of the config section.
+Using the determined load path I now load mu4e itself and bind it to a handy keybinding. Since I don't close the parenthesis of the ~use-package~ everything that follows this source code blocks is part of the config section.
 
 #+begin_src emacs-lisp
 (use-package mu4e
-  :if (executable-find "mu")
   :load-path (lambda () (list (mmk2410/mu4e-load-path)))
   :demand t
   :bind ("C-c m" . mu4e)
@@ -2050,10 +2055,11 @@ It is maybe not surprising that I am subscribed to some mailing lists. Some of t
                                 ("debian-security-announce.lists.debian.org" . "DebSecAnn")))
 #+end_src
 
-Finally the mu4e configuration is done! So lets close the parenthesis left open since the ~use-package~ call.
+Finally the mu4e configuration is done! So lets close the parenthesis left open since the ~use-package~ call and the ~(when~ call.
 
 #+begin_src emacs-lisp
 ) ;; closing parens for (use-package mu4e
+) ;; closing parens for (when (executable-find "mu")
 #+end_src
 
 * Email with Evolution
