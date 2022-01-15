@@ -1200,6 +1200,28 @@ Source: [[https://gitlab.com/phillord/org-drill/][GitLab: phillord/org-drill]]
   (setq org-drill-maximum-items-per-session 50))
 #+end_src
 
+** Org for blogging
+
+Since [[https://mmk2410.org/2020/05/15/switching-my-website-to-hugo-using-ox-hugo/][May 2020]] I'm using [[https://gohugo.io/][hugo]] with [[https://ox-hugo.scripter.co/][ox-hugo]] as a org-mode based static site generator for my [[https://mmk2410.org][mmk2410.org]] site. You can find the source code for the website [[https://git.mmk2410.org/mmk2410/mmk2410.org][on my Gitea instance]] (and also [[https://gitlab.com/mmk2410/mmk2410.org][GitLab]] and [[https://github.com/mmk2410/mmk2410.org][GitHub]] if you prefer that). First of all I need to include =ox-hugo= by [[https://scripter.co/][Kaushal Modi]]:
+
+#+begin_src emacs-lisp
+(use-package ox-hugo
+  :after org)
+#+end_src
+
+Then I add a org capture template for easily creating new blog posts. A detailed explanation about the can be found in a [[https://mmk2410.org/2022/01/15/improving-my-new-blog-post-creation/][dedicated blog post.]]
+
+#+begin_src emacs-lisp
+(defconst mmk2410/blog-posts-file
+  "~/projects/mmk2410.org/content-org/blog.org"
+  "Position of my org file containing all blog posts.")
+(add-to-list 'org-capture-templates
+             '("b" "Blog post" entry (file mmk2410/blog-posts-file)
+               "* %^{Title} %^g\n:PROPERTIES:\n:EXPORT_DATE: %^{EXPORT_DATE}U%^{EXPORT_FILE_NAME}p\n:END:"
+               :prepend t :empty-lines 1
+               :immediate-finish t :jump-to-captured t))
+#+end_src
+
 * Org Research Assistant
 ** Org Roam
 
