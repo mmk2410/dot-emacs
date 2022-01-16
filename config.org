@@ -1209,17 +1209,34 @@ Since [[https://mmk2410.org/2020/05/15/switching-my-website-to-hugo-using-ox-hug
   :after org)
 #+end_src
 
-Then I add a org capture template for easily creating new blog posts. A detailed explanation about the can be found in a [[https://mmk2410.org/2022/01/15/improving-my-new-blog-post-creation/][dedicated blog post.]]
+After I wrote an [[https://mmk2410.org/2022/01/15/improving-my-new-blog-post-creation/][own capture template]] for starting a new blog post, Kashual Modi, the creator of =ox-hugo=, made me aware of [[https://ox-hugo.scripter.co/doc/org-capture-setup/][an existing template in the documentation]] that also handles the automatic creation of the =EXPORT_FILE_NAME= property. I copied if from there and made some very slight adjustments to fit my needs.
 
 #+begin_src emacs-lisp
 (defconst mmk2410/blog-posts-file
   "~/projects/mmk2410.org/content-org/blog.org"
   "Position of my org file containing all blog posts.")
-(add-to-list 'org-capture-templates
-             '("b" "Blog post" entry (file mmk2410/blog-posts-file)
-               "* %^{Title} %^g\n:PROPERTIES:\n:EXPORT_DATE: %^{EXPORT_DATE}U%^{EXPORT_FILE_NAME}p\n:END:"
-               :prepend t :empty-lines 1
-               :immediate-finish t :jump-to-captured t))
+
+;; Populates only the EXPORT_FILE_NAME property in the inserted heading.
+(with-eval-after-load 'org-capture
+  (defun org-hugo-new-subtree-post-capture-template ()
+    "Returns `org-capture' template string for new Hugo post. See `org-capture-templates' for more information."
+    (let* ((title (read-from-minibuffer "Post Title: ")) ;Prompt to enter the post title
+           (fname (org-hugo-slug title)))
+      (mapconcat #'identity
+                 `(
+                   ,(concat "* TODO " title)
+                   ":PROPERTIES:"
+                   ,(concat ":EXPORT_FILE_NAME: " fname)
+                   ":END:")
+                 "\n")))
+
+  (add-to-list 'org-capture-templates
+               '("b" "Blog post" entry
+                 (file mmk2410/blog-posts-file)
+                 (function org-hugo-new-subtree-post-capture-template)
+                 :prepend t :empty-lines 1
+                 :immediate-finish t :jump-to-captured t)))
+
 #+end_src
 
 * Org Research Assistant
