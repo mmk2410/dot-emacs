@@ -2,6 +2,8 @@
 
 *Welcome to my Emacs configuration! Feel free to browse, read, borrow and/or inspire yourself!*
 
+/Note: You can also find my configuration at [[https://config.mmk2410.org][config.mmk2410.org]]./
+
 This Emacs configuration is written using [[https://orgmode.org/][Org Mode]] in =config.org= and compiled to Emacs Lisp on startup using the =init.el= file. It is licensed under the General Public License version 3 (GPLv3).
 
 The configuration is not as new as it seems. I [[https://git.mmk2410.org/mmk2410/dotfiles/commit/dce591e5cbfac5f270d0f2fcf1c4b82e923a2215][declared .emacs bankruptcy]] on 12 March 2020 and started writing a this new configuration back then which I continuously used. Nevertheless it took more than one and a half year to finally release it again to the public (mind the commit message of the bankruptcy: "Starting a new Emacs configuration in a new repository. Will be available soon."). Since then I made over 270 commit in a private repository since in the beginning I was not sure IF or HOW to handle private information in the configuration. Since I don't have any motivation to browse all these commit to perhaps find something I don't want to publish I decided to release the configuration to the public in a new repository.
