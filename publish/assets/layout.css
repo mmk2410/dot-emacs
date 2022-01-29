@@ -1,0 +1,284 @@
+@charset "UTF-8";
+/* nextDESIGN v9
+ *
+ * nextDESIGN is a personal web design for mmk2410.org.
+ * The current version (v9) is focused in simplicity and minimalism.
+ *
+ * 2020-2021 © Marcel Kapfer <opensource@mmk2410.org>
+ * Licensed under the MIT License
+ */
+html {
+  font-size: 18px;
+}
+
+body {
+  background-color: #fafafa;
+  color: #333;
+  font-family: "Raleway", sans-serif;
+  line-height: 1.5;
+}
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #333;
+    color: #fafafa;
+  }
+}
+
+body > #preamble {
+  align-items: center;
+  color: #f4f4f4;
+  display: flex;
+  background-color: #4d3c9b;
+  justify-content: space-between;
+  padding: 20px 40px;
+}
+body > #preamble #title {
+  font-size: 24px;
+  font-weight: 700;
+}
+body > #preamble a {
+  color: #f4f4f4;
+  text-decoration: none;
+}
+body > #preamble a:hover {
+  text-decoration: underline;
+}
+body > #preamble nav {
+  display: inline;
+}
+body > #preamble nav ul {
+  margin: 0;
+  padding: 0;
+  float: right;
+}
+body > #preamble nav ul li {
+  display: inline;
+  padding-right: 10px;
+}
+body > #preamble nav ul li:last-child {
+  padding-right: 0;
+}
+body > #preamble .show-menu {
+  display: none;
+  margin-top: 10px;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+}
+body > #preamble input[type=checkbox] {
+  display: none;
+}
+@media screen and (max-width: 1000px) {
+  body > #preamble {
+    border-radius: initial;
+    flex-direction: column;
+  }
+  body > #preamble nav {
+    display: none;
+    text-align: center;
+    width: 100%;
+  }
+  body > #preamble nav ul {
+    float: unset;
+  }
+  body > #preamble nav ul li {
+    display: block;
+    padding: 0;
+  }
+  body > #preamble nav ul li a {
+    display: block;
+    padding: 10px 0;
+  }
+  body > #preamble .show-menu {
+    display: block;
+  }
+  body > #preamble input[type=checkbox]:checked ~ nav {
+    display: block;
+  }
+}
+
+#content {
+  background-color: #fff;
+  border: solid 2px #4d3c9b;
+  box-shadow: 1px 1px 5px #888;
+  margin: 100px auto;
+  max-width: 800px;
+  padding: 40px;
+}
+@media (prefers-color-scheme: dark) {
+  #content {
+    background-color: #222;
+    box-shadow: none;
+  }
+}
+#content article {
+  margin: 40px 0;
+}
+#content h1, #content h2, #content h3 {
+  font-size: 3rem;
+  margin: 20px 0 0;
+  padding: 0;
+  text-decoration: underline;
+  text-decoration-color: #4d3c9b;
+  text-decoration-thickness: 4px;
+}
+@media (prefers-color-scheme: dark) {
+  #content h1, #content h2, #content h3 {
+    text-decoration-color: #755bf0;
+  }
+}
+#content h2 {
+  font-size: 2rem;
+  margin: 40px 0 0;
+  text-decoration-thickness: 3px;
+}
+#content h2 a {
+  color: #333;
+  text-decoration-color: #4d3c9b;
+}
+@media (prefers-color-scheme: dark) {
+  #content h2 a {
+    color: #fafafa;
+    text-decoration-color: #755bf0;
+  }
+}
+#content h2 a:hover {
+  text-decoration: none;
+}
+#content h3 {
+  font-size: 1.3rem;
+  margin: 40px 0 0;
+  text-decoration-thickness: 3px;
+}
+#content h3 a {
+  color: #333;
+  text-decoration-color: #4d3c9b;
+}
+@media (prefers-color-scheme: dark) {
+  #content h3 a {
+    color: #fafafa;
+    text-decoration-color: #755bf0;
+  }
+}
+#content h3 a:hover {
+  text-decoration: none;
+}
+#content h4 {
+  font-size: 1.1rem;
+}
+#content figure {
+  margin: 0;
+}
+#content figure img {
+  width: 100%;
+}
+#content p {
+  text-align: justify;
+}
+#content a {
+  color: #4d3c9b;
+  text-decoration: none;
+
+  /* BEGIN: From https://css-tricks.com/better-line-breaks-for-long-urls/ */
+  /* These are technically the same, but use both */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  /* Adds a hyphen where the word breaks, if supported (No Blink) */
+  hyphens: auto;
+  /* END: From https://css-tricks.com/better-line-breaks-for-long-urls/ */
+}
+@media (prefers-color-scheme: dark) {
+  #content a {
+    color: #755bf0;
+  }
+}
+#content a:hover {
+  text-decoration: underline;
+}
+#content dt {
+    font-weight: 700;
+}
+code, pre {
+  font-family: "JetBrains Mono", monospace;
+}
+#content .btn {
+  color: #f4f4f4;
+  background: #4d3c9b;
+  padding: 8px 16px;
+  border-radius: 20px;
+  line-height: 3;
+  white-space: nowrap;
+}
+#content .org-src-container > pre {
+  border-radius: 2px;
+  overflow-y: auto;
+  padding: 20px;
+}
+#content .pagination {
+  text-align: center;
+}
+#content .page-item {
+  display: inline;
+  padding-right: 10px;
+}
+#content .page-item:last-child {
+  padding-right: 0;
+}
+#content .comment {
+  margin-top: 60px;
+  text-align: center;
+}
+#content .comment a {
+  font-size: 1.1rem;
+}
+#content .comment p {
+  font-size: 0.95rem;
+  text-align: center;
+}
+#content #tags > a, #content #categories > a {
+  font-size: 0.9rem;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+#content #tags > a {
+  background: #8171c8;
+}
+@media (prefers-color-scheme: dark) {
+  #content #tags > a {
+    background: #4d3c9b;
+  }
+}
+#content #categories > a {
+  background: #4d3c9b;
+}
+@media (prefers-color-scheme: dark) {
+  #content #categories > a {
+    background: #755bf0;
+  }
+}
+@media screen and (max-width: 1000px) {
+  #content {
+    border: none;
+    box-shadow: none;
+    margin: 0 auto;
+  }
+}
+
+#postamble {
+  background-color: #4d3c9b;
+  color: #f4f4f4;
+  padding: 40px;
+  text-align: center;
+}
+#postamble a {
+  color: #f4f4f4;
+  text-decoration: none;
+}
+#postamble a:hover {
+  text-decoration: underline;
+}
