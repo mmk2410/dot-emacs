@@ -626,6 +626,24 @@ Source: [[https://magit.vc/][magit.vc]]
   ("C-x g" . magit-status))
 #+end_src
 
+** orgit
+
+Support for Org links to Magit buffers.
+
+- Source :: [[https://github.com/magit/orgit][GitHub: magit/orgit]]
+- Blog post :: [[https://mmk2410.org/2022/01/21/my-emacs-package-of-the-week-orgit/][My Emacs package of the week: orgit]]
+
+#+begin_src emacs-lisp
+(use-package orgit
+  :after (magit org)
+  :config
+  (add-to-list 'orgit-export-alist
+             '("git.mmk2410.org[:/]\\(.+?\\)\\(?:\\.git\\)?$"
+               "https://git.mmk2410.org/%n"
+               "https://git.mmk2410.org/%n/commits/commit/%r"
+               "https://git.mmk2410.org/%n/commit/%r")))
+#+end_src
+
 ** diff-hl
 
 Emacs package for highlighting uncommitted changes
