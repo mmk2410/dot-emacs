@@ -54,12 +54,8 @@
          :publishing-function org-publish-attachment
          :recursive t)))
 
-(defun mmk2410/dot-emacs-publish-additional ()
-  (rename-file
-   (concat mmk2410/dot-emacs-publish-publishing-dir "config.html")
-   (concat mmk2410/dot-emacs-publish-publishing-dir "index.html")))
+(org-publish-all t)
 
-(defun mmk2410/dot-emacs-publish ()
-  (interactive)
-  (org-publish-all t)
-  (mmk2410/dot-emacs-publish-additional))
+(rename-file
+ (concat mmk2410/dot-emacs-publish-publishing-dir "config.html")
+ (concat mmk2410/dot-emacs-publish-publishing-dir "index.html"))
