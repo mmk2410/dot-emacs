@@ -1556,6 +1556,7 @@ Source: [[https://github.com/fxbois/web-mode][GitHub: fxbois/web-mode]]
          ("\\.erb\\'" . web-mode)
          ("\\.mustache\\'" . web-mode)
          ("\\.djhtml\\'" . web-mode)
+         ("\\.vue\\'" . web-mode)
          ("\\.blade\\.php\\'" . web-mode)))
 #+end_src
 
