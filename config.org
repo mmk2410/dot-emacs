@@ -72,6 +72,15 @@ Use a sane date style.
 (setq-default backup-inhibited t)
 #+end_src
 
+** Performance tweaks
+
+As recommended by [[https://emacs-lsp.github.io/lsp-mode/page/performance/][lsp-mode]],
+
+#+begin_src emacs-lisp
+(setq gc-cons-threshold 100000000
+      read-process-output-max (* 1024 1024))
+#+end_src
+
 ** Disable adding double spaces after periods
 
 Source: [[http://www.reddit.com/r/emacs/comments/2l5gtz/real_sentence_in_emacs/][Real sentence in Emacs : emacs]]
