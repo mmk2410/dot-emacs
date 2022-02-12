@@ -2194,84 +2194,11 @@ The following function from him takes care of the other way: bringing a message 
 * Helpers
 ** Tab Bar Setup
 
-Since version 27 Emacs features a tab bar. In contrast to e.g. a browser a tab does not display just one file/buffer/window but an Emacs tab features an entire window configuration. Since I use Emacs not just for programming but (perhaps even mainly) for personal information management (including mail, agenda, journal, IRC and RSS) I had the idea to have one Emacs frame open with different tabs for all these things. Therefore I wrote a ~mmk2410/tab-bar-setup~ function (bound to =C-c f C-f=) creating the following setup:
-
-- First tab: *Mail* with mu4e
-- Second tab: *Agenda / Journal* with an Org agenda on the left and an Org journal on the right
-- Third tab: *IRC* with ERC
-- Fourth tab: *RSS* with elfeed
-
-This is accompanied with five helper functions to switch to the wished application in the correct tab and window.
-
-|------------+-----------------------------------+------------|
-| *Applicaton* | *Command*                           | *Keybinding* |
-| Mail       | ~mmk2410/tab-bar-switch-to-mail~    | =C-c f m=    |
-| Agenda     | ~mmk2410/tab-bar-switch-to-agenda~  | =C-c f a=    |
-| Journal    | ~mmk2410/tab-bar-switch-to-journal~ | =C-c f j=    |
-| IRC        | ~mmk2410/tab-bar-switch-to-irc~     | =C-c f i=    |
-| RSS        | ~mmk2410/tab-bar-switch-to-rss~     | =C-c f r=    |
-|------------+-----------------------------------+------------|
+Since version 27 Emacs features a tab bar. In contrast to e.g. a browser a tab does not display just one file/buffer/window but an Emacs tab features an entire window configuration. Since I use Emacs not just for programming but (perhaps even mainly) for personal information management (including mail, agenda, journal, IRC and RSS) I had the idea to have one Emacs frame open with different tabs for all these things. Therefore I wrote a small package found in =packages/mmk2410-tab-bar-helpers.el= which I explain in a [[https://mmk2410.org/2022/02/11/using-emacs-tab-bar-mode/][dedicated blog post]].
 
 #+begin_src emacs-lisp
-(defun mmk2410/tab-bar-setup ()
-  "Enable tab bar and setup mu4e, Org Journal, Org Agenda and ERC."
-  (interactive)
-  (tab-bar-mode 1)
-  ;; Disabled since I'm currently not using mu4e that much (see Evolution Mail and mu4e setup).
-  ;; (tab-bar-rename-tab "Mail")
-  ;; (mu4e-context-switch :name "Private")
-  ;; (mu4e)
-  ;; (sit-for 1)
-  ;; (tab-bar-new-tab)
-  (tab-bar-rename-tab "Agenda / Journal")
-  (split-window-horizontally)
-  (org-agenda nil "c")
-  (sit-for 1)
-  (other-window 1)
-  (org-journal-open-current-journal-file)
-  (sit-for 1)
-  (tab-bar-new-tab)
-  (tab-bar-rename-tab "IRC")
-  (mmk2410/erc-connect)
-  (sit-for 1)
-  (switch-to-buffer "Libera.Chat")
-  (tab-bar-new-tab)
-  (tab-bar-rename-tab "RSS")
-  (elfeed))
-
-(defun mmk2410/tab-bar-switch-to-mail ()
-  "Switch to mail tab."
-  (interactive)
-  (tab-bar-switch-to-tab "Mail"))
-
-(defun mmk2410/tab-bar-switch-to-agenda ()
-  "Switch to agenda/journal tab and there in the agenda window."
-  (interactive)
-  (tab-bar-switch-to-tab "Agenda / Journal")
-  (unless (string= (buffer-name) "*Org Agenda*")
-    (other-window 1)))
-
-(defun mmk2410/tab-bar-switch-to-journal ()
-  "Switch to agenda/journal tab and there in the journal window."
-  (interactive)
-  (tab-bar-switch-to-tab "Agenda / Journal")
-  (if (string= (buffer-name) "*Org Agenda*")
-      (other-window 1)))
-
-(defun mmk2410/tab-bar-switch-to-irc ()
-  "Switch to IRC tab."
-  (interactive)
-  (tab-bar-switch-to-tab "IRC"))
-
-(defun mmk2410/tab-bar-switch-to-rss ()
-  "Switch to RSS tab."
-  (interactive)
-  (tab-bar-switch-to-tab "RSS"))
-
-(global-set-key (kbd "C-c f C-f") 'mmk2410/tab-bar-setup)
-(global-set-key (kbd "C-c f m") 'mmk2410/tab-bar-switch-to-mail)
-(global-set-key (kbd "C-c f a") 'mmk2410/tab-bar-switch-to-agenda)
-(global-set-key (kbd "C-c f j") 'mmk2410/tab-bar-switch-to-journal)
-(global-set-key (kbd "C-c f i") 'mmk2410/tab-bar-switch-to-irc)
-(global-set-key (kbd "C-c f r") 'mmk2410/tab-bar-switch-to-rss)
+(use-package mmk2410-tab-bar-helpers
+  :after (hydra)
+  :load-path "packages/"
+  :bind ("C-c f" . mmk2410/tab-bar/body))
 #+end_src
