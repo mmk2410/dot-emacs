@@ -1807,12 +1807,14 @@ Managing e-mails is maybe one of the most critical tasks in my life. Over the la
 
 Sadly since my workplace heavily uses Microsoft Office 365 including Outlook for mails I'm currently using Evolution, with a setup heavily inspired by [[https://karl-voit.at/2021/06/01/Thunderbird-to-Evolution/][Karl Voit]].
 
+
 ** Load mu4e
 
 Not all systems that I use have mu/mu4e installed. Either because I cannot really use it at work or because I'm running a native Windows instance or because I didn't completely setup the machine. Therefore I only load/execute the complete mu4e configuration if Emacs can find a =mu= executable.
 
 #+begin_src emacs-lisp
-(when (executable-find "mu") ;; Closed after all mu4e configuration
+(when (and (executable-find "mu")
+           (not (string-equal system-name "knuth"))) ;; Closed after all mu4e configuration
 #+end_src
 
 Not all distributions that I use have a enough up-to-date package of mu/maildir-utils in their repositories. Therefore on some system I compile and install it myself which ends in =/usr/local= instead of just =/usr.= Therefore I have a small function that finds the correct load-path for the mu4e package.
