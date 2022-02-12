@@ -67,8 +67,6 @@
   ("m" mmk2410/tab-bar-run-mail "Mail")
   ("p" mmk2410/tab-bar-run-projects "Projects"))
 
-(global-set-key (kbd "C-c f") 'mmk2410/tab-bar/body)
-
 (provide mmk2410/tab-bar-helpers)
 
 ;;; tab-bar-helpers.el ends here
