@@ -1560,17 +1560,6 @@ Source: [[https://github.com/fxbois/web-mode][GitHub: fxbois/web-mode]]
          ("\\.blade\\.php\\'" . web-mode)))
 #+end_src
 
-** Vue Mode
-
-Emacs major mode for vue.js
-
-Source: [[https://github.com/AdamNiederer/vue-mode][GitHub: AdamNiederer/vue-mode]]
-
-#+begin_src emacs-lisp
-(use-package vue-mode
-  :mode "\\.vue\\'")
-#+end_src
-
 ** TypoScript
 
 TypoScript major mode for Emacs.
