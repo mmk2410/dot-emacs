@@ -1474,6 +1474,7 @@ Source: [[https://github.com/emacs-lsp/lsp-mode][GitHub:emacs-lsp/lsp-mode]]
          (go-mode . lsp-deferred)
          (php-mode . lsp-deferred)
          (vue-mode . lsp-deferred)
+         (web-mode . lsp-deferred)
          (typescript-mode . lsp-deferred)
          (js-mode . lsp-deferred)
          (lsp-mode . lsp-enable-which-key-integration))
