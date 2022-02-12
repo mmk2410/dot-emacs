@@ -1791,13 +1791,13 @@ Source: [[https://github.com/fasheng/elfeed-protocol][GitHub: fasheng/elfeed-pro
   :init
   ;; FreshRSS (self-hosted)
   ;; Disabled since I currently use Miniflux
-  ;; (setq elfeed-feeds '(("fever+https://mmk2410@rss.mmk2410.org"
-  ;;                       :api-url "https://rss.mmk2410.org/api/fever.php"
-  ;;                       :use-authinfo t)))
-  ;; Miniflux (self-hosted)
-  (setq elfeed-feeds '(("fever+https://mmk2410@miniflux.rss.mmk2410.org"
-                        :api-url "https://miniflux.rss.mmk2410.org/fever/"
+  (setq elfeed-feeds '(("fever+https://mmk2410@rss.mmk2410.org"
+                        :api-url "https://rss.mmk2410.org/api/fever.php"
                         :use-authinfo t)))
+  ;; Miniflux (self-hosted)
+  ;; (setq elfeed-feeds '(("fever+https://mmk2410@miniflux.rss.mmk2410.org"
+  ;;                       :api-url "https://miniflux.rss.mmk2410.org/fever/"
+  ;;                       :use-authinfo t)))
   (elfeed-protocol-enable))
 #+end_src
 
