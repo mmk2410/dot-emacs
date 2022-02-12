@@ -67,6 +67,6 @@
   ("m" mmk2410/tab-bar-run-mail "Mail")
   ("p" mmk2410/tab-bar-run-projects "Projects"))
 
-(provide mmk2410/tab-bar-helpers)
+(provide 'mmk2410-tab-bar-helpers)
 
 ;;; tab-bar-helpers.el ends here
