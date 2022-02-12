@@ -441,7 +441,7 @@ Installing and enabling Doom themes.
 Add a slight transparency to the frames. Code provided by David Wilson / System Crafters [[https://github.com/daviwil/emacs-from-scratch/blob/master/Emacs.org][Emacs from Scratch]] video series.
 
 #+begin_src emacs-lisp
-(setq mmk2410/frame-transparency '(95 . 95))
+(setq mmk2410/frame-transparency '(90 . 90))
 
 (set-frame-parameter (selected-frame) 'alpha mmk2410/frame-transparency)
 (add-to-list 'default-frame-alist `(alpha . ,mmk2410/frame-transparency))
