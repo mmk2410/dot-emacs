@@ -13,9 +13,9 @@
                   (tab-bar-tabs))))
 
 (defun mmk2410/tab-bar-switch-or-create (name func)
-  (if (mmk2410/tab-exists name)
+  (if (mmk2410/tab-bar-tab-exists name)
       (tab-bar-switch-to-tab name)
-    (mmk2410/new-tab name func)))
+    (mmk2410/tab-bar-new-tab name func)))
 
 (defun mmk2410/tab-bar-run-elfeed ()
   (interactive)
