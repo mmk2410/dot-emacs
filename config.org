@@ -1526,7 +1526,8 @@ Source: [[https://github.com/emacs-php/php-mode][GitHub: emacs-php/php-mode]]
 
 #+begin_src emacs-lisp
 (use-package php-mode
-  :mode "\\.php\\'")
+  :mode "\\.php\\'"
+  :config (setq php-mode-coding-style 'PSR2))
 #+end_src
 
 ** TypeScript
