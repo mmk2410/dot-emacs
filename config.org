@@ -764,7 +764,7 @@ Source: [[https://github.com/joaotavora/yasnippet][GitHub: joaotavora/yasnippet]
 
 An advanced Emacs support library for PDF files.
 
-Source: [[https://github.com/politza/pdf-tools][GitHub: politza/pdf-tools]]
+Source: [[https://github.com/vedang/pdf-tools][GitHub: vedang/pdf-tools]]
 
 #+begin_src emacs-lisp
 (use-package pdf-tools
