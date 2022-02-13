@@ -895,6 +895,18 @@ When using a variable-pitch font this also applies to stuff like code blocks. Th
     :hook (org-mode . org-superstar-mode)))
 #+end_src
 
+** Org Appear Mode
+
+Toggle visibility of hidden Org mode element parts upon entering and leaving an element.
+
+- Source :: [[https://github.com/awth13/org-appear][GitHub: awth13/org-appear]]
+- Blog Post :: [[https://mmk2410.org/2022/02/05/my-emacs-package-of-the-week-org-appear/][My Emacs package of the week: org-appear]]
+
+#+begin_src emacs-lisp
+(use-package org-appear
+  :after org)
+#+end_src
+
 ** LaTeX-related settings
 
 Add =scratcl= KOMA-Script class as available LaTeX class.
