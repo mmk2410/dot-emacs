@@ -1198,7 +1198,7 @@ Enable =flyspell-mode= and disable line numbers in org-agenda.
 
 ** Org Journal
 
-Until now I did not thing that I needed to keep a (personal) journal. But since I is recommended to keep a journal of whom you met due to the corona pandemic I started thinking about setting up one. Further use cases came then to my mind and so I decided to give it a try. Therefore the configuration is still in a very early state and may change quite soon.
+Until now I did not think that I needed to keep a (personal) journal. But since I is recommended to keep a journal of whom you met due to the corona pandemic I started thinking about setting up one. Further use cases came then to my mind and so I decided to give it a try. Therefore the configuration is still in a very early state and may change quite soon.
 
 #+begin_src emacs-lisp
 (use-package org-journal
