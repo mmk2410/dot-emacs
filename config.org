@@ -1331,12 +1331,10 @@ Source: [[https://github.com/org-roam/org-roam-ui][GitHub: org-roam/org-roam-ui]
 
 #+begin_src emacs-lisp
 (use-package websocket
-  :disabled t
   :after org-roam)
 
 (use-package org-roam-ui
-  :disabled t
-  :after org-roam
+  :after (org-roam websocket)
   :config
   (setq org-roam-ui-sync-theme t
         org-roam-ui-follow t
