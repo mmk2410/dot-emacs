@@ -12,6 +12,7 @@ build:
   image: silex/emacs:27.2-alpine-ci
   stage: build
   script:
+    - mv dot-emacs .emacs.d
     - emacs -Q --script publish/publish.el
     - apk add --no-cache rsync
     - rsync --archive --verbose --chown=gitlab-ci:www-data --delete --progress -e"ssh -p "$SSH_PORT"" public/ "$SSH_USER"@mmk2410.org:/var/www/config.mmk2410.org/
