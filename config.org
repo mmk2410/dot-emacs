@@ -26,6 +26,16 @@ For Microsoft(R) Windows(R) users it is highly adviced to set the =HOME= environ
 
 Settings for Emacs in general as well as for my personal setup.
 
+** System Detection
+
+My work machine is called “knuth” and there is some configuration which I only want there.
+
+#+begin_src emacs-lisp
+(defun mmk2410/work ()
+  "Return t if machine is my work machine"
+  (string-equal (system-name) "knuth"))
+#+end_src
+
 ** Personal Information
 
 #+begin_src emacs-lisp
