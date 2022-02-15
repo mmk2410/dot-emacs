@@ -904,7 +904,8 @@ Toggle visibility of hidden Org mode element parts upon entering and leaving an 
 
 #+begin_src emacs-lisp
 (use-package org-appear
-  :after org)
+  :after org
+  :hook (org-mode . org-appear-mode))
 #+end_src
 
 ** LaTeX-related settings
