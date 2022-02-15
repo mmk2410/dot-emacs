@@ -2184,16 +2184,6 @@ Finally the mu4e configuration is done! So lets close the parenthesis left open 
 ) ;; closing parens for (when (executable-find "mu")
 #+end_src
 
-** Load work mail
-
-Load new mail setup which includes support for work mail when running on my work machine.
-
-#+begin_src emacs-lisp
-(when (string-equal system-name "knuth")
-  (push "~/.emacs.d/lisp" load-path)
-  (require 'mmk2410-mail-setup))
-#+end_src
-
 * Email with Evolution
 
 Since my work place is using Microsoft Outlook for Email including its appointment features I sadly needed to switch away from mu4e to Evolution, as recommended by [[https://karl-voit.at/2021/06/01/Thunderbird-to-Evolution/][Karl Voit]]. Using [[https://github.com/novoid/dot-emacs/blob/master/config.org][his configuration]] as an inspiration and source I could setup the following workflow.
