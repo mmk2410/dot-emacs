@@ -22,7 +22,7 @@
 (add-to-list 'package-archives '("nongnu" . "https://elpa.nongnu.org/nongnu/") t)
 (package-refresh-contents)
 (package-install 'htmlize)
-(add-to-list 'load-path "~/.emacs.d/elpa")
+(add-to-list 'load-path "./elpa")
 
 (require 'org)
 (require 'ox-publish)
@@ -32,7 +32,7 @@
 
 (setq org-publish-project-alist
       `(("dot-emacs:org"
-         :base-directory "~/.emacs.d"
+         :base-directory "."
          :publishing-directory ,mmk2410/dot-emacs-publish-publishing-dir
          :exclude ".*"
          :include ("config.org")
@@ -48,7 +48,7 @@
          :html-validation-link nil
          )
         ("dot-emacs:static"
-         :base-directory "~/.emacs.d/publish/assets"
+         :base-directory "./publish/assets"
          :publishing-directory ,mmk2410/dot-emacs-publish-publishing-dir
          :base-extension "css\\|woff\\|woff2\\|ico"
          :publishing-function org-publish-attachment
