@@ -1,10 +1,10 @@
-(setq mmk2410/dot-emacs-publish-publishing-dir "/tmp/dot-emacs-publish/")
+(setq mmk2410/dot-emacs-publish-publishing-dir "./public/")
 
 (setq mmk2410/dot-emacs-publish-html-head-extra
       (concat "<link rel=\"stylesheet\" href=\"normalize.css\">\n"
               "<link rel=\"stylesheet\" href=\"layout.css\">\n"
               "<link rel=\"stylesheet\" href=\"code.css\">\n"
-              "<link rel=\"stylesheet\" href=\"font.css\">"
+              "<link rel=\"stylesheet\" href=\"fonts.css\">"
               "<script defer data-domain=\"config.mmk2410.org\" src=\"https://stats.mmk2410.org/js/plausible.js\"></script>"))
 
 (setq mmk2410/dot-emacs-publish-html-preamble
