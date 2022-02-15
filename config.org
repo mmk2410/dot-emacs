@@ -1826,16 +1826,12 @@ Source: [[https://github.com/fasheng/elfeed-protocol][GitHub: fasheng/elfeed-pro
 
 Managing e-mails is maybe one of the most critical tasks in my life. Over the last years I tried countless different clients, including the famous (neo)mutt, KMail, and Thunderbird. But it seems that I always go back to one specific: mu4e. Maybe because it is integrated in Emacs and Org-mode, maybe because I like using a keyboard-focused client and that's where I end. I don't now. But what I know is: I enjoy using it!
 
-Sadly since my workplace heavily uses Microsoft Office 365 including Outlook for mails I'm currently using Evolution, with a setup heavily inspired by [[https://karl-voit.at/2021/06/01/Thunderbird-to-Evolution/][Karl Voit]].
-
-
 ** Load mu4e
 
 Not all systems that I use have mu/mu4e installed. Either because I cannot really use it at work or because I'm running a native Windows instance or because I didn't completely setup the machine. Therefore I only load/execute the complete mu4e configuration if Emacs can find a =mu= executable.
 
 #+begin_src emacs-lisp
-(when (and (executable-find "mu")
-           (not (string-equal system-name "knuth"))) ;; Closed after all mu4e configuration
+(when (executable-find "mu") ;; Closed after all mu4e configuration
 #+end_src
 
 Not all distributions that I use have a enough up-to-date package of mu/maildir-utils in their repositories. Therefore on some system I compile and install it myself which ends in =/usr/local= instead of just =/usr.= Therefore I have a small function that finds the correct load-path for the mu4e package.
@@ -2017,6 +2013,7 @@ Since I already have a msmtp client configured and would also use it in case I w
                              (message-fetch-field "from")))
                      (account (cond
                                ((string-match "@uni-ulm.de" from) "uniulm")
+                               ((string-match "@emplify-software.de" from) "work")
                                (t "mailbox"))))
                 (setq message-sendmail-extra-arguments (list '"-a" account))))))
 #+end_src
@@ -2026,16 +2023,24 @@ Since I already have a msmtp client configured and would also use it in case I w
 I don't really like the default bookmarks that mu4e sets. Thats why I overwrite the =mu4e-bookmarks= variable completely instead of just appending new bookmarks.
 
 #+begin_src emacs-lisp
-(setq mu4e-bookmarks
-      '(( :name "Unread messages"
-                :key ?u
-                :query "flag:unread or m:/university/inbox or m:/university/uulmhack or m:/mailbox/inbox" )
-        ( :name "Unread university messages"
-                :key ?e
-                :query "(flag:unread and m:/university/*) or m:/university/inbox or m:/university/uulmhack" )
-        ( :name "Unread private messages"
-                :key ?p
-                :query "(flag:unread and m:/mailbox/*) or m:/mailbox/inbox" )))
+(if (mmk2410/work)
+  (setq mu4e-bookmarks
+        '(( :name "Unread work messages"
+                  :key ?w
+                  :query "(flag:unread and m:/work/*) or m:/work/inbox" )
+          ( :name "Unread private messages"
+                  :key ?p
+                  :query "(flag:unread and m:/mailbox/*) or m:/mailbox/inbox" )))
+  (setq mu4e-bookmarks
+        '(( :name "Unread messages"
+                  :key ?u
+                  :query "flag:unread or m:/university/inbox or m:/university/uulmhack or m:/mailbox/inbox" )
+          ( :name "Unread university messages"
+                  :key ?e
+                  :query "(flag:unread and m:/university/*) or m:/university/inbox or m:/university/uulmhack" )
+          ( :name "Unread private messages"
+                  :key ?p
+                  :query "(flag:unread and m:/mailbox/*) or m:/mailbox/inbox" ))))
 #+end_src
 
 ** Define some shortcuts
@@ -2043,9 +2048,13 @@ I don't really like the default bookmarks that mu4e sets. Thats why I overwrite 
 I like to get to some maildir quite fast and with a shortcut.
 
 #+begin_src emacs-lisp
-(setq mu4e-maildir-shortcuts
-      '((:maildir "/university/inbox" :key ?e)
-        (:maildir "/mailbox/inbox" :key ?p)))
+(if (mmk2410/work)
+    (setq mu4e-maildir-shortcuts
+          '((:maildir "/work/inbox" :key ?w)
+            (:maildir "/mailbox/inbox" :key ?p)))
+    (setq mu4e-maildir-shortcuts
+          '((:maildir "/university/inbox" :key ?e)
+            (:maildir "/mailbox/inbox" :key ?p))))
 #+end_src
 
 ** Org-Capture template and key bindings
@@ -2053,9 +2062,13 @@ I like to get to some maildir quite fast and with a shortcut.
 I use org-mode heavily and also manage my todos within it. Since my INBOX is not a todo list I like the idea of quickly add a mail as a todo.
 
 #+begin_src emacs-lisp
-(add-to-list 'org-capture-templates
-             '("m" "mail" entry (file "~/org/inbox.org")
-               "* TODO %a%?\n  :PROPERTIES:\n  :CREATED: %U\n  :END:\n"))
+(if (mmk2410/work)
+  (add-to-list 'org-capture-templates
+               '("m" "mail" entry (file "~/org/work.inbox.org")
+                 "* TODO %a%?\n  :PROPERTIES:\n  :CREATED: %U\n  :END:\n"))
+  (add-to-list 'org-capture-templates
+               '("m" "mail" entry (file "~/org/inbox.org")
+                 "* TODO %a%?\n  :PROPERTIES:\n  :CREATED: %U\n  :END:\n")))
 #+end_src
 
 ** mu4e-contexts
@@ -2072,47 +2085,75 @@ First of all I like mu4e to only ask me, which content to use, if it can't figur
 Now define the contexts.
 
 #+begin_src emacs-lisp
-(setq mu4e-contexts
-      `( ,(make-mu4e-context
-           :name "Private"
-           :enter-func (lambda () (mu4e-message "Entering Private context"))
-           :match-func (lambda (msg)
-                         (when msg
-                           (string-prefix-p "/mailbox" (mu4e-message-field msg :maildir))))
-           :vars '( ( user-mail-address . "me@mmk2410.org" )
-                    ( user-full-name . "Marcel Kapfer" )
-                    ( message-signature-file . nil)
-                    ( mu4e-sent-folder . "/mailbox/Sent" )
-                    ( mu4e-drafts-folder . "/mailbox/Drafts" )
-                    ( mu4e-trash-folder . "/mailbox/Trash" )
-                    ( mu4e-refile-folder . "/mailbox/Archives" )))
-         ,(make-mu4e-context
-           :name "uulmhack"
-           :enter-func (lambda () (mu4e-message "Entering uulmhack context"))
-           :match-func (lambda (msg)
-                         (when msg
-                           (or (string-prefix-p "/university/uulmhack" (mu4e-message-field msg :maildir))
-                               (string-prefix-p "/university/Archives/uulmhack" (mu4e-message-field msg :maildir)))))
-           :vars '( ( user-mail-address . "uulmhack@uni-ulm.de" )
-                    ( user-full-name . "uulmhack Orga-Team" )
-                    ( message-signature-file . "~/dotfiles/dotdotfiles/sig/uulmhack")
-                    ( mu4e-sent-folder . "/university/Sent" )
-                    ( mu4e-drafts-folder . "/university/Drafts" )
-                    ( mu4e-trash-folder . "/university/Trash" )
-                    ( mu4e-refile-folder . "/university/Archives/uulmhack" )))
-         ,(make-mu4e-context
-           :name "Education"
-           :enter-func (lambda () (mu4e-message "Entering education context"))
-           :match-func (lambda (msg)
-                         (when msg
-                           (string-prefix-p "/university" (mu4e-message-field msg :maildir))))
-           :vars '( ( user-mail-address . "marcel.kapfer@uni-ulm.de" )
-                    ( user-full-name . "Marcel Kapfer" )
-                    ( message-signature-file . nil)
-                    ( mu4e-sent-folder . "/university/Sent" )
-                    ( mu4e-drafts-folder . "/university/Drafts" )
-                    ( mu4e-trash-folder . "/university/Trash" )
-                    ( mu4e-refile-folder . "/university/Archives" )))))
+(if (mmk2410/work)
+  (setq mu4e-contexts
+        `( ,(make-mu4e-context
+             :name "Private"
+             :enter-func (lambda () (mu4e-message "Entering private context"))
+             :match-func (lambda (msg)
+                           (when msg
+                             (string-prefix-p "/mailbox" (mu4e-message-field msg :maildir))))
+             :vars '( ( user-mail-address . "me@mmk2410.org" )
+                      ( user-full-name . "Marcel Kapfer" )
+                      ( message-signature-file . nil)
+                      ( mu4e-sent-folder . "/mailbox/Sent" )
+                      ( mu4e-drafts-folder . "/mailbox/Drafts" )
+                      ( mu4e-trash-folder . "/mailbox/Trash" )
+                      ( mu4e-refile-folder . "/mailbox/Archives" )))
+           ,(make-mu4e-context
+             :name "Work"
+             :enter-func (lambda () (mu4e-message "Entering work context"))
+             :match-func (lambda (msg)
+                           (when msg
+                             (string-prefix-p "/work" (mu4e-message-field msg :maildir))))
+             :vars '( ( user-mail-address . "m.kapfer@emplify-software.de" )
+                      ( user-full-name . "Marcel Kapfer" )
+                      ( message-signature-file . nil)
+                      ( mu4e-sent-folder . "/work/Sent Items" )
+                      ( mu4e-drafts-folder . "/work/Drafts" )
+                      ( mu4e-trash-folder . "/work/Trash" )
+                      ( mu4e-refile-folder . "/work/Archive" )))))
+  (setq mu4e-contexts
+        `( ,(make-mu4e-context
+             :name "Private"
+             :enter-func (lambda () (mu4e-message "Entering Private context"))
+             :match-func (lambda (msg)
+                           (when msg
+                             (string-prefix-p "/mailbox" (mu4e-message-field msg :maildir))))
+             :vars '( ( user-mail-address . "me@mmk2410.org" )
+                      ( user-full-name . "Marcel Kapfer" )
+                      ( message-signature-file . nil)
+                      ( mu4e-sent-folder . "/mailbox/Sent" )
+                      ( mu4e-drafts-folder . "/mailbox/Drafts" )
+                      ( mu4e-trash-folder . "/mailbox/Trash" )
+                      ( mu4e-refile-folder . "/mailbox/Archives" )))
+           ,(make-mu4e-context
+             :name "uulmhack"
+             :enter-func (lambda () (mu4e-message "Entering uulmhack context"))
+             :match-func (lambda (msg)
+                           (when msg
+                             (or (string-prefix-p "/university/uulmhack" (mu4e-message-field msg :maildir))
+                                 (string-prefix-p "/university/Archives/uulmhack" (mu4e-message-field msg :maildir)))))
+             :vars '( ( user-mail-address . "uulmhack@uni-ulm.de" )
+                      ( user-full-name . "uulmhack Orga-Team" )
+                      ( message-signature-file . "~/dotfiles/dotdotfiles/sig/uulmhack")
+                      ( mu4e-sent-folder . "/university/Sent" )
+                      ( mu4e-drafts-folder . "/university/Drafts" )
+                      ( mu4e-trash-folder . "/university/Trash" )
+                      ( mu4e-refile-folder . "/university/Archives/uulmhack" )))
+           ,(make-mu4e-context
+             :name "Education"
+             :enter-func (lambda () (mu4e-message "Entering education context"))
+             :match-func (lambda (msg)
+                           (when msg
+                             (string-prefix-p "/university" (mu4e-message-field msg :maildir))))
+             :vars '( ( user-mail-address . "marcel.kapfer@uni-ulm.de" )
+                      ( user-full-name . "Marcel Kapfer" )
+                      ( message-signature-file . nil)
+                      ( mu4e-sent-folder . "/university/Sent" )
+                      ( mu4e-drafts-folder . "/university/Drafts" )
+                      ( mu4e-trash-folder . "/university/Trash" )
+                      ( mu4e-refile-folder . "/university/Archives" ))))))
 #+end_src
 
 ** Other settings
