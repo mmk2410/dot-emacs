@@ -5,7 +5,7 @@
 # License: This file is licensed under the GPL v3
 #+STARTUP: indent overview
 
-*Welcome!* You found my (Marcel Kapfer aka mmk2410) personal Emacs configuration file. Please feel free to read through it, use it or get inspiration!
+*Welcome!* You found my (Marcel Kapfer aka mmk2410) personal Emacs configuration file. Please feel free to read through it, use it or get inspiration! If you would (for some very strange reason) like to read it online: I [[https://mmk2410.org/2022/01/30/publishing-my-emacs-configuration/][published]] it to [[https://config.mmk2410.org][config.mmk2410.org]]
 
 This file (=config.org=) is written in [[https://orgmode.org/][org-mode]] and converted as Emacs Lisp to =config.el= on startup. This is achieved on org-babel and tangle (see the =init.el= file).
 
