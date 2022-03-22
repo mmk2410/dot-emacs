@@ -1527,6 +1527,17 @@ Source: [[https://github.com/editorconfig/editorconfig-emacs][GitHub: editorconf
   (editorconfig-mode 1))
 #+end_src
 
+** Docker
+
+I use Docker and more importantly docker-compose for development. Thanks to [[https://github.com/Silex][Philippe Vaucher]] I can manage it from within Emacs.
+
+- Source :: [[https://github.com/Silex/docker.el][GitHub: Silex/docker.el]]
+
+#+begin_src emacs-lisp
+(use-package docker
+  :bind ("C-c M-d" . docker))
+#+end_src
+
 * Language-Specific Programming Packages
 ** Go
 
