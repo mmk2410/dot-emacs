@@ -21,6 +21,11 @@
   (interactive)
   (mmk2410/tab-bar-switch-or-create "RSS" #'elfeed))
 
+(defun mmk2410/tab-bar-new-named-tab (name)
+  (interactive "sTab Name: ")
+  (tab-bar-new-tab)
+  (tab-bar-rename-tab name))
+
 (defun mmk2410/tab-bar-run-mail ()
   (interactive)
   (mmk2410/tab-bar-switch-or-create
