@@ -473,7 +473,9 @@ During the last weeks I got used to using a light theme during daytime and a dar
 
 (defun mmk2410/switch-theme (theme)
   (mapcar 'disable-theme custom-enabled-themes)
-  (load-theme theme t))
+  (load-theme theme t)
+  (mmk2410/org-font-adjust-headlines)
+  (mmk2410/org-font-adjust-variable-pitch))
 
 (defun mmk2410/switch-theme-night ()
   (interactive)
@@ -874,7 +876,8 @@ Hide emphasis markers. While this sometimes is very distracting it mostly looks 
 I like to have larger headlines in Org for better identifying them. The configuration of [[https://config.daviwil.com/emacs#fonts-and-bullets][David Wilson]] was a large help in this regard.
 
 #+begin_src emacs-lisp
-(with-eval-after-load 'org
+(defun mmk2410/org-font-adjust-headlines ()
+  "Adjust headline sizes, font family and weight"
   (dolist (face '((org-level-1 . 1.4)
                   (org-level-2 . 1.3)
                   (org-level-3 . 1.2)
@@ -885,12 +888,15 @@ I like to have larger headlines in Org for better identifying them. The configur
                   (org-level-8 . 1.1)))
     (set-face-attribute (car face) nil :font "Open Sans" :weight 'bold :height (cdr face))))
 
+(with-eval-after-load 'org
+  (mmk2410/org-font-adjust-headlines))
 #+end_src
 
 When using a variable-pitch font this also applies to stuff like code blocks. The following block resets this change for these unwanted faces.
 
 #+begin_src emacs-lisp
-(with-eval-after-load 'org
+(defun mmk2410/org-font-adjust-variable-pitch ()
+  "Re-delare certain org font as fixed pitch when using variable pitch mode."
   (org-indent-mode)
   (set-face-attribute 'org-block nil :foreground nil :inherit 'fixed-pitch)
   (set-face-attribute 'org-code nil   :inherit '(shadow fixed-pitch))
@@ -899,6 +905,9 @@ When using a variable-pitch font this also applies to stuff like code blocks. Th
   (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
   (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
   (set-face-attribute 'org-checkbox nil :inherit 'fixed-pitch))
+
+(with-eval-after-load 'org
+  (mmk2410/org-font-adjust-variable-pitch))
 #+end_src
 
 ** Org Superstar Mode
