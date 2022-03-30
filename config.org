@@ -348,6 +348,12 @@ And disable this for some modes.
 (add-hook 'eww-mode-hook (lambda () (display-line-numbers-mode -1)))
 #+end_src
 
+But when Emacs shows line numbers, they should be relative. Why? Ever tried =20j= in Evil mode or =C-u 20 C-p= in Emacs?
+
+#+begin_src emacs-lisp
+(setq display-line-numbers-type 'relative)
+#+end_src
+
 ** Replace selected text by typing
 
 #+begin_src emacs-lisp
