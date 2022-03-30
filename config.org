@@ -2132,7 +2132,7 @@ Now define the contexts.
                              (string-prefix-p "/work" (mu4e-message-field msg :maildir))))
              :vars '( ( user-mail-address . "m.kapfer@emplify-software.de" )
                       ( user-full-name . "Marcel Kapfer" )
-                      ( message-signature-file . nil)
+                      ( message-signature-file . "~/dotfiles/dot-work/signature/mu4e")
                       ( mu4e-sent-folder . "/work/Sent Items" )
                       ( mu4e-drafts-folder . "/work/Drafts" )
                       ( mu4e-trash-folder . "/work/Trash" )
