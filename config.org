@@ -2182,6 +2182,14 @@ Now define the contexts.
 
 ** Other settings
 
+The [[https://github.com/org-mime/org-mime][org-mime]] package thankfully allows sending HTML mails from mu4e. Not that I like HTML mails but I need to have a special HTML message signature for work.
+
+#+begin_src emacs-lisp
+(use-package org-mime
+  :after (org mu4e)
+  :config (setq org-mime-library 'mml))
+#+end_src
+
 Mu4e displays a message in the minibuffer after refreshing. And since I run mbsync and mu index (through emacsclient) automatically every few minutes these messages can get quite distracting. Luckily mu4e provides an option to disable these index messages.
 
 #+begin_src emacs-lisp
