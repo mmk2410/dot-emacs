@@ -1595,7 +1595,11 @@ Source: [[https://github.com/fxbois/web-mode][GitHub: fxbois/web-mode]]
          ("\\.mustache\\'" . web-mode)
          ("\\.djhtml\\'" . web-mode)
          ("\\.vue\\'" . web-mode)
-         ("\\.blade\\.php\\'" . web-mode)))
+         ("\\.blade\\.php\\'" . web-mode))
+  :config
+  (setq web-mode-script-padding 0)
+  (setq web-mode-code-indent-offset 2)
+  (setq web-mode-markup-indent-offset 2))
 #+end_src
 
 ** TypoScript
