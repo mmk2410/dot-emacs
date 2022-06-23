@@ -1611,24 +1611,6 @@ Source: [[https://github.com/fxbois/web-mode][GitHub: fxbois/web-mode]]
   (setq web-mode-markup-indent-offset 2))
 #+end_src
 
-** TypoScript
-
-TypoScript major mode for Emacs.
-
-Source: [[https://github.com/ksjogo/typoscript-mode][GitHub: ksjogo/typoscript-mode]]
-
-#+begin_src emacs-lisp
-(use-package typoscript-mode
-  :mode "\\.typoscript\\'")
-#+end_src
-
-
-#+begin_src emacs-lisp
-(use-package js
-  :config
-  (setq js-indent-level 2))
-#+end_src
-
 ** YAML
 
 YAML major mode for Emacs.
