@@ -48,7 +48,11 @@
   (mmk2410/tab-bar-switch-or-create
    "Agenda"
    #'(lambda ()
-       (org-agenda nil "a"))))
+       (org-agenda nil "c")
+       (sit-for 1)
+       (split-window-horizontally)
+       (other-window 1)
+       (org-journal-open-current-journal-file))))
 
 (defun mmk2410/tab-bar-run-journal ()
   (interactive)
