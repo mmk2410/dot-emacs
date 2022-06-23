@@ -586,6 +586,15 @@ An even better integration may be achieved when additionall using the [[https://
   :config (evil-collection-init))
 #+end_src
 
+Additional I like to press =jk= for exiting normal mode, using [[https://github.com/emacsorphanage/key-chord/][key-chord]] this is possible.
+
+#+begin_src emacs-lisp
+(use-package key-chord
+  :config
+  (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
+  (key-chord-mode 1))
+#+end_src
+
 * General packages
 ** diminish-mode
 
