@@ -76,10 +76,13 @@ Use a sane date style.
 (setq calendar-date-style 'european)
 #+end_src
 
-** Turn off backup files
+** Turn off backup and lock files
+
+Lock files don't play nice with npm.
 
 #+begin_src emacs-lisp
 (setq-default backup-inhibited t)
+(setq create-lockfiles nil)
 #+end_src
 
 ** Performance tweaks
