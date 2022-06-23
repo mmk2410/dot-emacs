@@ -1509,6 +1509,17 @@ Source: [[https://github.com/company-mode/company-mode][GitHub: company-mode]]
         company-dabbrev-downcase nil))
 #+end_src
 
+** flycheck
+
+Flycheck is a syntax checking extension for Emacs which uses specialized command line tools for the languages it supports. Next to the linting and highlighting of errors it does on its own it also integrates nicely into lsp-mode.
+
+Source: [[https://www.flycheck.org][flycheck.org]]
+
+#+begin_src emacs-lisp
+(use-package flycheck
+  :init (global-flycheck-mode))
+#+end_src
+
 ** lsp
 
 Language Server Protocoll capabilities for Emacs
