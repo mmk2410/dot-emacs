@@ -1541,7 +1541,10 @@ Source: [[https://github.com/emacs-lsp/lsp-mode][GitHub:emacs-lsp/lsp-mode]]
   :config (setq lsp-prefer-capf t))
 
 (use-package lsp-ui
-  :commands lsp-ui-mode)
+  :commands lsp-ui-mode
+  :config
+  (setq lsp-ui-sideline-show-code-actions t
+        lsp-ui-sideline-show-hover t))
 
 (use-package lsp-ivy
   :commands lsp-ivy-workspace-symbol)
