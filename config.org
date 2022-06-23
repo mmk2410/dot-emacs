@@ -1526,9 +1526,8 @@ Source: [[https://github.com/emacs-lsp/lsp-mode][GitHub:emacs-lsp/lsp-mode]]
          (js-mode . lsp-deferred)
          (lsp-mode . lsp-enable-which-key-integration))
   :commands (lsp lsp-deferred)
-  :config
-  (setq lsp-keymap-prefix "C-s-l"
-        lsp-prefer-capf t))
+  :init (setq lsp-keymap-prefix "C-c C-l")
+  :config (setq lsp-prefer-capf t))
 
 (use-package lsp-ui
   :commands lsp-ui-mode)
