@@ -65,7 +65,7 @@
   (mmk2410/tab-bar-switch-or-create
    "Projects"
    #'(lambda ()
-       (find-file "~/org/work.projects.org"))))
+       (find-file "~/org/projects.org"))))
 
 (defhydra mmk2410/tab-bar (:color teal :hint nil)
   "
