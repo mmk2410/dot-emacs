@@ -1135,10 +1135,10 @@ Make the column for categories wider.
 
 #+begin_src emacs-lisp
 (setq org-agenda-prefix-format
-      '((agenda . " %i %-18:c%?-12t% s")
-        (todo . " %i %-18:c")
-        (tags . " %i %-18:c")
-        (search . " %i %-18:c")))
+      '((agenda . " %i %?-12t% s")
+        (todo . " %i")
+        (tags . " %i")
+        (search . " %i")))
 #+end_src
 
 Finally define the org-agenda display using [[https://github.com/alphapapa/org-super-agenda][org-super-agenda]] by alphapapa.
