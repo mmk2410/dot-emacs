@@ -1595,7 +1595,19 @@ Source: [[https://github.com/emacs-typescript/typescript.el][GitHub: emacs-types
 
 #+begin_src emacs-lisp
 (use-package typescript-mode
-  :mode "\\.ts\\'")
+  :mode "\\.ts\\'"
+  :config
+  (setq typescript-indent-level 2))
+#+end_src
+
+** JavaScript
+
+Load the built-in JavaScript mode to set it's indentation.
+
+#+begin_src emacs-lisp
+(use-package js
+  :config
+  (setq js-indent-level 2))
 #+end_src
 
 ** Web Mode
@@ -1618,7 +1630,10 @@ Source: [[https://github.com/fxbois/web-mode][GitHub: fxbois/web-mode]]
   :config
   (setq web-mode-script-padding 0)
   (setq web-mode-code-indent-offset 2)
-  (setq web-mode-markup-indent-offset 2))
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+  (setq web-mode-style-padding 0)
+  (setq web-mode-enable-comment-annotation t))
 #+end_src
 
 ** YAML
