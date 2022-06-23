@@ -1362,8 +1362,6 @@ Source: [[https://github.com/org-roam/org-roam-bibtex][GitHub: org-roam/org-roam
 
 ** Org Roam UI
 
-*Disabled since =org-roam-ui= is not yet released on Melpa.* And I currently have no time to setup or switch to =straight= (or to put it better: it is currently not important enough for me).
-
 A graphical frontend for exploring your org-roam Zettelkasten
 
 Source: [[https://github.com/org-roam/org-roam-ui][GitHub: org-roam/org-roam-ui]]
