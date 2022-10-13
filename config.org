@@ -1663,18 +1663,6 @@ Source: [[https://github.com/yoshiki/yaml-mode][GitHub: yoshiki/yaml-mode]]
          ("\\.yml\\'" . yaml-mode)))
 #+end_src
 
-** MoinMoin
-
-MoinMoin mode for Emacs.
-
-Source: [[https://moinmo.in/action/raw/EmacsForMoinMoin/MoinMoinMode?action=raw][MoinMoin wiki: EmacsForMoinMoin]]
-
-#+begin_src emacs-lisp
-(use-package moinmoin-mode
-  :load-path "lisp/moinmoin-mode/"
-  :mode "\\.wiki\\'"
-  :commands (moinmoin-mode))
-#+end_src
 
 * Emacs Multimedia System (EMMS)
 
