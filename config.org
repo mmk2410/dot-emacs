@@ -1565,6 +1565,7 @@ Source: [[https://www.flycheck.org][flycheck.org]]
 
 #+begin_src emacs-lisp
 (use-package flycheck
+  :config (setq-default flycheck-emacs-lisp-load-path 'inherit)
   :init (global-flycheck-mode))
 #+end_src
 
