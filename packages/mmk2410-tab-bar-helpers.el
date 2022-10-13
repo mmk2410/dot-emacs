@@ -52,13 +52,13 @@
        (sit-for 1)
        (split-window-horizontally)
        (other-window 1)
-       (org-journal-open-current-journal-file))))
+       (org-roam-dailies-goto-today))))
 
 (defun mmk2410/tab-bar-run-journal ()
   (interactive)
   (mmk2410/tab-bar-switch-or-create
    "Journal"
-   #'org-journal-open-current-journal-file))
+   #'org-roam-dailies-goto-today))
 
 (defun mmk2410/tab-bar-run-projects ()
   (interactive)
@@ -91,5 +91,4 @@
   ("q" nil))
 
 (provide 'mmk2410-tab-bar-helpers)
-
-;;; tab-bar-helpers.el ends here
+;;; mmk2410-tab-bar-helpers.el ends here

@@ -1370,15 +1370,30 @@ Source: [[https://www.orgroam.com][orgroam.com]]
                  (direction . right)
                  (window-width . 0.33)
                  (window-height . fit-window-to-buffer)))
+  (setq org-roam-dailies-directory "daily/")
+  (setq org-roam-dailies-capture-templates
+        '(("c" "clock" entry "* %<%H:%M> %?"
+           :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))
+          ("n" "note" entry "* %?"
+           :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))
+          ("t" "todo" entry "* TODO %?"
+           :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))))
   (require 'org-roam-protocol)
+  (require 'org-roam-dailies)
   (org-roam-db-autosync-mode)
   :bind (("C-c r f" . org-roam-node-find)
          ("C-c r i" . org-roam-node-insert)
          ("C-c r b" . org-roam-buffer-toggle)
          ("C-c r c" . org-roam-capture)
          ("C-c r g" . org-roam-graph)
+         :map org-mode-map
+         ("C-M-i" . completion-at-point)
          :map org-roam-mode-map
-         ("[mouse-1]" . #'org-roam-visit-thing)))
+         ("[mouse-1]" . #'org-roam-visit-thing)
+         :map org-roam-dailies-map
+         ("Y" . org-roam-dailies-capture-yesterday)
+         ("T" . org-roam-dailies-capture-tomorrow))
+  :bind-keymap ("C-c r d" . org-roam-dailies-map))
 #+end_src
 
 ** Org Roam Bibtex
