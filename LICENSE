@@ -1,3 +1,18 @@
+Note regarding init.el and config.org: There is some code in the configuration
+file that is heavily inspired (though not necessarily copied) from other peoples
+configuration.
+
+Note regarding packages/ts-mode.el: This file is not written by myself but by
+Joachim Mathes and released under the GPLv3 by him. It is kept in this
+repository since it is not available in any package archive.
+
+Note regarding packages/org-quick-capture.el: The main code was grabbed from
+Reddit and published there by u/lebitso and an anonymous commenter (URLs in
+file). It was published without a license but I doubt that it is relevant given
+the extreme simplicity of the code.
+
+-------------------------------------------------------------------------------
+
 GNU GENERAL PUBLIC LICENSE
 
 Version 3, 29 June 2007
