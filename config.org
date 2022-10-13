@@ -424,9 +424,8 @@ Source: [[https://github.com/greduan/emacs-theme-gruvbox][Github: greduan/emacs-
 
 #+begin_src emacs-lisp
 (use-package gruvbox-theme
-  :disabled t
   :config
-  (load-theme 'gruvbox-light-medium t))
+  (load-theme 'gruvbox-light-hard t))
 #+end_src
 
 Installing and enabling Modus themes. /Disabled in favor of the Doom themes./
@@ -449,6 +448,7 @@ Installing and enabling Doom themes.
 
 #+begin_src emacs-lisp
 (use-package doom-themes
+  :disabled t
   :config
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t)
@@ -457,10 +457,34 @@ Installing and enabling Doom themes.
   (doom-themes-org-config))
 #+end_src
 
+Installing and enabling ef-themes.
+
+#+begin_src emacs-lisp
+(use-package ef-themes
+  :disabled t
+  :init
+  (setq ef-themes-to-toggle '(ef-light ef-dark))
+  (setq ef-themes-mixed-fonts t
+        ef-themes-variable-pitch-ui t)
+  (setq ef-themes-headings
+        '((0 . (variable-pitch light 1.9))
+          (1 . (variable-pitch light 1.8))
+          (2 . (variable-pitch regular 1.7))
+          (3 . (variable-pitch regular 1.6))
+          (4 . (variable-pitch regular 1.5))
+          (5 . (variable-pitch 1.4))
+          (6 . (variable-pitch 1.3))
+          (7 . (variable-pitch 1.2))
+          (t . (variable-pitch 1.1))))
+  :config
+  (load-theme 'ef-light t))
+#+end_src
+
+
 Add a slight transparency to the frames. Code provided by David Wilson / System Crafters [[https://github.com/daviwil/emacs-from-scratch/blob/master/Emacs.org][Emacs from Scratch]] video series.
 
 #+begin_src emacs-lisp
-(setq mmk2410/frame-transparency '(90 . 90))
+(setq mmk2410/frame-transparency '(95 . 95))
 
 (set-frame-parameter (selected-frame) 'alpha mmk2410/frame-transparency)
 (add-to-list 'default-frame-alist `(alpha . ,mmk2410/frame-transparency))
@@ -471,14 +495,15 @@ Add a slight transparency to the frames. Code provided by David Wilson / System 
 During the last weeks I got used to using a light theme during daytime and a dark theme during nighttime. Luckily the themes based on Atom One are to my liking and the doom package provides a dark and light variant. One thing that was difficult with Emacs was actually switching theme since it involved disabling all current ones (for some reason on one machine there are two enabled while on the other machine its only one) and then loading the correct one. These functions try to make that process easier, at least for now. The long-term goal is to automatically change the theme based on the current system-wide setting.
 
 #+begin_src emacs-lisp
-(setq mmk2410/theme-night 'doom-one)
-(setq mmk2410/theme-day 'doom-one-light)
+(setq mmk2410/theme-night 'gruvbox-dark-hard)
+(setq mmk2410/theme-day 'gruvbox-light-hard)
 
 (defun mmk2410/switch-theme (theme)
   (mapcar 'disable-theme custom-enabled-themes)
   (load-theme theme t)
-  (mmk2410/org-font-adjust-headlines)
-  (mmk2410/org-font-adjust-variable-pitch))
+  (unless (string-prefix-p "ef-" theme)
+    (mmk2410/org-font-adjust-headlines)
+    (mmk2410/org-font-adjust-variable-pitch)))
 
 (defun mmk2410/switch-theme-night ()
   (interactive)
@@ -901,7 +926,8 @@ I like to have larger headlines in Org for better identifying them. The configur
     (set-face-attribute (car face) nil :font "Open Sans" :weight 'bold :height (cdr face))))
 
 (with-eval-after-load 'org
-  (mmk2410/org-font-adjust-headlines))
+  (unless (string-prefix-p "ef-" (format "%s" (car custom-enabled-themes)))
+    (mmk2410/org-font-adjust-headlines)))
 #+end_src
 
 When using a variable-pitch font this also applies to stuff like code blocks. The following block resets this change for these unwanted faces.
@@ -919,7 +945,8 @@ When using a variable-pitch font this also applies to stuff like code blocks. Th
   (set-face-attribute 'org-checkbox nil :inherit 'fixed-pitch))
 
 (with-eval-after-load 'org
-  (mmk2410/org-font-adjust-variable-pitch))
+  (unless (string-prefix-p "ef-" (format "%s" (car custom-enabled-themes)))
+    (mmk2410/org-font-adjust-variable-pitch)))
 #+end_src
 
 ** Org Superstar Mode
