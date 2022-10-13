@@ -70,3 +70,5 @@ projects
 /eshell/
 /persist/
 /lsp-cache/
+/mastodon.plstore
+/eln-cache/
