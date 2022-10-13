@@ -1664,6 +1664,20 @@ Source: [[https://github.com/yoshiki/yaml-mode][GitHub: yoshiki/yaml-mode]]
 #+end_src
 
 
+** TypoScript
+
+TypoScript major mode for Emacs.
+
+Original Source: [[https://www.emacswiki.org/emacs/ts-mode.el][EmacsWiki: ts-mode.el]]
+
+#+begin_src emacs-lisp
+(use-package ts-mode
+  :load-path "packags/"
+  :mode (("\\.typoscript\\'" . ts-mode)
+         ("\\.tsconfig\\'" . ts-mode)))
+#+end_src
+
+
 * Emacs Multimedia System (EMMS)
 
 For notes, tasks, writing, and countless other things there is org-mode.
