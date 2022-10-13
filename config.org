@@ -592,6 +592,7 @@ Source: [[https://github.com/emacs-evil/evil][GitHub: emacs-evil/evil]]
 
 #+begin_src emacs-lisp
 (use-package evil
+  :disabled t
   :init
   (setq evil-want-integration t)
   (setq evil-want-keybinding nil)
@@ -607,6 +608,7 @@ An even better integration may be achieved when additionall using the [[https://
 
 #+begin_src emacs-lisp
 (use-package evil-collection
+  :disabled t
   :after evil
   :config (evil-collection-init))
 #+end_src
@@ -615,6 +617,7 @@ Additional I like to press =jk= for exiting normal mode, using [[https://github.
 
 #+begin_src emacs-lisp
 (use-package key-chord
+  :disabled t
   :config
   (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
   (key-chord-mode 1))
@@ -752,6 +755,7 @@ Source: [[https://github.com/Alexander-Miller/treemacs][Alexander-Miller/treemac
               ("C-c b M-f" . treemacs-find-tag)))
 
 (use-package treemacs-evil
+  :disabled t
   :after (treemacs evil))
 #+end_src
 
