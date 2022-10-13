@@ -1948,6 +1948,19 @@ Source: [[https://github.com/fasheng/elfeed-protocol][GitHub: fasheng/elfeed-pro
   (elfeed-protocol-enable))
 #+end_src
 
+* Mastodon
+
+Emacs client for Mastodon.
+
+[[https://codeberg.org/martianh/mastodon.el][Codeberg: martianh/mastodon.el]]
+
+#+begin_src emacs-lisp
+(use-package mastodon
+  :config
+  (setq mastodon-instance-url "https://fosstodon.org"
+        mastodon-active-user "mmk2410"))
+#+end_src
+
 * mu4e
 
 Managing e-mails is maybe one of the most critical tasks in my life. Over the last years I tried countless different clients, including the famous (neo)mutt, KMail, and Thunderbird. But it seems that I always go back to one specific: mu4e. Maybe because it is integrated in Emacs and Org-mode, maybe because I like using a keyboard-focused client and that's where I end. I don't now. But what I know is: I enjoy using it!
