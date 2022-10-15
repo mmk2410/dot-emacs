@@ -1180,7 +1180,7 @@ Make the column for categories wider.
 
 #+begin_src emacs-lisp
 (setq org-agenda-prefix-format
-      '((agenda . " %i %?-12t% s")
+      '((agenda . " %i %-15:c%?-12t% s")
         (todo . " %i")
         (tags . " %i")
         (search . " %i")))
