@@ -711,6 +711,17 @@ Support for Org links to Magit buffers.
                "https://git.mmk2410.org/%n/commit/%r")))
 #+end_src
 
+** gitmoji
+
+Insert gitmoji in Emacs.
+
+Source: [[https://github.com/janusvm/emacs-gitmoji][GitHub: janusvm/emacs-gitmoji]]
+
+#+begin_src emacs-lisp
+(use-package gitmoji
+  :load-path "lisp/gitmoji/")
+#+end_src
+
 ** diff-hl
 
 Emacs package for highlighting uncommitted changes
