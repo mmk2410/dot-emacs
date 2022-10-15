@@ -1753,7 +1753,6 @@ Original Source: [[https://www.emacswiki.org/emacs/ts-mode.el][EmacsWiki: ts-mod
          ("\\.tsconfig\\'" . ts-mode)))
 #+end_src
 
-
 * Emacs Multimedia System (EMMS)
 
 For notes, tasks, writing, and countless other things there is org-mode.
@@ -1942,21 +1941,20 @@ Using this function I can now define a org-capture template for my purpose.
 
 I currently use it in combination with my Miniflux instance (previously I used it with Nextcloud News and FreshRSS). The reason why I not only use elfeed with a local feed list (managed for example by elfeed-org) is that a cloud service can check for new feed articles continuously and I can read articles on any device.
 
+I additionally bind =elfeed-protocol-fever-reinit= to a handy keybinding since this seems to be the only way to retrieve new items from the API.
+
 Source: [[https://github.com/fasheng/elfeed-protocol][GitHub: fasheng/elfeed-protocol]]
 
 #+begin_src emacs-lisp
 (use-package elfeed-protocol
   :init
   ;; FreshRSS (self-hosted)
-  ;; Disabled since I currently use Miniflux
   (setq elfeed-feeds '(("fever+https://mmk2410@rss.mmk2410.org"
                         :api-url "https://rss.mmk2410.org/api/fever.php"
                         :use-authinfo t)))
-  ;; Miniflux (self-hosted)
-  ;; (setq elfeed-feeds '(("fever+https://mmk2410@miniflux.rss.mmk2410.org"
-  ;;                       :api-url "https://miniflux.rss.mmk2410.org/fever/"
-  ;;                       :use-authinfo t)))
-  (elfeed-protocol-enable))
+  (elfeed-protocol-enable)
+  :bind (:map elfeed-search-mode-map
+              ("C-c C-u" . elfeed-protocol-fever-reinit)))
 #+end_src
 
 * Mastodon
