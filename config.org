@@ -1996,7 +1996,7 @@ Not all distributions that I use have a enough up-to-date package of mu/maildir-
             ((file-directory-p mu4e-load-path-usr-local)
              mu4e-load-path-usr-local)
             ((file-directory-p mu4e-load-path-usr)
-             mu4e-load-path-usr-local)
+             mu4e-load-path-usr)
             (t (error "mu4e not found!"))))))
 #+end_src
 
