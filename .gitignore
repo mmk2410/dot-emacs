@@ -72,3 +72,8 @@ projects
 /lsp-cache/
 /mastodon.plstore
 /eln-cache/
+/request/
+/var/
+/.lsp-eslint-choices
+/mastodon.plstore
+/lisp/
