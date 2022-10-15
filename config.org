@@ -1171,7 +1171,7 @@ Org Agenda mode settings:
 - Start week today and not on Monday.
 
 #+begin_src emacs-lisp
-(setq org-agenda-span 'week)
+(setq org-agenda-span 'day)
 (setq org-agenda-skip-scheduled-if-deadline-is-shown t)
 (setq org-agenda-start-on-weekday nil)
 #+end_src
@@ -1197,7 +1197,7 @@ Finally define the org-agenda display using [[https://github.com/alphapapa/org-s
         org-agenda-compact-blocks t)
   (setq org-agenda-custom-commands
         '(("c" "Complete Agenda with Todos"
-           ((agenda "" ((org-agenda-span 'week)
+           ((agenda "" ((org-agenda-span 'day)
                         (org-deadline-warning-days 365)
                         (org-super-agenda-groups
                          '((:name "" :time-grid t :deadline future)))))
