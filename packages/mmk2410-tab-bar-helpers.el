@@ -67,6 +67,11 @@
    #'(lambda ()
        (find-file "~/org/projects.org"))))
 
+(defun mmk2410/tab-bar-run-mastodon ()
+  "Switch or create a tab running mastodon.el."
+  (interactive)
+  (mmk2410/tab-bar-switch-or-create "Mastodon" #'mastodon))
+
 (defhydra mmk2410/tab-bar (:color teal :hint nil)
   "
   ^Apps^               ^Helpers^        ^Misc
@@ -84,6 +89,7 @@
   ("j" mmk2410/tab-bar-run-journal)
   ("m" mmk2410/tab-bar-run-mail)
   ("p" mmk2410/tab-bar-run-projects)
+  ("M" mmk2410/tab-bar-run-mastodon)
   ("RET" tab-bar-select-tab-by-name)
   ("SPC" mmk2410/tab-bar-new-named-tab)
   ("f" tab-bar-switch-to-recent-tab)
