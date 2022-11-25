@@ -74,14 +74,13 @@
 
 (defhydra mmk2410/tab-bar (:color teal :hint nil)
   "
-  ^Apps^               ^Helpers^        ^Misc
---^^^^^^---------------------------------------------
-  _a_: Agenda          _RET_: Search    _q_: Cancel
-  _e_: RSS (Elfeed)    _SPC_: New
-  _i_: IRC (erc)       _f_: Previous
-  _j_: Journal         _Q_: Close
-  _m_: Mail
-  _p_: Projects
+  ^Apps^               ^Org^            ^Helpers^            ^Misc
+--^^^^^^-----------------------------------------------------------------
+  _e_: RSS (Elfeed)    _a_: Agenda      _RET_: Search        _q_: Cancel
+  _m_: Mail            _j_: Journal     _SPC_: New
+  _i_: IRC (erc)       _p_: Projects    _f_: Previous Tab
+  _M_: Mastodon                       _Q_: Close Tab
+
 "
   ("a" mmk2410/tab-bar-run-agenda)
   ("e" mmk2410/tab-bar-run-elfeed)
