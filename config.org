@@ -501,7 +501,7 @@ During the last weeks I got used to using a light theme during daytime and a dar
 (defun mmk2410/switch-theme (theme)
   (mapcar 'disable-theme custom-enabled-themes)
   (load-theme theme t)
-  (unless (string-prefix-p "ef-" theme)
+  (unless (string-prefix-p "ef-" (symbol-name theme))
     (mmk2410/org-font-adjust-headlines)
     (mmk2410/org-font-adjust-variable-pitch)))
 
