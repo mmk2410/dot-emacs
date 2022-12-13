@@ -332,6 +332,7 @@ Source: [[https://stackoverflow.com/a/744681][Stack Overflow: Unable to hide wel
 
 #+begin_src emacs-lisp
 (add-hook 'text-mode-hook #'hl-line-mode)
+(add-hook 'org-agenda-finalize-hook #'hl-line-mode)
 #+end_src
 
 ** Show line numbers
