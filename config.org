@@ -1087,8 +1087,32 @@ Set TODO Keywords.
 
 #+begin_src emacs-lisp
 (setq org-todo-keywords '((sequence
-                           "TODO(t!)" "NEXT(n!)" "STARTED(a!)" "WAIT(w@/!)" "SOMEDAY(s)"
-                           "|" "DONE(d!)" "CANCELLED(c@/!)")))
+                           "TODO(t!)" "NEXT(n!)" "STARTED(s!)" "WAITING(w@/@)"
+                           "|" "POSTPONED(p@/!)" "DELEGATED(f@/!)" "CANCELLED(c@/!)" "DONE(d!)")))
+#+end_src
+
+Set a predefined tags. The first group is the  list of GTD contexts. These are (by nature) exclusive and since a project is also an exclusive state I added it to the group even if it is not a context.
+
+#+begin_src emacs-lisp
+(setq org-tag-persistent-alist '((:startgroup . nil)
+                                 ("@agendas" . ?a)
+                                 ("@anywhere" . ?y)
+                                 ("@calls" . ?t)
+                                 ("@computer" . ?c)
+                                 ("@errands" . ?e)
+                                 ("@fathers" . ?f)
+                                 ("@home" . ?h)
+                                 ("@photography" . ?s)
+                                 ("@read" . ?r)
+                                 ("@work_computer" . ?w)
+                                 ("@project" . ?p)
+                                 (:endgroup . nil)
+                                 ("coding" . ?C)
+                                 ("graphic_design" . ?G)
+                                 ("habit" . ?H)
+                                 ("kitchen" . ?K)
+                                 ("photo_editing" . ?P)
+                                 ("sysadmin" . ?S)))
 #+end_src
 
 Set time tag when re-something on todos
@@ -1128,17 +1152,27 @@ Open org-agenda in current window.
 Define org-capture templates.
 
 #+begin_src emacs-lisp
+(setq mmk2410/created-date ":PROPERTIES:\n:CREATED: %U\n:END:")
 (setq org-capture-templates
-      '(("t" "Normal task" entry (file "~/org/tasks/inbox.org")
-         "* TODO %?\n:PROPERTIES:\n:CREATED: %U\n:END:")
+      `(("q" "Quick Capture" entry (file "~/org/tasks/inbox.org")
+         ,(concat "* TODO %^{Todo Title}\n:" mmk2410/created-date "\n")
+         :immediate-finish t)
+        ("p" "New Personal Project" entry (file "~/org/tasks/personal.org")
+         ,(concat "* %? :@project:\n" mmk2410/created-date "\n"))
+        ("t" "New Personal Task" entry (file "~/org/tasks/personal.org")
+         ,(concat "* %? %^g\n" mmk2410/created-date "\n"))
+        ("P" "New Work Project" entry (file "~/org/tasks/work.org")
+         ,(concat "* %? :@project:\n" mmk2410/created-date "\n"))
+        ("T" "New Work Task" entry (file "~/org/tasks/work.org")
+         ,(concat "* %? %^g\n" mmk2410/created-date "\n"))
+        ("r" "New Tickler Entry" entry (file "~/org/tasks/tickler.org")
+         ,(concat "* %?\n" mmk2410/created-date "\n%^{Remind me on}t\n"))
         ("e" "E-Mail needing a reply" entry (file "~/org/tasks/inbox.org")
-         "* TODO Reply: %a\n:PROPERTIES:\n:CREATED: %U\n:END:"
+         ,(concat "* TODO Reply: %a\n" mmk2410/created-date "\n")
          :immediate-finish t)
         ("p" "org-protocol-capture" entry (file "~/org/tasks/inbox.org")
-         "* TODO [[%:link][%:description]]\n:PROPERTIES:\n:CREATED: %U\n:END:\n\n%i"
-         :immediate-finish t)
-        ("r" "Reading todo" entry (file "~/org/tasks/read-review.org")
-         "* TODO %^L %^G\n:PROPERTIES:\n:CREATED: %U\n:END:\n")))
+         ,(concat "* TODO [[%:link][%:description]]\n" mmk2410/created-date "\n\n%i")
+         :immediate-finish t)))
 #+end_src
 
 Configure refiling TODOs.
@@ -1158,7 +1192,7 @@ Configure refiling TODOs.
 Warn me on deadlines in the next year.
 
 #+begin_src emacs-lisp
-(setq org-deadline-warning-days 365)
+(setq org-deadline-warning-days 7)
 #+end_src
 
 Org Agenda mode settings:
@@ -1173,45 +1207,61 @@ Org Agenda mode settings:
 (setq org-agenda-start-on-weekday nil)
 #+end_src
 
-Make the column for categories wider.
+I don't use the categories at all so I decided to remove the corresponding column.
 
 #+begin_src emacs-lisp
 (setq org-agenda-prefix-format
-      '((agenda . " %i %-15:c%?-12t% s")
+      '((agenda . " %i %?-12t% s")
         (todo . " %i")
         (tags . " %i")
         (search . " %i")))
 #+end_src
 
-Finally define the org-agenda display using [[https://github.com/alphapapa/org-super-agenda][org-super-agenda]] by alphapapa.
+By default, org-mode separates "blocks" (e.g. an agenda view and a todo view) with a horizontal line of equal signs and adding some headlines. Since I have more current tasks and projects than my screen is high I like to keep it as compact as possible.
 
 #+begin_src emacs-lisp
-(use-package org-super-agenda
-  :after org
-  :init (org-super-agenda-mode)
-  :config
-  (setq org-agenda-block-separator nil
-        org-agenda-compact-blocks t)
-  (setq org-agenda-custom-commands
-        '(("c" "Complete Agenda with Todos"
-           ((agenda "" ((org-agenda-span 'day)
-                        (org-deadline-warning-days 365)
-                        (org-super-agenda-groups
-                         '((:name "" :time-grid t :deadline future)))))
-            (alltodo "" ((org-agenda-overriding-header "")
-                         (org-super-agenda-groups
-                          '((:name "High Priority" :priority "A")
-                            (:name "Inbox" :file-path ".*/org/inbox\\.org$")
-                            (:name "[Work] Inbox" :file-path ".*/org/work\\.inbox\\.org$")
-                            (:name "Emails" :file-path ".*/org/emails\\.org$")
-                            (:name "Next" :todo "NEXT")
-                            (:name "Started" :todo "STARTED")
-                            (:name "[Work] Projects" :file-path ".*/org/work\\.projects\\.org$")
-                            (:name "Study" :and (:file-path ".*/org/study\\.org$" :not(:scheduled future)))
-                            (:name "Reading"  :file-path ".*/org/reading\\.org$")
-                            (:name "Projects" :file-path ".*/org/projects\\.org$")
-                            (:name "Habits" :habit t :order 100)
-                            (:name "Someday" :todo "SOMEDAY" :scheduled future :order 101))))))))))
+(setq org-agenda-block-separator nil
+      org-agenda-compact-blocks t)
+#+end_src
+
+For determining the current state of my tasks I found it helpful to not only define one org-agenda view and use it always (the "Agenda" view with the shortcut "o" was in a very similar form my default for years). That's why I decided to define additional more precise lists for todays and upcoming tasks as well as for on overview of started, waiting and next tasks.
+
+#+begin_src emacs-lisp
+(setq org-agenda-custom-commands
+      '(("o" "Agenda"
+         ((todo "STARTED")
+          (agenda "")
+          (todo "NEXT")))
+        ("u" "Upcoming tasks"
+         agenda "" ((org-agenda-span 'week)))
+        ("d" "Today tasks"
+         agenda "" ((org-agenda-span 'day)))
+        ("b" "Started tasks" todo "STARTED")
+        ("w" "Waiting for tasks" todo "WAITING")
+        ("n" "Next tasks" todo "NEXT")))
+#+end_src
+
+For easily choosing the next thing to work on I give each of my tasks a context (following the GTD methodology). For quickly getting a list of all actionable tasks for a context I'd like to have a quick keyboard shortcut to view a custom agenda. For this I defined a list of contexts and their shortcut and iterated over them to create an additional ~org-agenda-custom-commands~ entry for each.
+
+#+begin_src emacs-lisp
+(setq mmk2410/contexts
+      '(("@agendas" . "a")
+        ("@anywhere" . "y")
+        ("@calls" . "t")
+        ("@computer" . "c")
+        ("@errands" . "e")
+        ("@fathers" . "f")
+        ("@home" . "h")
+        ("@photography" . "s")
+        ("@read" . "r")
+        ("@work_computer" . "w")))
+
+(dolist (item mmk2410/contexts)
+  (add-to-list 'org-agenda-custom-commands
+               `(,(concat "c" (cdr item))
+                 ,(concat (substring (car item) 1) " context")
+                 tags-todo
+                 ,(concat (car item) "/!NEXT"))))
 #+end_src
 
 ** Quick Capture from everywhere
