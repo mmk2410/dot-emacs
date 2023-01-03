@@ -2326,7 +2326,7 @@ Since I already have a msmtp client configured and would also use it in case I w
                              (message-narrow-to-headers)
                              (message-fetch-field "from")))
                      (account (cond
-                               ((string-match "@uni-ulm.de" from) "uniulm")
+                               ((string-match "@uni-ulm.de" from) "alumni")
                                ((string-match "@emplify-software.de" from) "work")
                                (t "mailbox"))))
                 (setq message-sendmail-extra-arguments (list '"-a" account))))))
@@ -2348,10 +2348,10 @@ I don't really like the default bookmarks that mu4e sets. Thats why I overwrite 
   (setq mu4e-bookmarks
         '(( :name "Unread messages"
                   :key ?u
-                  :query "flag:unread or m:/university/inbox or m:/university/uulmhack or m:/mailbox/inbox" )
-          ( :name "Unread university messages"
-                  :key ?e
-                  :query "(flag:unread and m:/university/*) or m:/university/inbox or m:/university/uulmhack" )
+                  :query "flag:unread or m:/alumni/inbox or m:/mailbox/inbox" )
+          ( :name "Unread alumni messages"
+                  :key ?a
+                  :query "(flag:unread and m:/alumni/*) or m:/alumni/inbox" )
           ( :name "Unread private messages"
                   :key ?p
                   :query "(flag:unread and m:/mailbox/*) or m:/mailbox/inbox" ))))
@@ -2367,7 +2367,7 @@ I like to get to some maildir quite fast and with a shortcut.
           '((:maildir "/work/inbox" :key ?w)
             (:maildir "/mailbox/inbox" :key ?p)))
     (setq mu4e-maildir-shortcuts
-          '((:maildir "/university/inbox" :key ?e)
+          '((:maildir "/alumni/inbox" :key ?a)
             (:maildir "/mailbox/inbox" :key ?p))))
 #+end_src
 
@@ -2446,28 +2446,28 @@ Now define the contexts.
              :enter-func (lambda () (mu4e-message "Entering uulmhack context"))
              :match-func (lambda (msg)
                            (when msg
-                             (or (string-prefix-p "/university/uulmhack" (mu4e-message-field msg :maildir))
-                                 (string-prefix-p "/university/Archives/uulmhack" (mu4e-message-field msg :maildir)))))
+                             (or (string-prefix-p "/alumni/uulmhack" (mu4e-message-field msg :maildir))
+                                 (string-prefix-p "/alumni/Archives/uulmhack" (mu4e-message-field msg :maildir)))))
              :vars '( ( user-mail-address . "uulmhack@uni-ulm.de" )
                       ( user-full-name . "uulmhack Orga-Team" )
-                      ( message-signature-file . "~/dotfiles/dotdotfiles/sig/uulmhack")
-                      ( mu4e-sent-folder . "/university/Sent" )
-                      ( mu4e-drafts-folder . "/university/Drafts" )
-                      ( mu4e-trash-folder . "/university/Trash" )
-                      ( mu4e-refile-folder . "/university/Archives/uulmhack" )))
+                      ( message-signature-file . "~/.dotfiles/dot-private/sig/uulmhack")
+                      ( mu4e-sent-folder . "/alumni/Sent" )
+                      ( mu4e-drafts-folder . "/alumni/Drafts" )
+                      ( mu4e-trash-folder . "/alumni/Trash" )
+                      ( mu4e-refile-folder . "/alumni/Archives" )))
            ,(make-mu4e-context
-             :name "Education"
-             :enter-func (lambda () (mu4e-message "Entering education context"))
+             :name "Alumni"
+             :enter-func (lambda () (mu4e-message "Entering alumni context"))
              :match-func (lambda (msg)
                            (when msg
-                             (string-prefix-p "/university" (mu4e-message-field msg :maildir))))
-             :vars '( ( user-mail-address . "marcel.kapfer@uni-ulm.de" )
+                             (string-prefix-p "/alumni" (mu4e-message-field msg :maildir))))
+             :vars '( ( user-mail-address . "marcel.kapfer@alumni.uni-ulm.de" )
                       ( user-full-name . "Marcel Kapfer" )
                       ( message-signature-file . nil)
-                      ( mu4e-sent-folder . "/university/Sent" )
-                      ( mu4e-drafts-folder . "/university/Drafts" )
-                      ( mu4e-trash-folder . "/university/Trash" )
-                      ( mu4e-refile-folder . "/university/Archives" ))))))
+                      ( mu4e-sent-folder . "/alumni/Sent" )
+                      ( mu4e-drafts-folder . "/alumni/Drafts" )
+                      ( mu4e-trash-folder . "/alumni/Trash" )
+                      ( mu4e-refile-folder . "/alumni/Archives" ))))))
 #+end_src
 
 ** Other settings
