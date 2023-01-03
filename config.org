@@ -434,6 +434,7 @@ Source: [[https://github.com/greduan/emacs-theme-gruvbox][Github: greduan/emacs-
 
 #+begin_src emacs-lisp
 (use-package gruvbox-theme
+  :disabled t
   :config
   (load-theme 'gruvbox-light-hard t))
 #+end_src
@@ -471,11 +472,9 @@ Installing and enabling ef-themes.
 
 #+begin_src emacs-lisp
 (use-package ef-themes
-  :disabled t
   :init
   (setq ef-themes-to-toggle '(ef-light ef-dark))
-  (setq ef-themes-mixed-fonts t
-        ef-themes-variable-pitch-ui t)
+  (setq ef-themes-mixed-fonts t)
   (setq ef-themes-headings
         '((0 . (variable-pitch light 1.9))
           (1 . (variable-pitch light 1.8))
@@ -505,8 +504,8 @@ Add a slight transparency to the frames. Code provided by David Wilson / System 
 During the last weeks I got used to using a light theme during daytime and a dark theme during nighttime. Luckily the themes based on Atom One are to my liking and the doom package provides a dark and light variant. One thing that was difficult with Emacs was actually switching theme since it involved disabling all current ones (for some reason on one machine there are two enabled while on the other machine its only one) and then loading the correct one. These functions try to make that process easier, at least for now. The long-term goal is to automatically change the theme based on the current system-wide setting.
 
 #+begin_src emacs-lisp
-(setq mmk2410/theme-night 'gruvbox-dark-hard)
-(setq mmk2410/theme-day 'gruvbox-light-hard)
+(setq mmk2410/theme-night 'ef-dark)
+(setq mmk2410/theme-day 'ef-light)
 
 (defun mmk2410/switch-theme (theme)
   (mapcar 'disable-theme custom-enabled-themes)
@@ -538,6 +537,7 @@ I'm currently trying doom-modeline instead of telephone-line.
 
 #+begin_src emacs-lisp
 (use-package doom-modeline
+  :disabled t
   :init (doom-modeline-mode 1)
   :config (setq doom-modeline-icon t))
 #+end_src
