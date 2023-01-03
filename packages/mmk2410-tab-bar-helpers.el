@@ -48,7 +48,7 @@
   (mmk2410/tab-bar-switch-or-create
    "Agenda"
    #'(lambda ()
-       (org-agenda nil "c")
+       (org-agenda nil "d")
        (sit-for 1)
        (split-window-horizontally)
        (other-window 1)
