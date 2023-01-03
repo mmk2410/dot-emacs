@@ -258,6 +258,15 @@ Show filesize human readable.
 (setq-default dired-listing-switches "-alh")
 #+end_src
 
+** M-x customizations
+
+Hide commands in M-x which do not work in the current mode.
+
+#+begin_src emacs-lisp
+(setq read-extended-command-predicate
+      #'command-completion-default-include-p)
+#+end_src
+
 * Package configuration
 ** General configuration
 
