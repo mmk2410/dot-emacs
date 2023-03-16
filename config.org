@@ -1916,6 +1916,19 @@ Original Source: [[https://www.emacswiki.org/emacs/ts-mode.el][EmacsWiki: ts-mod
          ("\\.tsconfig\\'" . ts-mode)))
 #+end_src
 
+** Markdown
+
+Markdown mode customizations.
+
+#+begin_src emacs-lisp
+(use-package markdown-mode
+  :mode "\\.md\\'"
+  :hook ((markdown-mode . visual-line-mode)
+         (markdown-mode . (lambda () (display-line-numbers-mode -1)))
+         (markdown-mode . variable-pitch-mode)
+         (markdown-mode . visual-fill-column-mode)))
+#+end_src
+
 * Emacs Multimedia System (EMMS)
 
 For notes, tasks, writing, and countless other things there is org-mode.
