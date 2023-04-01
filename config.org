@@ -1632,7 +1632,7 @@ Source: [[https://github.com/tmalsburg/helm-bibtex][GitHub: tmalsburg/helm-bibte
 (use-package ivy-bibtex
   :after ivy
   :config
-  (setq bibtex-completion-bibliography "~/org/bibliography.bib")
+  (setq bibtex-completion-bibliography "~/org/roam/bibliography.bib")
   (setq bibtex-completion-library-path "~/papers")
   (setq bibtex-completion-notes-path "~/org/roam")
   (setq bibtex-completion-find-additional-pdfs t))
@@ -1648,7 +1648,7 @@ Source: [[https://github.com/jkitchin/org-ref][Github: jkitchin/org-ref]]
 (use-package org-ref
   :after org
   :config
-  (setq org-ref-default-bibliography '("~/org/bibliography.bib"))
+  (setq org-ref-default-bibliography '("~/org/roam/bibliography.bib"))
   (setq org-ref-pdf-directory "~/papers/")
   (setq org-ref-notes-directory "~/org/roam")
   (setq reftex-default-bibliography org-ref-default-bibliography)
