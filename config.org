@@ -1557,8 +1557,6 @@ Source: [[https://www.orgroam.com][orgroam.com]]
 #+begin_src emacs-lisp
 (use-package org-roam
   :commands (org-roam-node-insert org-roam-node-find org-roam-capture org-roam-buffer-toggle org-roam)
-  :init
-  (setq org-roam-v2-ack t)
   :config
   (setq org-roam-directory "~/org/roam")
   (add-to-list 'display-buffer-alist
