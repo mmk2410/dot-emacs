@@ -1259,9 +1259,17 @@ Set org agenda files.
 (setq org-agenda-files (list "~/org/tasks/"))
 
 (setq org-agenda-text-search-extra-files
-      (list "~/org/archive/"
-            "~/org/roam/"
-            "~/org/articles/"))
+      (directory-files-recursively "~/org/roam" "\.org$"))
+
+(setq org-agenda-text-search-extra-files
+      (append
+       org-agenda-text-search-extra-files
+       (directory-files-recursively "~/org/archive" "\.org$")))
+
+(setq org-agenda-text-search-extra-files
+      (append
+       org-agenda-text-search-extra-files
+       (directory-files-recursively "~/org/articles" "\.org$")))
 #+end_src
 
 Open org-agenda in current window.
