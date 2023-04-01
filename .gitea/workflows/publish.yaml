@@ -1,0 +1,50 @@
+name: Publish
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    container: silex/emacs:27.2-alpine-ci
+    steps:
+      - name: Install packages
+        run: apk add --no-cache openssh nodejs
+
+      - name: Add SSH key
+        run: |
+          mkdir ~/.ssh
+          chmod 700 ~/.ssh
+          echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          echo "$SSH_KNOWN_HOSTS" | tr -d '\r' >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+        env:
+          SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
+          SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
+
+      - name: Check out
+        uses: actions/checkout@v3
+
+      - name: Build publish script
+        run: emacs -Q --script publish/publish.el
+
+      - name: Install rsync
+        run: apk add --no-cache rsync
+
+      - name: Deploy build
+        run: |
+          rsync \
+            --archive \
+            --verbose \
+            --chown=gitlab-ci:www-data\
+            --delete\
+            --progress\
+            -e"ssh -p "$SSH_PORT""\
+            public/\
+            "$SSH_USER"@mmk2410.org:/var/www/config.mmk2410.org/
+        env:
+          SSH_USER: ${{secrets.SSH_USER}}
+          SSH_PORT: ${{secrets.SSH_PORT}}
