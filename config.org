@@ -643,7 +643,11 @@ Source: [[https://github.com/myrjola/diminish.el][GitHub: myrjola/diminish.el]]
 #+begin_src emacs-lisp
 (use-package diminish
   :init
-  (diminish 'abbrev-mode))
+  (diminish 'abbrev-mode)
+  (diminish 'buffer-face-mode)
+  (diminish 'flyspell-mode)
+  (diminish 'org-indent-mode)
+  (diminish 'visual-line-mode))
 #+end_src
 
 ** crux
@@ -944,6 +948,7 @@ Source: [[https://github.com/joaotavora/yasnippet][GitHub: joaotavora/yasnippet]
 
 #+begin_src emacs-lisp
 (use-package yasnippet
+  :diminish 'yas-minor-mode
   :config (yas-global-mode 1))
 #+end_src
 
@@ -1441,6 +1446,7 @@ From [[https://github.com/daviwil/emacs-from-scratch/blob/master/Emacs.org#cente
   (visual-fill-column-mode 1))
 
 (use-package visual-fill-column
+  :diminish visual-fill-column-mode
   :hook (org-mode . efs/org-mode-visual-fill))
 
 (add-hook 'org-mode-hook (lambda ()
@@ -1700,6 +1706,7 @@ Source: [[https://github.com/cdominik/cdlatex][GitHub: cdominik/cdlatex]]
 
 #+begin_src emacs-lisp
 (use-package cdlatex
+  :diminish 'org-cdlatex-mode
   :hook ((LaTeX-mode . turn-on-cdlatex)
          (org-mode . turn-on-org-cdlatex)))
 #+end_src
@@ -1756,6 +1763,7 @@ Source: [[https://www.flycheck.org][flycheck.org]]
 
 #+begin_src emacs-lisp
 (use-package flycheck
+  :diminish 'flycheck-mode
   :config (setq-default flycheck-emacs-lisp-load-path 'inherit)
   :init (global-flycheck-mode))
 #+end_src
@@ -1802,6 +1810,7 @@ Source: [[https://github.com/editorconfig/editorconfig-emacs][GitHub: editorconf
 #+begin_src emacs-lisp
 (use-package editorconfig
   :ensure t
+  :diminish 'editorconfig-mode
   :config
   (editorconfig-mode 1))
 #+end_src
@@ -1901,7 +1910,6 @@ Source: [[https://github.com/yoshiki/yaml-mode][GitHub: yoshiki/yaml-mode]]
   :mode (("\\.yaml\\'" . yaml-mode)
          ("\\.yml\\'" . yaml-mode)))
 #+end_src
-
 
 ** TypoScript
 
