@@ -8,10 +8,10 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    container: silex/emacs:27.2-alpine-ci
+    container: silex/emacs:28.1-alpine-ci
     steps:
       - name: Install packages
-        run: apk add --no-cache openssh nodejs
+        run: apk add --no-cache openssh rsync nodejs
 
       - name: Add SSH key
         run: |
@@ -30,9 +30,6 @@ jobs:
 
       - name: Build publish script
         run: emacs -Q --script publish/publish.el
-
-      - name: Install rsync
-        run: apk add --no-cache rsync
 
       - name: Deploy build
         run: |
