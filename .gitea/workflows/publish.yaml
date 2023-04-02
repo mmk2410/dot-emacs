@@ -11,7 +11,7 @@ jobs:
     container: silex/emacs:28.1-alpine-ci
     steps:
       - name: Install packages
-        run: apk add --no-cache openssh rsync nodejs
+        run: apk add --no-cache openssh nodejs
 
       - name: Add SSH key
         run: |
