@@ -1805,37 +1805,21 @@ Source: [[https://www.flycheck.org][flycheck.org]]
   :init (global-flycheck-mode))
 #+end_src
 
-** lsp
+** eglot
 
 Language Server Protocoll capabilities for Emacs
 
-Source: [[https://github.com/emacs-lsp/lsp-mode][GitHub:emacs-lsp/lsp-mode]]
-
 #+begin_src emacs-lisp
-(use-package lsp-mode
-  :hook ((python-mode . lsp-deferred)
-         (go-mode . lsp-deferred)
-         (php-mode . lsp-deferred)
-         (vue-mode . lsp-deferred)
-         (web-mode . lsp-deferred)
-         (typescript-mode . lsp-deferred)
-         (js-mode . lsp-deferred)
-         (lsp-mode . lsp-enable-which-key-integration))
-  :commands (lsp lsp-deferred)
-  :init (setq lsp-keymap-prefix "C-c C-l")
-  :config (setq lsp-prefer-capf t))
+(use-package eglot
+  :hook ((python-mode . eglot-ensure)
+         (go-mode . eglot-ensure)
+         (php-mode . eglot-ensure)
+         (vue-mode . eglot-ensure)
+         (web-mode . eglot-ensure)
+         (typescript-mode . eglot-ensure)
+         (js-mode . eglot-ensure))
+  :commands (eglot eglot-ensure))
 
-(use-package lsp-ui
-  :commands lsp-ui-mode
-  :config
-  (setq lsp-ui-sideline-show-code-actions t
-        lsp-ui-sideline-show-hover t))
-
-(use-package lsp-ivy
-  :commands lsp-ivy-workspace-symbol)
-
-(use-package lsp-treemacs
-  :commands lsp-treemacs-errors-list)
 #+end_src
 
 ** editorconfig
