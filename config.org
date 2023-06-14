@@ -2103,6 +2103,9 @@ Source: [[https://github.com/akermu/emacs-libvterm][GitHub: akermu/emacs-libvter
 
 Let's try out eshell.
 
+Resources:
+- [[https://www.masteringemacs.org/article/complete-guide-mastering-eshell][Mikey Petersen: Mastering Eshell]]
+
 #+begin_src emacs-lisp
 (use-package eshell
   :bind (("C-c s" . 'eshell)))
