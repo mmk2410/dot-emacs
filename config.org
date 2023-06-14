@@ -1819,7 +1819,18 @@ Language Server Protocoll capabilities for Emacs
          (typescript-mode . eglot-ensure)
          (js-mode . eglot-ensure))
   :commands (eglot eglot-ensure))
+#+end_src
 
+** eldoc-box
+
+childframe doc for eglot and anything that uses eldoc.
+
+Source: [[https://github.com/casouri/eldoc-box][GitHub:casouri/eldoc-box]]
+
+#+begin_src emacs-lisp
+(use-package eldoc-box
+  :after eglot
+  :hook ((eglot-managed-mode . eldoc-box-hover-at-point-mode)))
 #+end_src
 
 ** editorconfig
