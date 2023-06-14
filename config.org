@@ -2634,3 +2634,13 @@ Since version 27 Emacs features a tab bar. In contrast to e.g. a browser a tab d
   :load-path "packages/"
   :bind ("C-c f" . mmk2410/tab-bar/body))
 #+end_src
+
+* Work
+
+For my workplace I have some additional packages and configuration that I keep in an own file.
+
+#+begin_src emacs-lisp
+(if (mmk2410/work)
+    (org-babel-load-file
+     (expand-file-name "work/config.org" user-emacs-directory)))
+#+end_src
