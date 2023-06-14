@@ -2408,6 +2408,9 @@ I don't really like the default bookmarks that mu4e sets. Thats why I overwrite 
         '(( :name "Unread work messages"
                   :key ?w
                   :query "(flag:unread and m:/work/*) or m:/work/inbox" )
+          ( :name "Unread no-reply work messages"
+                  :key ?n
+                  :query "flag:unread and m:/work-noreply/*" )
           ( :name "Unread private messages"
                   :key ?p
                   :query "(flag:unread and m:/mailbox/*) or m:/mailbox/inbox" )))
