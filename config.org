@@ -1807,7 +1807,9 @@ Source: [[https://www.flycheck.org][flycheck.org]]
 
 ** eglot
 
-Language Server Protocoll capabilities for Emacs
+A client for Language Server Protocol servers
+
+Source: [[https://github.com/joaotavora/eglot][GitHub:joaotavora/eglot]]
 
 #+begin_src emacs-lisp
 (use-package eglot
