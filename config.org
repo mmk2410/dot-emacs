@@ -415,17 +415,38 @@ Setting =frame-resize-pixelwise= to non-nil (as described in [[https://github.co
 My typeface is not loading when using emacsclient. So I set it explicitly when creating a frame. The same fix is applied for the scroll bars.
 
 #+begin_src emacs-lisp
-(setq my-font "Jetbrains Mono 11")
-
-(set-frame-font my-font nil t)
+(setq mmk2410/frame-font "Jetbrains Mono 11"
+      mmk2410/frame-font-present "Jetbrains Mono 16"
+      mmk2410/fixed-font-name "Jetbrains Mono"
+      mmk2410/fixed-font-height 110
+      mmk2410/fixed-font-present-height 160
+      mmk2410/variable-font-name "Open Sans"
+      mmk2410/variable-font-height 130
+      mmk2410/variable-font-present-height 160)
 
 (add-hook 'after-make-frame-functions
           #'(lambda (frame)
-              (set-frame-font my-font nil t)))
+              (set-frame-font mmk2410/frame-font nil t)))
 
-(set-face-attribute 'default nil :font "Jetbrains Mono" :height 110 :weight 'regular)
-(set-face-attribute 'variable-pitch nil :font "Open Sans" :height 130 :weight 'regular)
-(set-face-attribute 'fixed-pitch nil :font "Jetbrains Mono" :height 110 :weight 'regular)
+(defun mmk2410/display-normal-typeface-size ()
+  (interactive)
+  (set-frame-font mmk2410/frame-font nil t)
+  (set-face-attribute 'default nil :font mmk2410/fixed-font-name :height mmk2410/fixed-font-height :weight 'regular)
+  (set-face-attribute 'variable-pitch nil :font mmk2410/variable-font-name :height mmk2410/variable-font-height :weight 'regular)
+  (set-face-attribute 'fixed-pitch nil :font mmk2410/fixed-font-name :height mmk2410/fixed-font-height :weight 'regular))
+
+(mmk2410/display-normal-typeface-size)
+#+end_src
+
+Sometimes (most often a work) I share my screen during a video call to discuss some code. Since I personally like to see larger fonts on video calls and I don't know what display size and resolution the other participants have I wrote two functions for resizing Emacs.
+
+#+begin_src emacs-lisp
+(defun mmk2410/display-present-typeface-size ()
+  (interactive)
+  (set-frame-font mmk2410/frame-font-present nil t)
+  (set-face-attribute 'default nil :font mmk2410/fixed-font-name :height mmk2410/fixed-font-present-height :weight 'regular)
+  (set-face-attribute 'variable-pitch nil :font mmk2410/variable-font-name :height mmk2410/variable-font-present-height :weight 'regular)
+  (set-face-attribute 'fixed-pitch nil :font mmk2410/fixed-font-name :height mmk2410/fixed-font-present-height :weight 'regular))
 #+end_src
 
 ** Set theme
