@@ -1586,6 +1586,47 @@ After I wrote an [[https://mmk2410.org/2022/01/15/improving-my-new-blog-post-cre
 
 #+end_src
 
+** org-tree-slide for presentations
+
+A presentation tool for org-mode based on the visibility of outline trees
+
+GitHub: [[https://github.com/takaxp/org-tree-slide][GitHub:takaxp/org-tree-slide]]
+
+#+begin_src emacs-lisp
+(defun mmk2410/presentation-setup ()
+  (org-display-inline-images) ;; Can also use org-startup-with-inline-images
+    (setq-local face-remapping-alist '((default (:height 1.5) variable-pitch)
+                                     (header-line (:height 4.0) variable-pitch)
+                                     (org-document-title (:height 1.75) org-document-title)
+                                     (org-code (:height 1.55) org-code)
+                                     (org-table (:height 1.55) org-table)
+                                     (org-verbatim (:height 1.55) org-verbatim)
+                                     (org-block (:height 1.25) org-block)
+                                     (org-block-begin-line (:height 0.7) org-block)))
+    (setq header-line-format " ")
+    (setq visual-fill-column-width 150)
+    (hl-line-mode 0))
+
+(defun mmk2410/presentation-end ()
+  (org-remove-inline-images)
+  (setq-local face-remapping-alist '((default variable-pitch default)))
+  (setq header-line-format nil)
+  (setq visual-fill-column-width 100)
+  (hl-line-mode 1))
+
+(use-package org-tree-slide
+  :hook ((org-tree-slide-play . mmk2410/presentation-setup)
+         (org-tree-slide-stop . mmk2410/presentation-end))
+  :custom
+  (org-tree-slide-slide-in-effect t)
+  (org-tree-slide-activate-message "Presentation started!")
+  (org-tree-slide-deactivate-message "Presentation finished!")
+  (org-tree-slide-header t)
+  (org-tree-slide-breadcrumbs " > ")
+  (org-image-actual-width nil))
+#+end_src
+
+
 * Org Research Assistant
 ** Org Roam
 
