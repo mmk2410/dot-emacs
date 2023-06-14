@@ -824,7 +824,10 @@ Vertico is a minimal completion UI that uses core Emacs functionality whenever p
   (vertico-mode)
   (setq vertico-scroll-margin 0)
   (setq vertico-resize t)
-  (setq vertico-cycle t))
+  (setq vertico-cycle t)
+  ;; Hide commands in M-x which do not work in the current mode.
+  (setq read-extended-command-predicate
+      #'command-completion-default-include-p))
 #+end_src
 
 ** orderless
