@@ -670,7 +670,12 @@ Source: [[https://github.com/myrjola/diminish.el][GitHub: myrjola/diminish.el]]
   (diminish 'buffer-face-mode)
   (diminish 'flyspell-mode)
   (diminish 'org-indent-mode)
-  (diminish 'visual-line-mode))
+  (diminish 'org-cdlatex-mode)
+  (diminish 'visual-line-mode)
+  (diminish 'buffer-face-mode)
+  (diminish 'highlight-indent-guides-mode)
+  (diminish 'eldoc-mode)
+  (diminish 'subword-mode))
 #+end_src
 
 ** crux
