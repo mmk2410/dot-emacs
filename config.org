@@ -2108,7 +2108,11 @@ Resources:
 
 #+begin_src emacs-lisp
 (use-package eshell
-  :bind (("C-c s" . 'eshell)))
+  :bind (("C-c s" . 'eshell))
+  :config
+  (setq eshell-visual-subcommands
+        '(("docker" "pull" "build")
+          ("docker-compose" "build"))))
 #+end_src
 
 * Elfeed
