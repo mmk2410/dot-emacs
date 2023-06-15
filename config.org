@@ -2260,13 +2260,16 @@ Not all distributions that I use have a enough up-to-date package of mu/maildir-
     (let* ((mu4e-site-lisp-path "/share/emacs/site-lisp/mu4e")
            (mu4e-load-path-usr (concat "/usr" mu4e-site-lisp-path))
            (mu4e-load-path-usr-local (concat "/usr/local" mu4e-site-lisp-path))
-           (mu4e-load-path-nix (concat (getenv "HOME") "/.nix-profile" mu4e-site-lisp-path)))
+           (mu4e-load-path-nix (concat (getenv "HOME") "/.nix-profile" mu4e-site-lisp-path))
+           (mu4e-load-path-debian "/usr/share/emacs/site-lisp/elpa"))
       (cond ((file-directory-p mu4e-load-path-nix)
              mu4e-load-path-nix)
             ((file-directory-p mu4e-load-path-usr-local)
              mu4e-load-path-usr-local)
             ((file-directory-p mu4e-load-path-usr)
              mu4e-load-path-usr)
+            ((file-directory-p mu4e-load-path-debian)
+             mu4e-load-path-debian)
             (t (error "mu4e not found!"))))))
 #+end_src
 
