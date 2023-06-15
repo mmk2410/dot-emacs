@@ -1421,7 +1421,7 @@ For easily choosing the next thing to work on I give each of my tasks a context 
                `(,(concat "c" (cdr item))
                  ,(concat (substring (car item) 1) " context")
                  tags-todo
-                 ,(concat (car item) "/!NEXT"))))
+                 ,(concat (car item) "/!+NEXT|+STARTED|+WAITING"))))
 #+end_src
 
 ** Quick Capture from everywhere
