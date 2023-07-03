@@ -1424,21 +1424,6 @@ For easily choosing the next thing to work on I give each of my tasks a context 
                  ,(concat (car item) "/!+NEXT|+STARTED|+WAITING"))))
 #+end_src
 
-** Quick Capture from everywhere
-
-Given the fact that I run Emacs using Emacsclient all the time I though it would be quite helpful to have the ability to capture a to-do from everywhere, e.g. a sudden thought crossing my mind while developing photos or browsing the web. Thanks to the help of an [[https://www.reddit.com/r/emacs/comments/74gkeq/system_wide_org_capture][Reddit post]] by [[https://www.reddit.com/user/lebitso][u/lebitso]] I was able to achieve this goal and I put the code in an extra package that is loaded here.
-
-#+begin_src emacs-lisp
-(use-package org-quick-capture
-  :load-path "packages/")
-#+end_src
-
-To use this, I wrote a small shell script that I'm assigning a keyboard shortcut in my window manager / desktop environment. The shell script essentially runs the following command:
-
-#+begin_src sh
-emacsclient -c -F '(quote (name . "capture"))' -e '(activate-capture-frame)'
-#+end_src
-
 ** Automatic UUID creation
 
 I am currently exploring the option in Org mode to export a file (or some entries) to an ics-file which I can then in turn import into my calendar. For reliably creating (and most importantly: updating) entries it is necessary that each one has an unique ID. To create a ID for the current entry I could just run =M-x org-id-get-create= and for an entire file execute the following Emacs Lisp ~(org-map-entries 'org-id-get-create)~. Of course this is not an ideal solution. But adding this s-expression to ~org-mode-hook~ would create IDs in all Org file I edit which I also don't like. Since the amount of files I do want the automatic creation is (currently) not that large it is OK for me to do some work on my own, at least if it is only a one time setup.
@@ -1888,6 +1873,14 @@ Source: [[https://github.com/editorconfig/editorconfig-emacs][GitHub: editorconf
   :diminish 'editorconfig-mode
   :config
   (editorconfig-mode 1))
+#+end_src
+
+** Clojure
+
+#+begin_src emacs-lisp
+(use-package cider
+  :config
+  (setq cider-lein-parameters "repl :headless :host 0.0.0.0"))
 #+end_src
 
 ** Docker
