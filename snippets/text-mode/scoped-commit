@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: Scoped Commit
+# key: cs
+# --
+`(gitmoji-completing-read "Insert Gitmoji: ")` ($1) $3
+
+$0
+
+Refs: #$2

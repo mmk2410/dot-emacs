@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: Regular Commit
+# key: cr
+# --
+`(gitmoji-completing-read "Insert Gitmoji: ")` $2
+
+$0
+
+Refs: #$1
