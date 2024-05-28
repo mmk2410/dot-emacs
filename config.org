@@ -640,6 +640,14 @@ Source: [[https://git.sr.ht/~protesilaos/spacious-padding][sr.ht: ~protesilaos/s
   :config (spacious-padding-mode 1))
 #+end_src
 
+** Line Spacing
+
+I found out that a bit more line spacing makes Emacs look more nicely and increases the readability a bit. At least for me 🙂
+
+#+begin_src emacs-lisp
+(setq-default line-spacing 4)
+#+end_src
+
 * Keybinding
 
 List of own custom keybindings
