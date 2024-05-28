@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: One-line Commit
+# key: co
+# --
+`(gitmoji-completing-read "Insert Gitmoji: ")` $0
