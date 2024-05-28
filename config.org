@@ -2068,6 +2068,15 @@ Markdown mode customizations.
          (markdown-mode . visual-fill-column-mode)))
 #+end_src
 
+** Common Lisp
+
+#+begin_src emacs-lisp
+(use-package slime
+  :config
+  (when on-macos
+    (setq inferior-lisp-program "/opt/homebrew/bin/sbcl")))
+#+end_src
+
 * Emacs Multimedia System (EMMS)
 
 For notes, tasks, writing, and countless other things there is org-mode.
