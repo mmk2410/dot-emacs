@@ -347,7 +347,7 @@ Source: [[https://stackoverflow.com/a/744681][Stack Overflow: Unable to hide wel
 ** Replace BEEP by visual-bell
 
 #+begin_src emacs-lisp
-(setq visible-bell 1)
+(setq visible-bell nil)
 #+end_src
 
 ** Disable cursor blinking
