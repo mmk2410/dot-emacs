@@ -26,6 +26,24 @@ For Microsoft(R) Windows(R) users it is highly adviced to set the =HOME= environ
 
 Settings for Emacs in general as well as for my personal setup.
 
+** macOS Adjustments
+
+First define a variable for making MacOS specific adjustments a bit easier.
+
+#+begin_src emacs-lisp
+(setq on-macos (eq system-type 'darwin))
+#+end_src
+
+For using the Macbook keyboard effectively with Emacs I made some adjustments based on some suggestions found on the internet.
+
+#+begin_src emacs-lisp
+(when on-macos
+  (setq mac-option-modifier 'alt)
+  (setq mac-right-option-modifier 'none)
+  (setq mac-command-modifier 'meta)
+  (global-set-key [kp-delete] 'delete-char))
+#+end_src
+
 ** System Detection
 
 My work machine is called “knuth” and there is some configuration which I only want there.
@@ -415,14 +433,23 @@ Setting =frame-resize-pixelwise= to non-nil (as described in [[https://github.co
 My typeface is not loading when using emacsclient. So I set it explicitly when creating a frame. The same fix is applied for the scroll bars.
 
 #+begin_src emacs-lisp
-(setq mmk2410/frame-font "Jetbrains Mono 11"
-      mmk2410/frame-font-present "Jetbrains Mono 16"
-      mmk2410/fixed-font-name "Jetbrains Mono"
-      mmk2410/fixed-font-height 110
-      mmk2410/fixed-font-present-height 160
-      mmk2410/variable-font-name "Open Sans"
-      mmk2410/variable-font-height 130
-      mmk2410/variable-font-present-height 160)
+(if on-macos
+    (setq mmk2410/frame-font "Jetbrains Mono 14"
+          mmk2410/frame-font-present "Jetbrains Mono 16"
+          mmk2410/fixed-font-name "Jetbrains Mono"
+          mmk2410/fixed-font-height 140
+          mmk2410/fixed-font-present-height 160
+          mmk2410/variable-font-name "Open Sans"
+          mmk2410/variable-font-height 160
+          mmk2410/variable-font-present-height 180)
+    (setq mmk2410/frame-font "Jetbrains Mono 11"
+          mmk2410/frame-font-present "Jetbrains Mono 16"
+          mmk2410/fixed-font-name "Jetbrains Mono"
+          mmk2410/fixed-font-height 110
+          mmk2410/fixed-font-present-height 160
+          mmk2410/variable-font-name "Open Sans"
+          mmk2410/variable-font-height 130
+          mmk2410/variable-font-present-height 160))
 
 (add-hook 'after-make-frame-functions
           #'(lambda (frame)
@@ -2130,6 +2157,9 @@ Source: [[https://github.com/akermu/emacs-libvterm][GitHub: akermu/emacs-libvter
 #+begin_src emacs-lisp
 (use-package vterm
   :if (not (eq system-type 'windows-nt))
+  :config
+  (when on-macos
+    (setq vterm-shell "/opt/homebrew/bin/fish"))
   :bind (("C-c t" . 'vterm)))
 #+end_src
 
@@ -2254,7 +2284,8 @@ Not all distributions that I use have a enough up-to-date package of mu/maildir-
            (mu4e-load-path-usr (concat "/usr" mu4e-site-lisp-path))
            (mu4e-load-path-usr-local (concat "/usr/local" mu4e-site-lisp-path))
            (mu4e-load-path-nix (concat (getenv "HOME") "/.nix-profile" mu4e-site-lisp-path))
-           (mu4e-load-path-debian "/usr/share/emacs/site-lisp/elpa"))
+           (mu4e-load-path-debian "/usr/share/emacs/site-lisp/elpa")
+           (mu4e-load-path-macos "/opt/homebrew/share/emacs/site-lisp/mu/mu4e/"))
       (cond ((file-directory-p mu4e-load-path-nix)
              mu4e-load-path-nix)
             ((file-directory-p mu4e-load-path-usr-local)
@@ -2263,6 +2294,8 @@ Not all distributions that I use have a enough up-to-date package of mu/maildir-
              mu4e-load-path-usr)
             ((file-directory-p mu4e-load-path-debian)
              mu4e-load-path-debian)
+            ((file-directory-p mu4e-load-path-macos)
+             mu4e-load-path-macos)
             (t (error "mu4e not found!"))))))
 #+end_src
 
