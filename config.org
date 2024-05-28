@@ -2283,7 +2283,7 @@ Source: [[https://github.com/fasheng/elfeed-protocol][GitHub: fasheng/elfeed-pro
 (use-package elfeed-protocol
   :init
   ;; FreshRSS (self-hosted)
-  (setq elfeed-feeds '(("fever+https://mmk2410@rss.mmk2410.org"
+  (setq elfeed-protocol-feeds '(("fever+https://mmk2410@rss.mmk2410.org"
                         :api-url "https://rss.mmk2410.org/api/fever.php"
                         :use-authinfo t)))
   (elfeed-protocol-enable)
