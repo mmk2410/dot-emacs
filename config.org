@@ -1131,6 +1131,12 @@ Hide emphasis markers. While this sometimes is very distracting it mostly looks 
 (setq org-hide-emphasis-markers t)
 #+end_src
 
+Make indented display of org files the default
+
+#+begin_src emacs-lisp
+(setq org-startup-indented t)
+#+end_src
+
 ** Org font adjustments
 
 I like to have larger headlines in Org for better identifying them. The configuration of [[https://config.daviwil.com/emacs#fonts-and-bullets][David Wilson]] was a large help in this regard.
