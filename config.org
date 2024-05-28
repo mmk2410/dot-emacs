@@ -476,6 +476,15 @@ Sometimes (most often a work) I share my screen during a video call to discuss s
   (set-face-attribute 'fixed-pitch nil :font mmk2410/fixed-font-name :height mmk2410/fixed-font-present-height :weight 'regular))
 #+end_src
 
+Additionally like to adjust some faces to my personal liking.
+
+#+begin_src emacs-lisp
+  (with-eval-after-load 'elfeed
+    (set-face-attribute 'message-header-subject nil
+                        :font mmk2410/variable-font-name
+                        :height 220))
+#+end_src
+
 ** Set theme
 
 Installing and enabling Gruvbox light theme. /Disabled in favor of the Doom themes./
