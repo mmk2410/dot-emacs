@@ -1139,6 +1139,12 @@ Make indented display of org files the default
 (setq org-startup-indented t)
 #+end_src
 
+Put tags directly after the headline (avoids line breaks in headlines in combination with ~visual-fill-column~ mode):
+
+#+begin_src emacs-lisp
+(setq org-tags-column 0)
+#+end_src
+
 ** Org font adjustments
 
 I like to have larger headlines in Org for better identifying them. The configuration of [[https://config.daviwil.com/emacs#fonts-and-bullets][David Wilson]] was a large help in this regard.
