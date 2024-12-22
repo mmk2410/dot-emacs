@@ -1088,6 +1088,22 @@ Source: [[https://github.com/abo-abo/ace-window][GitHub: abo-abo/ace-window]]
   :bind (("M-o" . 'ace-window)))
 #+end_src
 
+** helpful
+
+A better Emacs *help* buffer
+
+Source: [[https://github.com/Wilfred/helpful][GitHub: Wilfred/helpful]]
+
+#+begin_src emacs-lisp
+(use-package helpful
+  :bind (("C-h f" . #'helpful-callable)
+         ("C-h v" . #'helpful-variable)
+         ("C-h k" . #'helpful-key)
+         ("C-h x" . #'helpful-command)
+         ("C-c C-d" . #'helpful-at-point)
+         ("C-h F" . #'helpful-function)))
+#+end_src
+
 * Org mode configuration
 
 This is my personal org-mode configuration.
@@ -1679,7 +1695,6 @@ GitHub: [[https://github.com/takaxp/org-tree-slide][GitHub:takaxp/org-tree-slide
   (org-tree-slide-breadcrumbs " > ")
   (org-image-actual-width nil))
 #+end_src
-
 
 * Org Research Assistant
 ** Org Roam
