@@ -545,7 +545,7 @@ Installing and enabling ef-themes.
           (7 . (variable-pitch 1.2))
           (t . (variable-pitch 1.1))))
   :config
-  (load-theme 'ef-light t))
+  (load-theme 'ef-eagle t))
 #+end_src
 
 
@@ -563,8 +563,8 @@ Add a slight transparency to the frames. Code provided by David Wilson / System 
 During the last weeks I got used to using a light theme during daytime and a dark theme during nighttime. Luckily the themes based on Atom One are to my liking and the doom package provides a dark and light variant. One thing that was difficult with Emacs was actually switching theme since it involved disabling all current ones (for some reason on one machine there are two enabled while on the other machine its only one) and then loading the correct one. These functions try to make that process easier, at least for now. The long-term goal is to automatically change the theme based on the current system-wide setting.
 
 #+begin_src emacs-lisp
-(setq mmk2410/theme-night 'ef-dark)
-(setq mmk2410/theme-day 'ef-light)
+(setq mmk2410/theme-night 'ef-owl)
+(setq mmk2410/theme-day 'ef-eagle)
 
 (defun mmk2410/switch-theme (theme)
   (mapcar 'disable-theme custom-enabled-themes)
