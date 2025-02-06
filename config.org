@@ -2794,6 +2794,15 @@ Since version 27 Emacs features a tab bar. In contrast to e.g. a browser a tab d
   :bind ("C-c f" . mmk2410/tab-bar/body))
 #+end_src
 
+** Scribbles API Integration
+
+API Integration for my [[https://mmk2410.org/scribbles][Scribbles microblog]].
+
+#+begin_src emacs-lisp
+(use-package scribbles
+  :load-path "packages/")
+#+end_src
+
 * Work
 
 For my workplace I have some additional packages and configuration that I keep in an own file.

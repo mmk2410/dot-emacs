@@ -26,4 +26,5 @@
     :headers (scribbles--build-headers)
     :body (json-encode `(("text" . ,message)))))
 
+(provide 'scribbles)
 ;;; scribbles.el ends here
