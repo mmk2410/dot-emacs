@@ -2255,8 +2255,14 @@ Source: [[https://github.com/skeeto/elfeed][GitHub: skeeto/elfeed]]
 #+begin_src emacs-lisp
 (use-package elfeed
   :demand t
-  :config (setq elfeed-sort-order 'ascending)
-  :bind (("C-c e" . elfeed)))
+  :config
+  (setq elfeed-sort-order 'ascending)
+  (defun my/elfeed-search-toggle-star ()
+    (interactive)
+    (elfeed-search-toggle-all 'star))
+  :bind (("C-c e" . elfeed)
+         :map elfeed-search-mode-map
+         ("f" . my/elfeed-search-toggle-star)))
 #+end_src
 
 ** Storing articles
