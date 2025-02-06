@@ -1914,6 +1914,8 @@ Source: [[https://github.com/joaotavora/eglot][GitHub:joaotavora/eglot]]
 
 #+begin_src emacs-lisp
 (use-package eglot
+  :config
+  (add-to-list 'eglot-server-programs '(php-mode . ("~/.local/bin/phpactor" "language-server")))
   :hook ((python-mode . eglot-ensure)
          (go-mode . eglot-ensure)
          (php-mode . eglot-ensure)
