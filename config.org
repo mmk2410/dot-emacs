@@ -2267,8 +2267,6 @@ Source: [[https://github.com/kidd/erc-image.el][kidd/erc-image.el]]
 
 Normally I use Firefox for browsing the web, but when I am working with full focus in Emacs I sometimes prefer eww. For example while reading a paper and taking notes on it. In this case I don't want to lose my focus while switching to a web browser (and potentially see some open tabs from another project).
 
-In recent times I have gotten really bad search results on DuckDuckGo (either I can't search anymore or they really got worse). So I'm using Startpage at the moment.
-
 More important for me while reading a paper is looking up some things on Wikipedia. So I defined -- additionally to a simple keybinding for eww itself -- a function and a keybinding for searching on the English Wikipedia.
 
 #+begin_src emacs-lisp
@@ -2288,7 +2286,7 @@ More important for me while reading a paper is looking up some things on Wikiped
 
 (use-package eww
   :config
-  (setq eww-search-prefix "https://startpage.com/search/?q=")
+  (setq eww-search-prefix "https://www.ecosia.org/search?q=")
   :bind (("C-c w b" . 'eww)
          ("C-c w d" . 'eww-browser-english-dict)
          ("C-c w w" . 'eww-browse-wikipedia-en)))
