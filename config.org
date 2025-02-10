@@ -1869,6 +1869,7 @@ Source: [[https://github.com/DarthFennec/highlight-indent-guides][DarthFennec/hi
 
 #+begin_src emacs-lisp
 (use-package highlight-indent-guides
+  :disabled t
   :config
   (setq highlight-indent-guides-method 'character
         highlight-indent-guides-responsive 'top)
