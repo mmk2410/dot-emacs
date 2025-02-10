@@ -2110,6 +2110,17 @@ And for playing music in Emacs there is EMMS.
   (setq emms-source-file-default-directory "~/Music"))
 #+end_src
 
+Play an URL at point using EMMS
+
+#+begin_src emacs-lisp
+(with-eval-after-load 'emms
+  (defun mmk2410/play-url-at-point ()
+    "Play URL at point using EMMS"
+    (interactive)
+    (emms-play-url
+     (shr-url-at-point nil))))
+#+end_src
+
 * ERC (the Emacs IRC client)
 
 ** The beast itself
