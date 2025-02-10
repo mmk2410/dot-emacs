@@ -1992,7 +1992,9 @@ Source: [[https://github.com/emacs-php/php-mode][GitHub: emacs-php/php-mode]]
 #+begin_src emacs-lisp
 (use-package php-mode
   :mode "\\.php\\'"
-  :config (setq php-mode-coding-style 'PSR2))
+  :config
+  (setq php-mode-coding-style 'PSR2)
+  (setq indent-tabs-mode nil))
 #+end_src
 
 ** TypeScript
