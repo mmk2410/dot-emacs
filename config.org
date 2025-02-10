@@ -2251,6 +2251,7 @@ Resources:
           ("docker compose" "build")
           ("docker compose" "up")
           ("docker compose" "down")))
+  :hook (eshell-mode . visual-line-mode))
 #+end_src
 
 * Elfeed
