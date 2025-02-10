@@ -2248,7 +2248,9 @@ Resources:
   :config
   (setq eshell-visual-subcommands
         '(("docker" "pull" "build")
-          ("docker-compose" "build"))))
+          ("docker compose" "build")
+          ("docker compose" "up")
+          ("docker compose" "down")))
 #+end_src
 
 * Elfeed
