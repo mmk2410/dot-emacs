@@ -2803,6 +2803,18 @@ API Integration for my [[https://mmk2410.org/scribbles][Scribbles microblog]].
   :load-path "packages/")
 #+end_src
 
+** Linkding Integration
+
+API Integration for [[https://linkding.link/][Linkding]].
+
+#+begin_src emacs-lisp
+(use-package linkding
+  :load-path "packages/"
+  :config
+  (setq linkding-host "bookmarks.mmk2410.org"
+        linkding-user "mmk2410"))
+#+end_src
+
 * Work
 
 For my workplace I have some additional packages and configuration that I keep in an own file.
