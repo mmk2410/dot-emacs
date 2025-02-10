@@ -1687,6 +1687,18 @@ GitHub: [[https://github.com/takaxp/org-tree-slide][GitHub:takaxp/org-tree-slide
   (org-image-actual-width nil))
 #+end_src
 
+** Verb (Restclient)
+
+Organize and send HTTP requests from Emacs
+
+Source: [[https://github.com/federicotdn/verb][GitHub: federicotdn/verb]]
+
+#+begin_src emacs-lisp
+(use-package verb
+  :after org
+  :config (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
+#+end_src
+
 * Org Research Assistant
 ** Org Roam
 
