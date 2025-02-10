@@ -657,6 +657,12 @@ List of own custom keybindings
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 #+end_src
 
+** Hippie Expand
+
+#+begin_src emacs-lisp
+(global-set-key (kbd "C-ä") 'hippie-expand)
+#+end_src
+
 ** Disable =C-z=
 
 =C-z= by default (as known from terminal applications) suspends the current frame. Since I use Emacs as GUI and not in terminal I do not want this behavior.
