@@ -812,6 +812,20 @@ Source: [[https://github.com/janusvm/emacs-gitmoji][GitHub: janusvm/emacs-gitmoj
   :load-path "lisp/gitmoji/")
 #+end_src
 
+** PRIDE 🌈
+
+Rainbow flag in the Emacs modeline
+
+Source: [[https://github.com/janusvm/emacs-gitmoji][GitHub: halfwhole/pride-mode]]
+
+#+begin_src emacs-lisp
+(use-package pride-mode
+  :load-path "lisp/pride-mode/"
+  :config
+  (setq pride-bar-length 32)
+  (pride-mode))
+#+end_src
+
 ** diff-hl
 
 Emacs package for highlighting uncommitted changes
