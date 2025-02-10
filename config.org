@@ -2567,7 +2567,8 @@ I don't really like the default bookmarks that mu4e sets. Thats why I overwrite 
   (setq mu4e-bookmarks
         '(( :name "Unread work messages"
                   :key ?w
-                  :query "(flag:unread and m:/work/*) or m:/work/inbox" )
+                  :query "(flag:unread and m:/work/*) or m:/work/inbox"
+                  :favorite t)
           ( :name "Unread no-reply work messages"
                   :key ?n
                   :query "flag:unread and m:/work-noreply/*" )
