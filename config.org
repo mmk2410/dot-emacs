@@ -1140,7 +1140,13 @@ Hide emphasis markers. While this sometimes is very distracting it mostly looks 
 (setq org-hide-emphasis-markers t)
 #+end_src
 
-Make indented display of org files the default
+Clocking settings
+
+#+begin_src emacs-lisp
+(setq org-clock-rounding-minutes 5)
+#+end_src
+
+Enable indent mode by default
 
 #+begin_src emacs-lisp
 (setq org-startup-indented t)
