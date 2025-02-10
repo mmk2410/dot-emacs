@@ -1972,6 +1972,12 @@ I use Docker and more importantly docker-compose for development. Thanks to [[ht
 #+end_src
 
 * Language-Specific Programming Packages
+** Clojure
+
+#+begin_src emacs-lisp
+(use-package cider)
+#+end_src
+
 ** Go
 
 Emacs mode for the Go programming language
