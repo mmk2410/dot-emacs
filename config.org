@@ -2326,10 +2326,16 @@ Emacs client for Mastodon.
         mastodon-active-user "mmk2410"))
 #+end_src
 
+* Emacs Everywhere
 
+Edit with Emacs everywhere!
 
+Source: [[https://github.com/tecosaur/emacs-everywhere][GitHub: tecosaur/emacs-everywhere]]
 
 #+begin_src emacs-lisp
+(use-package emacs-everywhere
+  :config
+  (add-to-list 'emacs-everywhere-markdown-windows "Merge Requests"))
 #+end_src
 
 * mu4e
