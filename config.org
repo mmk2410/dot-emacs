@@ -1537,6 +1537,10 @@ Fast org key bindings.
 
 ** Nicer display for Org buffers
 
+#+begin_src emacs-lisp
+(setq org-tags-column 0)
+#+end_src
+
 From [[https://github.com/daviwil/emacs-from-scratch/blob/master/Emacs.org#center-org-buffers][System Crafters' Emacs from Scratch Config]].
 
 #+begin_src emacs-lisp
