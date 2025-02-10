@@ -46,13 +46,14 @@ For using the Macbook keyboard effectively with Emacs I made some adjustments ba
 
 ** System Detection
 
-My work machine is called “knuth” and there is some configuration which I only want there.
+My work machine is called “mccarthy” and there is some configuration which I only want there.
 
 #+begin_src emacs-lisp
 (defun mmk2410/work ()
   "Return t if machine is my work machine"
-  (string-equal (system-name) "knuth"))
+  (string-equal (system-name) "mccarthy"))
 #+end_src
+
 
 ** Personal Information
 
