@@ -783,6 +783,13 @@ Source: [[https://magit.vc/][magit.vc]]
   ("C-x g" . magit-status))
 #+end_src
 
+** forge
+
+#+begin_src emacs-lisp
+(use-package forge
+  :after magit)
+#+end_src
+
 ** orgit
 
 Support for Org links to Magit buffers.
