@@ -2871,6 +2871,24 @@ The following function from him takes care of the other way: bringing a message 
 (global-set-key (kbd "C-c M-m") 'mmk2410/convert-mail-header-to-org-link)
 #+end_src
 
+* LLM
+
+#+begin_src emacs-lisp
+(use-package chatgpt-shell
+  :config
+  (setq chatgpt-shell-models
+        '(((:provider . "Ollama")
+           (:label . "Ollama")
+           (:version . "mistral:latest")
+           (:short-version . "mistral")
+           (:token-width . 3)
+           (:context-window . 131072)
+           (:handler . chatgpt-shell-ollama--handle-ollama-command)
+           (:filter . chatgpt-shell-ollama--extract-ollama-response)
+           (:payload . chatgpt-shell-ollama-make-payload)
+           (:url . chatgpt-shell-ollama--make-url)))))
+#+end_src
+
 * Helpers
 ** Tab Bar Setup
 
