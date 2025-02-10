@@ -2788,6 +2788,10 @@ The [[https://github.com/org-mime/org-mime][org-mime]] package thankfully allows
   (setq org-mime-export-options '(:section-numbers nil
                                   :with-author nil
                                   :with-toc nil))
+  (defun my/org-mime-htmlize ()
+    (when mmk2410/work
+      (org-mime-htmlize)))
+  :hook (message-send . my/org-mime-htmlize))
 #+end_src
 
 Mu4e displays a message in the minibuffer after refreshing. And since I run mbsync and mu index (through emacsclient) automatically every few minutes these messages can get quite distracting. Luckily mu4e provides an option to disable these index messages.
