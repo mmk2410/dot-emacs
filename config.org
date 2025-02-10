@@ -549,6 +549,20 @@ Add a slight transparency to the frames. Code provided by David Wilson / System 
 (add-to-list 'default-frame-alist `(alpha-background . ,mmk2410/alpha-background))
 #+end_src
 
+#+begin_src emacs-lisp
+(setq meeting-nodes-alpha-background 40)
+
+(define-minor-mode meeting-nodes-mode
+  "Take meeting notes."
+  nil
+  :global t
+  :lighter " mn"
+
+  (if meeting-nodes-mode
+      (set-frame-parameter nil 'alpha-background meeting-nodes-alpha-background)
+    (set-frame-parameter nil 'alpha-background mmk2410/frame-transparency)))
+#+end_src
+
 ** Switch theme
 
 During the last weeks I got used to using a light theme during daytime and a dark theme during nighttime. Luckily the themes based on Atom One are to my liking and the doom package provides a dark and light variant. One thing that was difficult with Emacs was actually switching theme since it involved disabling all current ones (for some reason on one machine there are two enabled while on the other machine its only one) and then loading the correct one. These functions try to make that process easier, at least for now. The long-term goal is to automatically change the theme based on the current system-wide setting.
