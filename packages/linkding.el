@@ -42,7 +42,10 @@
                          ("is_archived" . false)
                          ("unread" . false)
                          ("shared" . false)
-                         ("tag_names" . [])))))
+                         ("tag_names" . [])))
+    :as 'string
+    :then (lambda (res) (message "URL stored successfully."))
+    :else (lambda (res) (message "Failed to store URL."))))
 
 (defun linkding-add-bookmark-at-point ()
   "Add URL at point as bookmark to Linkding."
