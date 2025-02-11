@@ -6,6 +6,7 @@
 ;;; Code:
 (require 'json)
 (require 'plz)
+(require 'shr)
 
 (defcustom linkding-host ""
   "Hostname of the Linkding instance."
@@ -42,6 +43,11 @@
                          ("unread" . false)
                          ("shared" . false)
                          ("tag_names" . [])))))
+
+(defun linkding-add-bookmark-at-point ()
+  "Add URL at point as bookmark to Linkding."
+  (interactive)
+  (linkding-add-bookmark (shr-url-at-point nil)))
 
 (provide 'linkding)
 ;;; linkding.el ends here
