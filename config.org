@@ -2789,7 +2789,7 @@ The [[https://github.com/org-mime/org-mime][org-mime]] package thankfully allows
                                   :with-author nil
                                   :with-toc nil))
   (defun my/org-mime-htmlize ()
-    (when mmk2410/work
+    (when (mmk2410/work)
       (org-mime-htmlize)))
   :hook (message-send . my/org-mime-htmlize))
 #+end_src
