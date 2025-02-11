@@ -1514,16 +1514,17 @@ For determining the current state of my tasks I found it helpful to not only def
 #+begin_src emacs-lisp
 (setq org-agenda-custom-commands
       '(("o" "Agenda"
-         ((todo "STARTED")
-          (agenda "")
-          (todo "NEXT")))
+         ((agenda "")
+          (todo "STARTED")))
         ("u" "Upcoming tasks"
          agenda "" ((org-agenda-span 'week)))
         ("d" "Today tasks"
          agenda "" ((org-agenda-span 'day)))
         ("b" "Started tasks" todo "STARTED")
         ("w" "Waiting for tasks" todo "WAITING")
-        ("n" "Next tasks" todo "NEXT")))
+        ("n" "Next tasks" todo "NEXT")
+        ("p" "Projects" tags "@project"
+         ((org-agenda-files '("~/org/tasks/personal.org"))))))
 #+end_src
 
 For easily choosing the next thing to work on I give each of my tasks a context (following the GTD methodology). For quickly getting a list of all actionable tasks for a context I'd like to have a quick keyboard shortcut to view a custom agenda. For this I defined a list of contexts and their shortcut and iterated over them to create an additional ~org-agenda-custom-commands~ entry for each.
