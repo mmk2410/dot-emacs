@@ -2153,7 +2153,11 @@ Markdown mode customizations.
 (use-package markdown-mode
   :mode "\\.md\\'"
   :config
-  (setq markdown-unordered-list-item-prefix "  - ")
+  (setq markdown-unordered-list-item-prefix "  - "
+        markdown-hide-markup t
+        markdown-list-indent-width 2
+        markdown-fontify-code-blocks-natively t)
+  (add-to-list 'markdown-code-lang-modes '("php" . php-mode))
   :hook ((markdown-mode . visual-line-mode)
          (markdown-mode . (lambda () (display-line-numbers-mode -1)))
          (markdown-mode . variable-pitch-mode)
