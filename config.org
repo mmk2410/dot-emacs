@@ -2415,7 +2415,8 @@ Emacs client for Mastodon.
 (use-package mastodon
   :config
   (setq mastodon-instance-url "https://fosstodon.org"
-        mastodon-active-user "mmk2410"))
+        mastodon-active-user "mmk2410")
+  :bind ("C-c M" . mastodon))
 #+end_src
 
 * Emacs Everywhere
