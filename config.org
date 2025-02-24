@@ -1623,15 +1623,26 @@ Until now I did not think that I needed to keep a (personal) journal. But since 
 
 #+begin_src emacs-lisp
 (use-package org-journal
-  :config (setq org-journal-dir "~/org/journal"
-                org-journal-file-type 'monthly
-                org-journal-find-file 'find-file
-                org-journal-file-format "%Y-%m-%d.org"
-                org-journal-date-format "%A, %Y-%m-%d")
-  :bind (("C-c j j" . 'org-journal-new-entry)
-         ("C-c j s" . 'org-journal-new-scheduled-entry)
-         ("C-c j o" . 'org-journal-open-current-journal-file)
-         ("C-c j w" . 'mmk2410/org-journal-worktime)))
+  :config
+  (defun mmk2410/org-journal-new-entry ()
+    (interactive)
+    (org-journal-new-entry 1))
+  (setq mmk2410/org-journal-date-template-file "~/org/journal/template.org")
+  (setq mmk2410/org-journal-date-template
+    (with-temp-buffer
+      (insert-file-contents mmk2410/org-journal-date-template-file)
+      (buffer-string)))
+  (setq org-journal-dir "~/org/journal"
+        org-journal-file-type 'monthly
+        org-journal-find-file-fn 'find-file
+        org-journal-file-format "%Y-%m.org"
+        org-journal-date-prefix ""
+        org-journal-date-format mmk2410/org-journal-date-template
+        org-journal-time-prefix "- "
+        org-journal-time-format ""
+        org-journal-encrypt-journal t
+        org-journal-enable-agenda-integration nil)
+  :bind (("C-c j j" . 'mmk2410/org-journal-new-entry)))
 #+end_src
 
 Part of my workflow with org journal is in the meantime to clock the time I work in the different entries using =org-clock=. At the end of the day I like to create a summary for that. Currently the process for this includes a table with to formulas I created some time ago and copy every day from the previous one (while the first formula calculates the times the second is just there to clean the fields). While this is certainly improvable in many ways the only thing that really annoyed me was the calculation of the time. Since I try to follow the 52:17 methodology I have to add many numbers around 52 up to get the usual hour:minutes format. Although this is certainly a good brain training it has been shown that the calculation is very error-prone and calculating this twice does not make it more fun.
