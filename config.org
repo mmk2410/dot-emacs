@@ -645,8 +645,7 @@ Source: [[https://git.sr.ht/~protesilaos/spacious-padding][sr.ht: ~protesilaos/s
 #+begin_src emacs-lisp
 (use-package spacious-padding
   :config
-  (when on-macos
-    (spacious-padding-mode 1)))
+  (spacious-padding-mode 1))
 #+end_src
 
 ** Line Spacing
