@@ -1391,6 +1391,12 @@ Set a predefined tags. The first group is the  list of GTD contexts. These are (
                                  ("sysadmin" . ?S)))
 #+end_src
 
+Don't stop the day at midnight.
+
+#+begin_src emacs-lisp
+(setq org-extend-today-until 3)
+#+end_src
+
 Set time tag when re-something on todos
 
 #+begin_src emacs-lisp
