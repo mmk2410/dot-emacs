@@ -1466,7 +1466,7 @@ Define org-capture templates.
 (setq mmk2410/created-date ":PROPERTIES:\n:CREATED: %U\n:END:")
 (setq org-capture-templates
       `(("q" "Quick Capture" entry (file "~/org/tasks/inbox.org")
-         ,(concat "* TODO %^{Todo Title}\n:" mmk2410/created-date "\n")
+         ,(concat "* TODO %^{Todo Title}\n" mmk2410/created-date "\n")
          :immediate-finish t)
         ("p" "New Personal Project" entry (file "~/org/tasks/personal.org")
          ,(concat "* %? :@project:\n" mmk2410/created-date "\n"))
