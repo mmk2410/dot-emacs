@@ -665,6 +665,11 @@ I found out that a bit more line spacing makes Emacs look more nicely and increa
 (setq-default line-spacing 4)
 #+end_src
 
+** Scolling
+
+#+begin_src emacs-lisp
+(pixel-scroll-precision-mode 1)
+#+end_src
 * Keybinding
 
 List of own custom keybindings
