@@ -1698,6 +1698,7 @@ Since [[https://mmk2410.org/2020/05/15/switching-my-website-to-hugo-using-ox-hug
 
 #+begin_src emacs-lisp
 (use-package ox-hugo
+  :disabled t
   :after org)
 #+end_src
 
