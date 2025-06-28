@@ -71,6 +71,13 @@ My work machine is called “mccarthy” and there is some configuration which I
       user-mail-address "opensource@mmk2410.org")
 #+end_src
 
+** Encryption
+
+#+begin_src emacs-lisp
+(setq plstore-encrypt-to "opensource@mmk2410.org"
+      epa-file-encrypt-to "opensource@mmk2410.org")
+#+end_src
+
 ** Date & Time
 
 Set the first day of the week to Mondays.
