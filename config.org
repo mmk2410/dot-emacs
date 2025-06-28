@@ -2934,6 +2934,17 @@ API Integration for [[https://linkding.link/][Linkding]].
         linkding-user "mmk2410"))
 #+end_src
 
+** Tandoor Integration
+
+API Integration for [[https://tandoor.dev/][Tandoor]].
+
+#+begin_src emacs-lisp
+(use-package tandoor
+  :load-path "packages/"
+  :custom
+  (tandoor-host "recipes.mmk2410.org"))
+#+end_src
+
 * EDAM
 
 A simple work-in-progress photography DAM in Emacs.
