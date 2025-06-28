@@ -4,6 +4,7 @@
 ;;; Personal helpers and shortcuts to work more effectively with tab-bar mode.
 
 ;;; Code:
+(require 'hydra)
 
 (defun mmk2410/tab-bar-new-tab (name func)
   "Create new tab using FUNC with name NAME."
