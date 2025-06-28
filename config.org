@@ -2934,6 +2934,15 @@ API Integration for [[https://linkding.link/][Linkding]].
         linkding-user "mmk2410"))
 #+end_src
 
+* EDAM
+
+A simple work-in-progress photography DAM in Emacs.
+
+#+begin_src emacs-lisp
+(use-package edam
+  :load-path "packages/")
+#+end_src
+
 * Work
 
 For my workplace I have some additional packages and configuration that I keep in an own file.
