@@ -41,7 +41,17 @@ For using the Macbook keyboard effectively with Emacs I made some adjustments ba
   (setq mac-option-modifier 'alt)
   (setq mac-right-option-modifier 'none)
   (setq mac-command-modifier 'meta)
-  (global-set-key [kp-delete] 'delete-char))
+  (global-set-key [kp-delete] 'delete-char)
+  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+  (setq ns-pop-up-frames nil))
+#+end_src
+
+Additionally, getting the correct path in the App executable is apparently not that simply. Thankfully, [[https://www.sanityinc.com/][Steve Purcell]] wrote the [[https://github.com/purcell/exec-path-from-shell][exec-path-from-shell]] helper.
+
+#+begin_src emacs-lisp
+(use-package exec-path-from-shell
+  :when on-macos
+  :init (exec-path-from-shell-initialize))
 #+end_src
 
 ** System Detection
@@ -53,7 +63,6 @@ My work machine is called “mccarthy” and there is some configuration which I
   "Return t if machine is my work machine"
   (string-equal (system-name) "mccarthy"))
 #+end_src
-
 
 ** Personal Information
 
