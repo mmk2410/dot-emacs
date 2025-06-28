@@ -2451,9 +2451,10 @@ Emacs client for Mastodon.
 
 #+begin_src emacs-lisp
 (use-package mastodon
-  :config
-  (setq mastodon-instance-url "https://fosstodon.org"
-        mastodon-active-user "mmk2410")
+  :custom
+  (mastodon-instance-url "https://fosstodon.org")
+  (mastodon-active-user "mmk2410")
+  (mastodon-auth-use-auth-source t)
   :bind ("C-c M" . mastodon))
 #+end_src
 
