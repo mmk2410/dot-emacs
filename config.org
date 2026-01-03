@@ -2942,7 +2942,6 @@ Since version 27 Emacs features a tab bar. In contrast to e.g. a browser a tab d
 
 #+begin_src emacs-lisp
 (use-package mmk2410-tab-bar-helpers
-  :after (hydra)
   :load-path "packages/"
   :bind ("C-c f" . mmk2410/tab-bar/body))
 #+end_src
