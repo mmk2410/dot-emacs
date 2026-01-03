@@ -2979,6 +2979,12 @@ API Integration for [[https://tandoor.dev/][Tandoor]].
   (tandoor-host "recipes.mmk2410.org"))
 #+end_src
 
+* Forgejo Integration
+
+#+begin_src emacs-lisp
+(use-package fj)
+#+end_src
+
 * EDAM
 
 A simple work-in-progress photography DAM in Emacs.
