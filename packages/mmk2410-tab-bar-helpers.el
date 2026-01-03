@@ -5,6 +5,7 @@
 
 ;;; Code:
 (require 'hydra)
+(require 'mu4e)
 
 (defun mmk2410/tab-bar-new-tab (name func)
   "Create new tab using FUNC with name NAME."
