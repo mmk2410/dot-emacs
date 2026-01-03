@@ -38,11 +38,6 @@
   (interactive)
   (mmk2410/tab-bar-switch-or-create "RSS" #'elfeed))
 
-(defun mmk2410/tab-bar-run-pocket-reader ()
-  "Switch to or start pocket reader."
-  (interactive)
-  (mmk2410/tab-bar-switch-or-create "Pocket" #'pocket-reader))
-
 (defun mmk2410/tab-bar-run-mail ()
   "Switch to or start mu4e."
   (interactive)
@@ -107,7 +102,6 @@
   _m_: Mail            _A_: Agenda + Journal     _SPC_: New
   _i_: IRC (erc)       _j_: Journal              _f_: Previous Tab
   _M_: Mastodon                                _Q_: Close Tab
-  _p_: Pocket
   _t_: vterm
 
 "
@@ -116,7 +110,6 @@
   ("m" mmk2410/tab-bar-run-mail)
   ("i" mmk2410/tab-bar-run-irc)
   ("M" mmk2410/tab-bar-run-mastodon)
-  ("p" mmk2410/tab-bar-run-pocket-reader)
   ("t" mmk2410/tab-bar-run-vterm)
   ;; Org
   ("a" mmk2410/tab-bar-run-agenda)
