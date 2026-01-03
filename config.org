@@ -212,8 +212,13 @@ This includes creating the file if not existent.
 Enable aspell. Options set according to [[https://www.emacswiki.org/emacs/FlySpell][Emacswiki: FlySpell]]
 
 #+begin_src emacs-lisp
-(setq-default ispell-program-name "aspell")
-(setq ispell-list-command "--list")
+(with-eval-after-load "ispell"
+  (setq ispell-program-name "hunspell")
+  (setq ispell-dictionary "en_GB,de_DE")
+  ;; ispell-set-spellchecker-params has to be called
+  ;; before ispell-hunspell-add-multi-dic will work
+  (ispell-set-spellchecker-params)
+  (ispell-hunspell-add-multi-dic "en_GB,de_DE"))
 #+end_src
 
 For using spell checking on Microsoft(R) Windows(R) a little bit more work is apparently needed. First of all some spell checking program is needed and when trying to install either ispell, aspell or hunspell I run into the problem that all three of them are primarily developed for Linux systems.
