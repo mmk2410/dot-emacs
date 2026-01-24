@@ -44,6 +44,12 @@
     :headers (linkding--build-headers)
     :as 'json-read))
 
+(defun linkding--api-get-bookmarks-from-bundle (bundle)
+  "Get bookmarks from BUNDLE id from Linkding."
+  (plz 'get (concat "https://" linkding-host "/api/bookmarks/?bundle=" (number-to-string bundle))
+    :headers (linkding--build-headers)
+    :as 'json-read))
+
 (defun linkding--api-post-bookmark (url)
   "Add URL as bookmark to Linkding."
   (plz 'post (concat "https://" linkding-host "/api/bookmarks/")
@@ -67,6 +73,12 @@
     :as 'string
     :then (lambda (_) (message "Bookmark archived successfully."))
     :else (lambda (_) (message "Failed to archive bookmark."))))
+
+(defun linkding--api-get-bundles ()
+  "Get bundles from Linkding."
+  (plz 'get (concat "https://" linkding-host "/api/bundles/")
+    :headers (linkding--build-headers)
+    :as 'json-read))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;; UI functions ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -93,31 +105,75 @@
         (format "%s  (%s)" title hostname)
       (format "%s  (%s | %s)" title hostname tags))))
 
-(defun linkding--user-select-bookmark ()
-  "Let the user select a bookmark."
+(defun linkding--user-select-bookmark (bookmarks)
+  "Let the user select a bookmark from BOOKMARKS."
   (let ((bookmarks (seq-map
                     (lambda (bookmark)
                       `(,(linkding--format-bookmark-for-completing-read bookmark) . ,bookmark))
-                    (alist-get 'results (linkding--api-get-bookmarks)))))
+                    bookmarks)))
     (alist-get
      (completing-read "Select a bookmark: " bookmarks)
      bookmarks nil nil #'equal)))
 
 (defun linkding-open-bookmark-eww ()
-  "Open a bookmark using Emacs eww."
+  "Open a bookmark using Emacs EWW."
   (interactive)
-  (eww-browse-url (alist-get 'url (linkding--user-select-bookmark)) t))
+  (eww-browse-url (alist-get
+                   'url
+                   (linkding--user-select-bookmark
+                    (alist-get 'results (linkding--api-get-bookmarks)))) t))
 
 (defun linkding-open-bookmark-generic ()
   "Open a bookmark using default browser."
   (interactive)
-  (browse-url (alist-get 'url (linkding--user-select-bookmark))))
+  (browse-url (alist-get
+                   'url
+                   (linkding--user-select-bookmark
+                    (alist-get 'results (linkding--api-get-bookmarks))))))
+
+(defun linkding--user-select-bundle ()
+  "Let the user select a bookmark bundle."
+  (let ((bundles (seq-map
+                  (lambda (bundle) `(,(alist-get 'name bundle) ,(alist-get 'id bundle)))
+                  (alist-get 'results (linkding--api-get-bundles)))))
+    (car (alist-get
+          (completing-read "Select a bundle: " bundles)
+          bundles nil nil #'equal))))
+
+(defun linkding-open-bundled-bookmark-eww ()
+  "Open a bookmark from a bundle using Emacs EWW."
+  (interactive)
+  (let ((bundle (linkding--user-select-bundle)))
+    (eww-browse-url (alist-get
+                   'url
+                   (linkding--user-select-bookmark
+                    (alist-get 'results (linkding--api-get-bookmarks-from-bundle bundle)))) t)))
+
+(defun linkding-open-bundled-bookmark-generic ()
+  "Open a bookmark from a bundle using the default browser."
+  (interactive)
+  (let ((bundle (linkding--user-select-bundle)))
+    (browse-url (alist-get
+                   'url
+                   (linkding--user-select-bookmark
+                    (alist-get 'results (linkding--api-get-bookmarks-from-bundle bundle)))))))
 
 (defun linkding-archive-bookmark ()
   "Archive bookmark."
   (interactive)
   (linkding--api-archive-bookmark
-    (alist-get 'id (linkding--user-select-bookmark))))
+   (alist-get 'id
+              (linkding--user-select-bookmark
+               (alist-get 'results (linkding--api-get-bookmarks))))))
+
+(defun linkding-archive-bundled-bookmark ()
+  "Archive bookmark from a bundle."
+  (interactive)
+  (let ((bundle (linkding--user-select-bundle)))
+    (linkding--api-archive-bookmark
+     (alist-get 'id
+                (linkding--user-select-bookmark
+                 (alist-get 'results (linkding--api-get-bookmarks-from-bundle bundle)))))))
 
 (provide 'linkding)
 ;;; linkding.el ends here
