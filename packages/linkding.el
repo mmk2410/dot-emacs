@@ -39,7 +39,7 @@
     ("Authorization" . ,(concat "Token " (linkding--get-api-key)))))
 
 (defun linkding--api-get-bookmarks ()
-  "WIP function for retrieving active bookmarks."
+  "Get bookmarks from Linkding."
   (plz 'get (concat "https://" linkding-host "/api/bookmarks/")
     :headers (linkding--build-headers)
     :as 'json-read))
