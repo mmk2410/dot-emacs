@@ -61,6 +61,14 @@
     :then (lambda (_) (message "URL stored successfully."))
     :else (lambda (_) (message "Failed to store URL."))))
 
+(defun linkding-archive-bookmark-by-id (id)
+  "Archive bookmark by its ID."
+  (plz 'post (concat "https://" linkding-host "/api/bookmarks/" (number-to-string id) "/archive/")
+    :headers (linkding--build-headers)
+    :as 'string
+    :then (lambda (_) (message "Bookmark archived successfully."))
+    :else (lambda (_) (message "Failed to archive bookmark."))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;; UI functions ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -100,6 +108,12 @@
   "Add URL at point as bookmark to Linkding."
   (interactive)
   (linkding-add-bookmark (shr-url-at-point nil)))
+
+(defun linkding-archive-bookmark ()
+  "Archive bookmark."
+  (interactive)
+  (linkding-archive-bookmark-by-id
+    (alist-get 'id (linkding--user-select-bookmark))))
 
 (provide 'linkding)
 ;;; linkding.el ends here
