@@ -38,15 +38,14 @@
   `(("Content-Type" . "application/json")
     ("Authorization" . ,(concat "Token " (linkding--get-api-key)))))
 
-(defun linkding--get-bookmarks ()
+(defun linkding--api-get-bookmarks ()
   "WIP function for retrieving active bookmarks."
   (plz 'get (concat "https://" linkding-host "/api/bookmarks/")
     :headers (linkding--build-headers)
     :as 'json-read))
 
-(defun linkding-add-bookmark (url)
+(defun linkding--api-post-bookmark (url)
   "Add URL as bookmark to Linkding."
-  (interactive "sURL: ")
   (plz 'post (concat "https://" linkding-host "/api/bookmarks/")
     :headers (linkding--build-headers)
     :body (json-encode `(("url" . ,url)
@@ -61,7 +60,7 @@
     :then (lambda (_) (message "URL stored successfully."))
     :else (lambda (_) (message "Failed to store URL."))))
 
-(defun linkding-archive-bookmark-by-id (id)
+(defun linkding--api-archive-bookmark (id)
   "Archive bookmark by its ID."
   (plz 'post (concat "https://" linkding-host "/api/bookmarks/" (number-to-string id) "/archive/")
     :headers (linkding--build-headers)
@@ -72,6 +71,16 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;; UI functions ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun linkding-add-bookmark (url)
+  "Add URL as bookmark to Linkding."
+  (interactive "sURL: ")
+  (linkding--api-post-bookmark url))
+
+(defun linkding-add-bookmark-at-point ()
+  "Add URL at point as bookmark to Linkding."
+  (interactive)
+  (linkding--api-post-bookmark (shr-url-at-point nil)))
 
 (defun linkding--format-bookmark-for-completing-read (bookmark)
   "Format BOOKMARK for displaying in completing read."
@@ -89,7 +98,7 @@
   (let ((bookmarks (seq-map
                     (lambda (bookmark)
                       `(,(linkding--format-bookmark-for-completing-read bookmark) . ,bookmark))
-                    (alist-get 'results (linkding--get-bookmarks)))))
+                    (alist-get 'results (linkding--api-get-bookmarks)))))
     (alist-get
      (completing-read "Select a bookmark: " bookmarks)
      bookmarks nil nil #'equal)))
@@ -104,15 +113,10 @@
   (interactive)
   (browse-url (alist-get 'url (linkding--user-select-bookmark))))
 
-(defun linkding-add-bookmark-at-point ()
-  "Add URL at point as bookmark to Linkding."
-  (interactive)
-  (linkding-add-bookmark (shr-url-at-point nil)))
-
 (defun linkding-archive-bookmark ()
   "Archive bookmark."
   (interactive)
-  (linkding-archive-bookmark-by-id
+  (linkding--api-archive-bookmark
     (alist-get 'id (linkding--user-select-bookmark))))
 
 (provide 'linkding)
