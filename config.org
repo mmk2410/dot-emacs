@@ -2034,6 +2034,27 @@ Source: [[https://github.com/DarthFennec/highlight-indent-guides][DarthFennec/hi
   :bind ("M-2" . er/expand-region))
 #+end_src
 
+** dump-jump
+
+An Emacs "jump to definition" package for 50+ languages
+
+Source: [[https://github.com/jacktasia/dumb-jump][GitHub: jacktasia/dumb-jump]]
+
+#+begin_src emacs-lisp
+(use-package dumb-jump
+  :config
+  (defhydra dumb-jump-hydra (:color blue :columns 3)
+    "Dumb Jump"
+    ("j" dumb-jump-go "Go")
+    ("o" dumb-jump-go-other-window "Other window")
+    ("e" dumb-jump-go-prefer-external "Go external")
+    ("x" dumb-jump-go-prefer-external-other-window "Go external other window")
+    ("i" dumb-jump-go-prompt "Prompt")
+    ("l" dumb-jump-quick-look "Quick look")
+    ("b" dumb-jump-back "Back"))
+  :bind ("M-_" . dumb-jump-hydra/body))
+#+end_src
+
 ** company
 
 Auto completion
