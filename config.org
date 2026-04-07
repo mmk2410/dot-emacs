@@ -2163,6 +2163,16 @@ I use Docker and more importantly docker-compose for development. Thanks to [[ht
   :bind ("C-c M-d" . docker))
 #+end_src
 
+** Dape
+
+Debug Adapter Protocol for Emacs
+
+[[https://github.com/svaante/dape][GitHub: svaante/dape]]
+
+#+begin_src emacs-lisp
+(use-package dape)
+#+end_src
+
 * Language-Specific Programming Packages
 ** Clojure
 
