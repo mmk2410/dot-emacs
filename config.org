@@ -3033,6 +3033,89 @@ The following function from him takes care of the other way: bringing a message 
 (global-set-key (kbd "C-c M-m") 'mmk2410/convert-mail-header-to-org-link)
 #+end_src
 
+* LLM Integration
+** gptel
+
+Initial draft of integrating =gptel=.
+
+#+begin_src emacs-lisp
+(use-package gptel
+  :config
+  (require 'gptel-integrations)
+  (setq gptel-model 'gemma4:e4b
+        gptel-backend (gptel-make-ollama "Ollama"
+                        :host "localhost:11434"
+                        :stream t
+                        :models
+                        '((hf.co/unsloth/Apertus-8B-Instruct-2509-GGUF:Q4_K_M
+                           :description "Apertus 8B")
+                          (gemam4:e4b
+                           :description "Gemma 4 equiv. 4B")
+                          (gemma4:26b
+                           :description "Gemma 4 26B")
+                          (gemma3n:e4b
+                           :description "Gemma 3n equiv. 4B")
+                          (qwen3.5:4b
+                           :description "Qwen 3.5 4B"
+                           :capabilities (tool-use media)
+                           :request-params (:reasoningEffort "none"
+                                            :think :json-false
+                                            :thinking (:type "disabled" :reasoningEffort "none")))
+                          (qwen3.5:9b
+                           :description "Qwen 3.5 9B"
+                           :capabilities (tool-use media)
+                           :request-params (:reasoningEffort "none"
+                                            :think :json-false
+                                            :thinking (:type "disabled" :reasoningEffort "none")))
+                          (devstral:24b
+                           :capabilities (tool-use)
+                           :description "Devstral 24B")
+                          (qwen2.5-coder:7b-instruct-q8_0
+                           :capabilities (tool-use)
+                           :description "Qwen 2.5 Coder 7B")
+                          (qwen2.5-coder:3b
+                           :capabilities (tool-use)
+                           :description "Qwen 2.5 Coder 3B")
+                          (qwen2.5:3b
+                           :capabilities (tool-use)
+                           :description "Qwen 2.5 3B")
+                          (llama3:8b-instruct-q8_0
+                           :description "Llama3 8B")
+                          ))))
+
+(use-package llm-tool-collection
+  :after gptel
+  :vc ( :url "https://github.com/skissue/llm-tool-collection"
+        :rev :newest)
+  :config
+  (mapcar (apply-partially #'apply #'gptel-make-tool)
+          (llm-tool-collection-get-all)))
+
+(use-package gptel-agent
+  :after gptel
+  :config
+  (gptel-agent-update))
+
+(use-package mcp
+  :ensure t
+  :after gptel
+  :custom (mcp-hub-servers
+           `(("ddg" . (:command "uvx"
+                                :args ("duckduckgo-mcp-server")))))
+  :config (require 'mcp-hub))
+#+end_src
+
+** agent-shell
+
+Initial draft of integrating =agent-shell=.
+
+#+begin_src emacs-lisp
+(use-package agent-shell
+  :config
+  (setq agent-shell-goose-authentication
+        (agent-shell-make-goose-authentication :none t)))
+#+end_src
+
 * Helpers
 ** Tab Bar Setup
 
