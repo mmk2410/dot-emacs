@@ -2089,6 +2089,12 @@ Source: [[https://www.flycheck.org][flycheck.org]]
   :diminish 'flycheck-mode
   :config (setq-default flycheck-emacs-lisp-load-path 'inherit)
   :init (global-flycheck-mode))
+
+(use-package flycheck-eglot
+  :ensure t
+  :after (flycheck eglot)
+  :config
+  (global-flycheck-eglot-mode 1))
 #+end_src
 
 ** eglot
