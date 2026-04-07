@@ -2213,7 +2213,8 @@ Source: [[https://github.com/emacs-typescript/typescript.el][GitHub: emacs-types
 
 #+begin_src emacs-lisp
 (use-package typescript-mode
-  :mode "\\.ts\\'"
+  :mode (("\\.ts\\'" . typescript-mode)
+         ("\\.mts\\'" . typescript-mode))
   :config
   (setq typescript-indent-level 2))
 #+end_src
