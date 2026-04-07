@@ -1004,7 +1004,7 @@ Marginalia in the minibuffer.
          ("M-y" . consult-yank-pop)                ;; orig. yank-pop
          ;; M-g bindings (goto-map)
          ("M-g e" . consult-compile-error)
-         ("M-g f" . consult-flymake)               ;; Alternative: consult-flycheck
+         ;;; ("M-g f" . consult-flymake)               ;; Alternative: consult-flycheck
          ("M-g g" . consult-goto-line)             ;; orig. goto-line
          ("M-g M-g" . consult-goto-line)           ;; orig. goto-line
          ("M-g o" . consult-outline)               ;; Alternative: consult-org-heading
@@ -1050,6 +1050,10 @@ Marginalia in the minibuffer.
    consult--source-recent-file consult--source-project-recent-file
    :preview-key '(:debounce 0.4 any))
   (setq consult-narrow-key "<"))
+
+(use-package consult-flycheck
+  :after (consult flycheck)
+  :bind (("M-g f" . consult-flycheck)))
 #+end_src
 
 ** embark
