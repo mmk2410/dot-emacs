@@ -81,3 +81,4 @@ projects
 /multisession/
 /forge-database.sqlite
 /elpa-backup-*
+/debug-adapters/
