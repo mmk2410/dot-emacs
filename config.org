@@ -75,7 +75,8 @@ My work machine is called “mccarthy” and there is some configuration which I
 
 #+begin_src emacs-lisp
 (setq plstore-encrypt-to "opensource@mmk2410.org"
-      epa-file-encrypt-to "opensource@mmk2410.org")
+      epa-file-encrypt-to "opensource@mmk2410.org"
+      auth-source '("~/.authinfo.gpg"))
 #+end_src
 
 ** Date & Time
