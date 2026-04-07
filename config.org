@@ -2460,10 +2460,7 @@ Resources:
   :bind (("C-c s" . 'eshell))
   :config
   (setq eshell-visual-subcommands
-        '(("docker" "pull" "build")
-          ("docker compose" "build")
-          ("docker compose" "up")
-          ("docker compose" "down")))
+        '(("docker" "pull" "build" ("compose" "build"))))
   :hook (eshell-mode . visual-line-mode))
 #+end_src
 
