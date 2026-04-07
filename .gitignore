@@ -80,3 +80,4 @@ projects
 /work/
 /multisession/
 /forge-database.sqlite
+/elpa-backup-*
