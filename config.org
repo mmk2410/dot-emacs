@@ -2027,6 +2027,13 @@ Source: [[https://github.com/DarthFennec/highlight-indent-guides][DarthFennec/hi
   :hook (prog-mode . highlight-indent-guides-mode))
 #+end_src
 
+** expand-region
+
+#+begin_src emacs-lisp
+(use-package expand-region
+  :bind ("M-2" . er/expand-region))
+#+end_src
+
 ** company
 
 Auto completion
