@@ -1993,6 +1993,14 @@ Source: [[https://github.com/cdominik/cdlatex][GitHub: cdominik/cdlatex]]
 (add-hook 'compilation-filter-hook
           #'endless/colorize-compilation)
 #+end_src
+
+** display-fill-column-indicator
+
+#+begin_src emacs-lisp
+(use-package display-fill-column-indicator
+  :hook (prog-mode . display-fill-column-indicator-mode))
+#+end_src
+
 ** rainbow-delimiters
 
 Lisp languages involve many parentheses and it might get hard to know which one are on the same “level”. The rainbow-delimiters package is here to help with this problem.
