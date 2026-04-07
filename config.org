@@ -1979,6 +1979,10 @@ Source: [[https://github.com/cdominik/cdlatex][GitHub: cdominik/cdlatex]]
 #+end_src
 
 * General Programming Packages
+
+#+begin_src emacs-lisp
+(setq compilation-scroll-output t)
+#+end_src
 ** rainbow-delimiters
 
 Lisp languages involve many parentheses and it might get hard to know which one are on the same “level”. The rainbow-delimiters package is here to help with this problem.
