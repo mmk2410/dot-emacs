@@ -3183,3 +3183,13 @@ For my workplace I have some additional packages and configuration that I keep i
     (org-babel-load-file
      (expand-file-name "work/config.org" user-emacs-directory)))
 #+end_src
+
+* Qwint
+
+Helpers for working on Qwint.
+
+#+begin_src emacs-lisp
+(use-package qwint
+  :unless (mmk2410/work)
+  :load-path "packages/")
+#+end_src
