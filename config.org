@@ -3191,5 +3191,7 @@ Helpers for working on Qwint.
 #+begin_src emacs-lisp
 (use-package qwint
   :unless (mmk2410/work)
-  :load-path "packages/qwint/")
+  :load-path "packages/qwint/"
+  :config
+  (qwint-init-org-capture-template))
 #+end_src

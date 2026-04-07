@@ -71,5 +71,19 @@ Copied from https://mbork.pl/2021-05-02_Org-mode_to_Markdown_via_the_clipboard."
      (concat (nth 4 (org-heading-components)) " ([[" url "][" title "]])"))
     (org-set-property "FORGEJO_URL" url)))
 
+(defun qwint-init-org-capture-template ()
+  "Initialise and provide org capture template for tasks."
+  (add-to-list 'org-capture-templates '("Q" "Qwint Capture Templates"))
+  (add-to-list 'org-capture-templates
+               `("Qi" "Qwint Issue" entry (here)
+                 (file ,(expand-file-name "./org-capture-template-task.org"))
+                 :empty-lines 1
+                 :immediate-finish t))
+  (add-to-list 'org-capture-templates
+               '("Qn" "Qwint Note" item (here)
+                 "- %U %?"
+                 :immediate-finish t
+                 :empty-lines-after 1)))
+
 (provide 'qwint)
 ;;; qwint.el ends here

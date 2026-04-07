@@ -1,0 +1,40 @@
+* TODO %? %^g
+:PROPERTIES:
+:CREATED_AT: %U
+:END:
+
+| *Priorität*                 | *Typ*                                                               | *Zugehörige Story*                   | *Abhängigkeiten*               |
+|---------------------------+-------------------------------------------------------------------+------------------------------------+------------------------------|
+| %^{Priorität|Mittel|Niedrig|Mittel|Hoch} | %^{Typ|Neues Feature|Neues Feature |Erweiterung|Fehler|Sicherheit|Dokumentation|Tests} | [Verlinkung der zugehörigen Story] | [Verlinkung anderer Tickets] |
+
+** Übersicht
+
+*** Ziel
+
+[Ein Satz. /Was/ soll dieser Task ermöglichen?]
+
+*** Nutzen
+
+[Ein Satz. /Warum/ soll dieser Task erledigt werden?]
+
+** Beschreibung
+
+[Genaue Beschreibung des Tickets, ggf. inklusive Nutzungsbeispielen]
+
+%i
+
+** Akzeptanzkriterien
+
+- [ ] [GIVEN/WHEN/THEN-Format oder einfache Aussage].
+- [ ] [GIVEN/WHEN/THEN-Format oder einfache Aussage].
+- [ ] [Testfall für Fehlerbehandlung].
+
+** Hinweise zur Umsetzung
+
+*** Rahmenbedingungen
+
+[Technische Voraussetzungen, welche für die Implementierung wichtig sind (z.B. das Verwenden einer bestimmten Bibliothek)].
+
+*** Grenzen der Umsetzung
+
+[Erklärung, welche Funktionalität nicht teils dieses Tasks ist.]
