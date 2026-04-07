@@ -2071,6 +2071,11 @@ Source: [[https://github.com/company-mode/company-mode][GitHub: company-mode]]
         company-minimum-prefix-length 1
         company-idle-delay 0.0
         company-dabbrev-downcase nil))
+
+(use-package company-quickhelp
+  :after (company)
+  :config
+  (company-quickhelp-mode))
 #+end_src
 
 ** flycheck
