@@ -3191,5 +3191,5 @@ Helpers for working on Qwint.
 #+begin_src emacs-lisp
 (use-package qwint
   :unless (mmk2410/work)
-  :load-path "packages/")
+  :load-path "packages/qwint/")
 #+end_src
