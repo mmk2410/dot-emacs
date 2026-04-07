@@ -2347,7 +2347,13 @@ For joining IRC channels I use ERC. For connecting with the network (using my ZN
   "Start a IRC session with ERC by connecting to my ZNC bouncer."
   (interactive)
   (erc-tls :server "znc.mmk2410.org" :port "6697" :nick "mmk2410"
-           :full-name "Marcel Kapfer"))
+           :full-name "Marcel Kapfer"
+           :password (auth-info-password
+                      (nth 0
+                           (auth-source-search
+                            :max 1
+                            :host "znc.mmk2410.org"
+                            :user "mmk2410")))))
 #+end_src
 
 Now the configuration for ERC. Some stuff I found in the deepest depths of the internet. Worth mentioning is the [[https://www.emacswiki.org/emacs/ERC][EmacsWiki]] and the following two videos by David Wilson on the [[https://www.youtube.com/c/SystemCrafters][System Crafters YouTube channel]]: [[https://www.youtube.com/watch?v=qWHTZIYTA4s][Chat Like the 90's in Emacs with ERC]] and [[https://www.youtube.com/watch?v=Qci8t_jpVGA][System Crafters Live! - Improving the IRC Experience in ERC]].
