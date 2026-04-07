@@ -75,14 +75,14 @@
        (sit-for 1)
        (split-window-horizontally)
        (other-window 1)
-       (org-roam-dailies-goto-today))))
+       (org-journal-open-current-journal-file))))
 
 (defun mmk2410/tab-bar-run-journal ()
-  "Switch to or create org-roam daily journal."
+  "Switch to current org-journal file."
   (interactive)
   (mmk2410/tab-bar-switch-or-create
    "Journal"
-   #'org-roam-dailies-goto-today))
+   #'org-journal-open-current-journal-file))
 
 (defun mmk2410/tab-bar-run-mastodon ()
   "Switch to or create a tab running mastodon.el."
