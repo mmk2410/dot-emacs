@@ -371,9 +371,12 @@ Source: [[https://stackoverflow.com/a/744681][Stack Overflow: Unable to hide wel
 (setq inhibit-startup-screen t)
 #+end_src
 
-** Replace BEEP by visual-bell
+** Tell Emacs to shut up
+
+If something doesn't work, it is IMHO quite obvious for me.
 
 #+begin_src emacs-lisp
+(setq ring-bell-function 'ignore)
 (setq visible-bell nil)
 #+end_src
 
