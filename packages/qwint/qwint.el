@@ -76,7 +76,9 @@ Copied from https://mbork.pl/2021-05-02_Org-mode_to_Markdown_via_the_clipboard."
   (add-to-list 'org-capture-templates '("Q" "Qwint Capture Templates"))
   (add-to-list 'org-capture-templates
                `("Qi" "Qwint Issue" entry (here)
-                 (file ,(expand-file-name "./org-capture-template-task.org"))
+                 (file ,(expand-file-name
+                         "./packages/qwint/org-capture-template-task.org"
+                         (file-name-directory (or load-file-name buffer-file-name))))
                  :empty-lines 1
                  :immediate-finish t))
   (add-to-list 'org-capture-templates
