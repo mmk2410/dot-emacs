@@ -313,6 +313,14 @@ Hide commands in M-x which do not work in the current mode.
       #'command-completion-default-include-p)
 #+end_src
 
+** Bookmarks
+
+Save bookmarks after every bookmarking action.
+
+#+begin_src emacs-lisp
+(setq bookmark-save-flag 1)
+#+end_src
+
 * Package configuration
 ** General configuration
 
