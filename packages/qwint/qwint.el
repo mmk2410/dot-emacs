@@ -69,7 +69,8 @@ Copied from https://mbork.pl/2021-05-02_Org-mode_to_Markdown_via_the_clipboard."
          (title (concat (nth 2 url-parts) "#" (car url-parts ))))
     (org-edit-headline
      (concat (nth 4 (org-heading-components)) " ([[" url "][" title "]])"))
-    (org-set-property "FORGEJO_URL" url)))
+    (org-set-property "FORGEJO_URL" url)
+    (org-align-tags)))
 
 (defun qwint-init-org-capture-template ()
   "Initialise and provide org capture template for tasks."
