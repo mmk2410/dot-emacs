@@ -2857,7 +2857,7 @@ Multiple mail accounts in mu4e can be achieved by using so called contexts.
 First of all I like mu4e to only ask me, which content to use, if it can't figure it you.
 
 #+begin_src emacs-lisp
-(setq mu4e-context-policy 'ask
+(setq mu4e-context-policy 'pick-first
       mu4e-compose-context-policy 'ask)
 #+end_src
 
