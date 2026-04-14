@@ -62,8 +62,8 @@ Copied from https://mbork.pl/2021-05-02_Org-mode_to_Markdown_via_the_clipboard."
              (markdown (org-export-string-as region 'md t '(:with-toc nil))))
         (gui-set-selection 'CLIPBOARD markdown))))
 
-(defun qwint-copy-org-region-as-commonmark ()
-  "Copy Org region as CommonMark (with extensions) using Pandoc.
+(defun qwint-copy-org-region-as-gfm ()
+  "Copy Org region as GitHub Flavoured Markdown using Pandoc.
 
 Headings are shift automatically to level 2 and below.
 
@@ -87,14 +87,20 @@ JSON code blocks are marked as json instead of js-json."
                      ;; Determine the level of the first Org heading for adjusting the heading shift.
                      (if (not (org-at-heading-p))
                          (org-next-visible-heading 1))
-                     (list (buffer-string) (- (org-current-level) 2))))
+                     (list
+                      (buffer-string)
+                      (let ((level (org-current-level)))
+                        (cond ((not level) 0)
+                              ((> level 2) (* (- (org-current-level) 2) -1))
+                              ((= level 1) 1)
+                              (t 0))))))
              (org-file (make-temp-file "qcme-" nil ".org" (car text)))
              (markdown (with-temp-buffer
                          (call-process
                           "pandoc"
                           nil t nil
-                          (concat "--shift-heading-level-by=-" (number-to-string (car (cdr text))))
-                          "--wrap=none" "-f" "org" "-t" "commonmark_x" "-o" "-" org-file)
+                          (concat "--shift-heading-level-by=" (number-to-string (car (cdr text))))
+                          "--wrap=none" "-f" "org" "-t" "gfm" "-o" "-" org-file)
                          (buffer-string))))
         (gui-set-selection 'CLIPBOARD markdown)
         (delete-file org-file))))
