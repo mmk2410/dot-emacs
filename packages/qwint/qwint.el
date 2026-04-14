@@ -63,27 +63,41 @@ Copied from https://mbork.pl/2021-05-02_Org-mode_to_Markdown_via_the_clipboard."
         (gui-set-selection 'CLIPBOARD markdown))))
 
 (defun qwint-copy-org-region-as-commonmark ()
-  "Copy Org region as CommonMark using Pandoc."
+  "Copy Org region as CommonMark (with extensions) using Pandoc.
+
+Headings are shift automatically to level 2 and below.
+
+JSON code blocks are marked as json instead of js-json."
   (interactive)
   (if (use-region-p)
-      (let* ((region (buffer-substring-no-properties
+      (let* (;; Get currently selected region
+             (region (buffer-substring-no-properties
                       (region-beginning)
                       (region-end)))
-             (text (replace-regexp-in-string
-                    "#\\+begin_src js-json"
-                    "#+begin_src json"
-                    region))
-             (org-file (make-temp-file "qcme-" nil ".org" text))
-             (md-file (replace-regexp-in-string "\\.org" ".md" org-file)))
-        (shell-command
-         (concat "pandoc -f org -t commonmark -i " org-file " -o " md-file)
-         nil
-         nil)
-        (gui-set-selection 'CLIPBOARD (with-temp-buffer
-                                        (insert-file-contents md-file)
-                                        (buffer-string)))
-        (delete-file org-file nil)
-        (delete-file md-file nil))))
+             (text (with-temp-buffer
+                     (org-mode)
+                     ;; Accept headline up to level 9 to make sure Pandoc does not treat them as list items.
+                     (insert "#+OPTIONS: H:9\n")
+                     (insert region)
+                     (goto-char (point-min))
+                     ;; Replace js-json with json for wide compatiblity of JSON code blocks.
+                     (while (re-search-forward "#\\+begin_src js-json" nil t)
+                       (replace-match "#+begin_src json" nil nil))
+                     (goto-char (point-min))
+                     ;; Determine the level of the first Org heading for adjusting the heading shift.
+                     (if (not (org-at-heading-p))
+                         (org-next-visible-heading 1))
+                     (list (buffer-string) (- (org-current-level) 2))))
+             (org-file (make-temp-file "qcme-" nil ".org" (car text)))
+             (markdown (with-temp-buffer
+                         (call-process
+                          "pandoc"
+                          nil t nil
+                          (concat "--shift-heading-level-by=-" (number-to-string (car (cdr text))))
+                          "--wrap=none" "-f" "org" "-t" "commonmark_x" "-o" "-" org-file)
+                         (buffer-string))))
+        (gui-set-selection 'CLIPBOARD markdown)
+        (delete-file org-file))))
 
 (defun qwint-add-link-to-org-item (url)
   "Add URL to org heading and as a property."
