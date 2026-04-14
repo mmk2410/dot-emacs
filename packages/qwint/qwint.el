@@ -62,6 +62,29 @@ Copied from https://mbork.pl/2021-05-02_Org-mode_to_Markdown_via_the_clipboard."
              (markdown (org-export-string-as region 'md t '(:with-toc nil))))
         (gui-set-selection 'CLIPBOARD markdown))))
 
+(defun qwint-copy-org-region-as-commonmark ()
+  "Copy Org region as CommonMark using Pandoc."
+  (interactive)
+  (if (use-region-p)
+      (let* ((region (buffer-substring-no-properties
+                      (region-beginning)
+                      (region-end)))
+             (text (replace-regexp-in-string
+                    "#\\+begin_src js-json"
+                    "#+begin_src json"
+                    region))
+             (org-file (make-temp-file "qcme-" nil ".org" text))
+             (md-file (replace-regexp-in-string "\\.org" ".md" org-file)))
+        (shell-command
+         (concat "pandoc -f org -t commonmark -i " org-file " -o " md-file)
+         nil
+         nil)
+        (gui-set-selection 'CLIPBOARD (with-temp-buffer
+                                        (insert-file-contents md-file)
+                                        (buffer-string)))
+        (delete-file org-file nil)
+        (delete-file md-file nil))))
+
 (defun qwint-add-link-to-org-item (url)
   "Add URL to org heading and as a property."
   (interactive "sURL: ")
