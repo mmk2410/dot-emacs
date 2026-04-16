@@ -3053,9 +3053,11 @@ Initial draft of integrating =gptel=.
                         '((hf.co/unsloth/Apertus-8B-Instruct-2509-GGUF:Q4_K_M
                            :description "Apertus 8B")
                           (gemma4:e4b
-                           :description "Gemma 4 equiv. 4B")
+                           :description "Gemma 4 equiv. 4B"
+                           :capabilities (tool-use))
                           (gemma4:26b
-                           :description "Gemma 4 26B")
+                           :description "Gemma 4 26B"
+                           :capabilities (tool-use))
                           (gemma3n:e4b
                            :description "Gemma 3n equiv. 4B")
                           (qwen3.5:4b
@@ -3083,8 +3085,7 @@ Initial draft of integrating =gptel=.
                            :capabilities (tool-use)
                            :description "Qwen 2.5 3B")
                           (llama3:8b-instruct-q8_0
-                           :description "Llama3 8B")
-                          ))))
+                           :description "Llama3 8B")))))
 
 (use-package llm-tool-collection
   :after gptel
