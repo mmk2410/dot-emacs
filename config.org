@@ -3052,7 +3052,7 @@ Initial draft of integrating =gptel=.
                         :models
                         '((hf.co/unsloth/Apertus-8B-Instruct-2509-GGUF:Q4_K_M
                            :description "Apertus 8B")
-                          (gemam4:e4b
+                          (gemma4:e4b
                            :description "Gemma 4 equiv. 4B")
                           (gemma4:26b
                            :description "Gemma 4 26B")
