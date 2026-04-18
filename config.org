@@ -1842,6 +1842,9 @@ Regarding file naming schemes and especially tagging, I can recommend the fabulo
 #+end_src
 
 * Org Research Assistant
+
+As of 2026-04-18 I'm gradually switching to Denote. During the next months I will migrate or archive my existing Org Roam notes. Due to missing requirements I already disabled some integrations.
+
 ** Org Roam
 
 Roam Research / Zettelkasten system using org-mode.
@@ -1859,16 +1862,16 @@ Source: [[https://www.orgroam.com][orgroam.com]]
                  (direction . right)
                  (window-width . 0.33)
                  (window-height . fit-window-to-buffer)))
-  (setq org-roam-dailies-directory "daily/")
-  (setq org-roam-dailies-capture-templates
-        '(("c" "clock" entry "* %<%H:%M> %?"
-           :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))
-          ("n" "note" entry "* %?"
-           :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))
-          ("t" "todo" entry "* TODO %?"
-           :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))))
-  (require 'org-roam-protocol)
-  (require 'org-roam-dailies)
+  ;; (setq org-roam-dailies-directory "daily/")
+  ;; (setq org-roam-dailies-capture-templates
+  ;;       '(("c" "clock" entry "* %<%H:%M> %?"
+  ;;          :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))
+  ;;         ("n" "note" entry "* %?"
+  ;;          :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))
+  ;;         ("t" "todo" entry "* TODO %?"
+  ;;          :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))))
+  ;; (require 'org-roam-protocol)
+  ;; (require 'org-roam-dailies)
   (org-roam-db-autosync-mode)
   :bind (("C-c r f" . org-roam-node-find)
          ("C-c r i" . org-roam-node-insert)
@@ -1878,11 +1881,11 @@ Source: [[https://www.orgroam.com][orgroam.com]]
          :map org-mode-map
          ("C-M-i" . completion-at-point)
          :map org-roam-mode-map
-         ("[mouse-1]" . #'org-roam-visit-thing)
-         :map org-roam-dailies-map
-         ("Y" . org-roam-dailies-capture-yesterday)
-         ("T" . org-roam-dailies-capture-tomorrow))
-  :bind-keymap ("C-c r d" . org-roam-dailies-map))
+         ("[mouse-1]" . #'org-roam-visit-thing)))
+         ;; :map org-roam-dailies-map
+         ;; ("Y" . org-roam-dailies-capture-yesterday)
+         ;; ("T" . org-roam-dailies-capture-tomorrow))
+  ;; :bind-keymap ("C-c r d" . org-roam-dailies-map))
 #+end_src
 
 ** Org Roam Bibtex
@@ -1893,6 +1896,7 @@ Source: [[https://github.com/org-roam/org-roam-bibtex][GitHub: org-roam/org-roam
 
 #+begin_src emacs-lisp
 (use-package org-roam-bibtex
+  :disabled t
   :after org-roam
   :hook (org-roam-mode . org-roam-bibtex-mode))
 #+end_src
@@ -1905,9 +1909,11 @@ Source: [[https://github.com/org-roam/org-roam-ui][GitHub: org-roam/org-roam-ui]
 
 #+begin_src emacs-lisp
 (use-package websocket
+  :disabled t
   :after org-roam)
 
 (use-package org-roam-ui
+  :disabled t
   :after (org-roam websocket)
   :config
   (setq org-roam-ui-sync-theme t
@@ -1924,6 +1930,7 @@ Source: [[https://github.com/tmalsburg/helm-bibtex][GitHub: tmalsburg/helm-bibte
 
 #+begin_src emacs-lisp
 (use-package ivy-bibtex
+  :disabled t
   :after ivy
   :config
   (setq bibtex-completion-bibliography "~/org/roam/bibliography.bib")
@@ -1940,6 +1947,7 @@ Source: [[https://github.com/jkitchin/org-ref][Github: jkitchin/org-ref]]
 
 #+begin_src emacs-lisp
 (use-package org-ref
+  :disabled t
   :after org
   :config
   (setq org-ref-default-bibliography '("~/org/roam/bibliography.bib"))
@@ -1959,6 +1967,7 @@ Source: [[https://github.com/weirdNox/org-noter][GitHub: weirdNorx/org-noter]]
 
 #+begin_src emacs-lisp
 (use-package org-noter
+  :disabled t
   :after (:any org pdf-tools)
   :config
   (setq org-noter-notes-search-path '("~/org/roam")))
