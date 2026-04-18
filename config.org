@@ -1817,6 +1817,30 @@ Source: [[https://github.com/federicotdn/verb][GitHub: federicotdn/verb]]
   :config (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
 #+end_src
 
+* Denote
+
+[[https://protesilaos.com/emacs/denote][Denote]] is a note taking system and naming scheme by Protesilaos Stavrou.
+
+As of 2026-04-18 I'm in progress of migrating my Org-Roam setup to Denote. Therefore, the configuration below is subject to change.
+
+Regarding file naming schemes and especially tagging, I can recommend the fabulous article [[https://karl-voit.at/managing-digital-photographs/][Managing Digital Files (e.g., Photographs) in Files and Folders]] by Karl Voit.
+
+#+begin_src emacs-lisp
+(use-package denote
+  :hook (dired-mode . denote-dired-mode)
+  :bind
+  (("C-c n n" . denote)
+   ("C-c n r" . denote-rename-file)
+   ("C-c n l" . denote-link)
+   ("C-c n b" . denote-backlinks)
+   ("C-c n d" . denote-dired)
+   ("C-c n g" . denote-grep)
+   ("C-c n o" . denote-open-or-create))
+  :config
+  (setq denote-directory (expand-file-name "~/org/notes/"))
+  (denote-rename-buffer-mode 1))
+#+end_src
+
 * Org Research Assistant
 ** Org Roam
 
