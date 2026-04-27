@@ -2450,8 +2450,6 @@ Normally I use Firefox for browsing the web, but when I am working with full foc
 More important for me while reading a paper is looking up some things on Wikipedia. So I defined -- additionally to a simple keybinding for eww itself -- a function and a keybinding for searching on the English Wikipedia.
 
 #+begin_src emacs-lisp
-(setq eww-browse-url-new-window-is-tab nil)
-
 (eval-and-compile
   (defun eww-browse-wikipedia-en ()
     (interactive)
@@ -2468,7 +2466,12 @@ More important for me while reading a paper is looking up some things on Wikiped
 
 (use-package eww
   :config
-  (setq eww-search-prefix "https://www.ecosia.org/search?q=")
+  (setq eww-search-prefix "https://www.ecosia.org/search?q="
+        eww-browse-url-new-window-is-tab nil
+        shr-width 120
+        shr-use-fonts nil
+        shr-max-image-proportion 0.75
+        shr-image-animate t)
   :bind (("C-c w b" . 'eww)
          ("C-c w d" . 'eww-browser-english-dict)
          ("C-c w w" . 'eww-browse-wikipedia-en)))
