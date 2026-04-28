@@ -1098,6 +1098,7 @@ This is my personal org-mode configuration.
   :pin gnu)
 (add-to-list 'org-modules 'org-habit)
 (require 'org-protocol)
+(require 'org-habit)
 #+end_src
 
 ** General settings
