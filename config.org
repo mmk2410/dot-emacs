@@ -2409,7 +2409,8 @@ More important for me while reading a paper is looking up some things on Wikiped
   (setq eww-search-prefix "https://www.ecosia.org/search?q="
         eww-browse-url-new-window-is-tab nil
         shr-width 120
-        shr-use-fonts nil
+        shr-use-fonts t
+        shr-use-colors nil
         shr-max-image-proportion 0.75
         shr-image-animate t)
   :bind (("C-c w b" . 'eww)
