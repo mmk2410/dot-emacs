@@ -471,17 +471,17 @@ My typeface is not loading when using emacsclient. So I set it explicitly when c
 
 #+begin_src emacs-lisp
 (if on-macos
-    (setq mmk2410/frame-font "Berkeley Mono 14"
-          mmk2410/frame-font-present "Berkeley Mono 16"
-          mmk2410/fixed-font-name "Berkeley Mono"
+    (setq mmk2410/frame-font "Maple Mono 14"
+          mmk2410/frame-font-present "Maple Mono 16"
+          mmk2410/fixed-font-name "Maple Mono"
           mmk2410/fixed-font-height 140
           mmk2410/fixed-font-present-height 160
           mmk2410/variable-font-name "Inter"
           mmk2410/variable-font-height 160
           mmk2410/variable-font-present-height 180)
-    (setq mmk2410/frame-font "Berkeley Mono 11"
-          mmk2410/frame-font-present "Berkeley Mono 16"
-          mmk2410/fixed-font-name "Berkeley Mono"
+    (setq mmk2410/frame-font "Maple Mono 11"
+          mmk2410/frame-font-present "Maple Mono 16"
+          mmk2410/fixed-font-name "Maple Mono"
           mmk2410/fixed-font-height 110
           mmk2410/fixed-font-present-height 160
           mmk2410/variable-font-name "Inter"
