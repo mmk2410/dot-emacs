@@ -360,7 +360,8 @@ I don't agree with some visual defaults, so I redefine them.
 ** Short yes/no questions
 
 #+begin_src emacs-lisp
-(defalias 'yes-or-no-p 'y-or-n-p)
+(setopt use-short-answers t)
+(setopt use-dialog-box nil)
 #+end_src
 
 ** Confirm before closing emacs
