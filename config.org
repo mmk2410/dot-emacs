@@ -499,7 +499,8 @@ My typeface is not loading when using emacsclient. So I set it explicitly when c
   (set-face-attribute 'variable-pitch nil :font mmk2410/variable-font-name :height mmk2410/variable-font-height :weight 'regular)
   (set-face-attribute 'fixed-pitch nil :font mmk2410/fixed-font-name :height mmk2410/fixed-font-height :weight 'regular))
 
-(mmk2410/display-normal-typeface-size)
+(with-eval-after-load 'ef-themes
+  (mmk2410/display-normal-typeface-size))
 #+end_src
 
 Sometimes (most often a work) I share my screen during a video call to discuss some code. Since I personally like to see larger fonts on video calls and I don't know what display size and resolution the other participants have I wrote two functions for resizing Emacs.
