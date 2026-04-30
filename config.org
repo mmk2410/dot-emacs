@@ -476,7 +476,7 @@ My typeface is not loading when using emacsclient. So I set it explicitly when c
           mmk2410/fixed-font-name "Maple Mono"
           mmk2410/fixed-font-height 140
           mmk2410/fixed-font-present-height 160
-          mmk2410/variable-font-name "Inter"
+          mmk2410/variable-font-name "Jost*"
           mmk2410/variable-font-height 160
           mmk2410/variable-font-present-height 180)
     (setq mmk2410/frame-font "Maple Mono 11"
@@ -484,7 +484,7 @@ My typeface is not loading when using emacsclient. So I set it explicitly when c
           mmk2410/fixed-font-name "Maple Mono"
           mmk2410/fixed-font-height 110
           mmk2410/fixed-font-present-height 160
-          mmk2410/variable-font-name "Inter"
+          mmk2410/variable-font-name "Jost*"
           mmk2410/variable-font-height 120
           mmk2410/variable-font-present-height 160))
 
@@ -496,7 +496,7 @@ My typeface is not loading when using emacsclient. So I set it explicitly when c
   (interactive)
   (set-frame-font mmk2410/frame-font nil t)
   (set-face-attribute 'default nil :font mmk2410/fixed-font-name :height mmk2410/fixed-font-height :weight 'regular)
-  (set-face-attribute 'variable-pitch nil :font mmk2410/variable-font-name :height mmk2410/variable-font-height :weight 'regular)
+  (set-face-attribute 'variable-pitch nil :family mmk2410/variable-font-name :height mmk2410/variable-font-height :weight 'regular)
   (set-face-attribute 'fixed-pitch nil :font mmk2410/fixed-font-name :height mmk2410/fixed-font-height :weight 'regular))
 
 (with-eval-after-load 'ef-themes
@@ -1196,7 +1196,7 @@ I like to have larger headlines in Org for better identifying them. The configur
                   (org-level-6 . 1.1)
                   (org-level-7 . 1.1)
                   (org-level-8 . 1.1)))
-    (set-face-attribute (car face) nil :font "Inter" :weight 'medium :height (cdr face))))
+    (set-face-attribute (car face) nil :family "Jost*" :weight 'medium :height (cdr face))))
 
 (with-eval-after-load 'org
   (unless (string-prefix-p "ef-" (format "%s" (car custom-enabled-themes)))
