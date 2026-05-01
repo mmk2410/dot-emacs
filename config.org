@@ -308,6 +308,18 @@ Show filesize human readable.
 (setq delete-by-moving-to-trash t)
 #+end_src
 
+** Ediff
+
+Fix ediff configuration…
+
+#+begin_src emacs-lisp
+(use-package ediff
+  :ensure nil
+  :config
+  (setq ediff-split-window-function 'split-window-horizontally)
+  (setq ediff-window-setup-function 'ediff-setup-windows-plain))
+#+end_src
+
 ** Isearch
 
 Isearch customisations.
