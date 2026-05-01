@@ -319,6 +319,14 @@ Save bookmarks after every bookmarking action.
 (setq bookmark-save-flag 1)
 #+end_src
 
+** Kill Ring
+
+Adjustments for the Emacs kill-ring.
+
+#+begin_src emacs-lisp
+(setq save-interprogram-paste-before-kill t)
+#+end_src
+
 * Package configuration
 ** General configuration
 
