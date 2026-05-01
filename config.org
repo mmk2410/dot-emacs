@@ -300,6 +300,12 @@ Show filesize human readable.
 
 #+begin_src emacs-lisp
 (setq-default dired-listing-switches "-alh")
+(setq dired-auto-revert-buffer #'dired-directory-changed-p)
+(setq dired-clean-up-buffers-too t)
+(setq dired-clean-confirm-killing-deleted-buffers t)
+(setq dired-recursive-copies 'always)
+(setq dired-recursive-deletes 'always)
+(setq delete-by-moving-to-trash t)
 #+end_src
 
 ** M-x customizations
