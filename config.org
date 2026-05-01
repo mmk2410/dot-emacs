@@ -361,6 +361,7 @@ I don't agree with some visual defaults, so I redefine them.
 
 #+begin_src emacs-lisp
 (setopt use-short-answers t)
+(setopt read-answer-short t)
 (setopt use-dialog-box nil)
 #+end_src
 
