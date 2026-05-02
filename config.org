@@ -2453,7 +2453,9 @@ More important for me while reading a paper is looking up some things on Wikiped
         shr-use-fonts t
         shr-use-colors nil
         shr-max-image-proportion 0.75
-        shr-image-animate t)
+        shr-image-animate t
+        shr-bullet "• "
+        url-privacy-level 'paranoid)
   :bind (("C-c w b" . 'eww)
          ("C-c w d" . 'eww-browser-english-dict)
          ("C-c w w" . 'eww-browse-wikipedia-en)))
