@@ -2466,7 +2466,8 @@ More important for me while reading a paper is looking up some things on Wikiped
 ** shell
 
 #+begin_src emacs-lisp
-(setq shell-file-name "/usr/bin/bash")
+(unless on-macos
+    (setq shell-file-name "/usr/bin/bash"))
 #+end_src
 
 ** vterm
