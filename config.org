@@ -1439,19 +1439,6 @@ Set org agenda files.
 
 #+begin_src emacs-lisp
 (setq org-agenda-files (list "~/org/tasks/"))
-
-(setq org-agenda-text-search-extra-files
-      (directory-files-recursively "~/org/roam" "\.org$"))
-
-(setq org-agenda-text-search-extra-files
-      (append
-       org-agenda-text-search-extra-files
-       (directory-files-recursively "~/org/archive" "\.org$")))
-
-(setq org-agenda-text-search-extra-files
-      (append
-       org-agenda-text-search-extra-files
-       (directory-files-recursively "~/org/articles" "\.org$")))
 #+end_src
 
 Open org-agenda in current window.
