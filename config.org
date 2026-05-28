@@ -2551,9 +2551,10 @@ Source: [[https://github.com/fasheng/elfeed-protocol][GitHub: fasheng/elfeed-pro
   :unless (mmk2410/work)
   :init
   ;; FreshRSS (self-hosted)
-  (setq elfeed-protocol-feeds '(("fever+https://mmk2410@rss.mmk2410.org"
+  (setq elfeed-feeds '(("fever+https://mmk2410@rss.mmk2410.org"
                         :api-url "https://rss.mmk2410.org/api/fever.php"
                         :use-authinfo t)))
+  (setq elfeed-protocol-enabled-protocols '(fever))
   (elfeed-protocol-enable)
   :bind (:map elfeed-search-mode-map
               ("C-c C-u" . elfeed-protocol-fever-reinit)))
