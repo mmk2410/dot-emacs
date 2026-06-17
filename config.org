@@ -1805,6 +1805,13 @@ Regarding file naming schemes and especially tagging, I can recommend the fabulo
   (denote-rename-buffer-mode 1))
 #+end_src
 
+[[https://github.com/namilus/denote-menu][denote-menu]] is tabular view of your notes with some filter capabilities.
+
+#+begin_src emacs-lisp
+(use-package denote-menu
+  :bind (("C-c n m" . denote-menu-list-notes)))
+#+end_src
+
 * Org Research Assistant
 
 As of 2026-04-18 I'm gradually switching to Denote. During the next months I will migrate or archive my existing Org Roam notes. Due to missing requirements I already disabled some integrations.
