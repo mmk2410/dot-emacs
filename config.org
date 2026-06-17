@@ -3067,6 +3067,9 @@ Initial draft of integrating =gptel=.
                           (gemma4:e4b
                            :description "Gemma 4 equiv. 4B"
                            :capabilities (tool-use))
+                          (gemma4:12b
+                           :description "Gemma 4 12B"
+                           :capabilities (tool-use))
                           (gemma4:26b
                            :description "Gemma 4 26B"
                            :capabilities (tool-use))
