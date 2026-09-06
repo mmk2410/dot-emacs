@@ -1531,7 +1531,7 @@ From [[https://github.com/daviwil/emacs-from-scratch/blob/master/Emacs.org#cente
 
 #+begin_src emacs-lisp
 (defun efs/org-mode-visual-fill ()
-  (setq visual-fill-column-width 100
+  (setq visual-fill-column-width 120
         visual-fill-column-center-text t)
   (visual-fill-column-mode 1))
 
