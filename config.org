@@ -2503,7 +2503,7 @@ This is the elfeed program itself.
 
 As with email I prefer showing older entries first so I can catch-up with these first before getting to newer stuff. Other than the binding to =C-c e= there is nothing interesting left to see here.
 
-Source: [[https://github.com/skeeto/elfeed][GitHub: skeeto/elfeed]]
+Source: [[https://github.com/emacs-elfeed/elfeed][GitHub: emacs-elfeed/elfeed]]
 
 #+begin_src emacs-lisp
 (use-package elfeed
