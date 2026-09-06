@@ -1712,41 +1712,7 @@ Source: [[https://github.com/federicotdn/verb][GitHub: federicotdn/verb]]
   :config (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
 #+end_src
 
-* Denote
-
-[[https://protesilaos.com/emacs/denote][Denote]] is a note taking system and naming scheme by Protesilaos Stavrou.
-
-As of 2026-04-18 I'm in progress of migrating my Org-Roam setup to Denote. Therefore, the configuration below is subject to change.
-
-Regarding file naming schemes and especially tagging, I can recommend the fabulous article [[https://karl-voit.at/managing-digital-photographs/][Managing Digital Files (e.g., Photographs) in Files and Folders]] by Karl Voit.
-
-#+begin_src emacs-lisp
-(use-package denote
-  :hook (dired-mode . denote-dired-mode)
-  :bind
-  (("C-c n n" . denote)
-   ("C-c n r" . denote-rename-file)
-   ("C-c n l" . denote-link)
-   ("C-c n b" . denote-backlinks)
-   ("C-c n d" . denote-dired)
-   ("C-c n g" . denote-grep)
-   ("C-c n o" . denote-open-or-create))
-  :config
-  (setq denote-directory (expand-file-name "~/org/notes/"))
-  (denote-rename-buffer-mode 1))
-#+end_src
-
-[[https://github.com/namilus/denote-menu][denote-menu]] is tabular view of your notes with some filter capabilities.
-
-#+begin_src emacs-lisp
-(use-package denote-menu
-  :bind (("C-c n m" . denote-menu-list-notes)))
-#+end_src
-
-* Org Research Assistant
-
-As of 2026-04-18 I'm gradually switching to Denote. During the next months I will migrate or archive my existing Org Roam notes. Due to missing requirements I already disabled some integrations.
-
+* Org Knowledge Base
 ** Org Roam
 
 Roam Research / Zettelkasten system using org-mode.
@@ -1764,16 +1730,6 @@ Source: [[https://www.orgroam.com][orgroam.com]]
                  (direction . right)
                  (window-width . 0.33)
                  (window-height . fit-window-to-buffer)))
-  ;; (setq org-roam-dailies-directory "daily/")
-  ;; (setq org-roam-dailies-capture-templates
-  ;;       '(("c" "clock" entry "* %<%H:%M> %?"
-  ;;          :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))
-  ;;         ("n" "note" entry "* %?"
-  ;;          :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))
-  ;;         ("t" "todo" entry "* TODO %?"
-  ;;          :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))))
-  ;; (require 'org-roam-protocol)
-  ;; (require 'org-roam-dailies)
   (org-roam-db-autosync-mode)
   :bind (("C-c r f" . org-roam-node-find)
          ("C-c r i" . org-roam-node-insert)
@@ -1784,23 +1740,6 @@ Source: [[https://www.orgroam.com][orgroam.com]]
          ("C-M-i" . completion-at-point)
          :map org-roam-mode-map
          ("[mouse-1]" . #'org-roam-visit-thing)))
-         ;; :map org-roam-dailies-map
-         ;; ("Y" . org-roam-dailies-capture-yesterday)
-         ;; ("T" . org-roam-dailies-capture-tomorrow))
-  ;; :bind-keymap ("C-c r d" . org-roam-dailies-map))
-#+end_src
-
-** Org Roam Bibtex
-
-„Official“ connector between org-roam, BibTeX and org-ref.
-
-Source: [[https://github.com/org-roam/org-roam-bibtex][GitHub: org-roam/org-roam-bibtex]]
-
-#+begin_src emacs-lisp
-(use-package org-roam-bibtex
-  :disabled t
-  :after org-roam
-  :hook (org-roam-mode . org-roam-bibtex-mode))
 #+end_src
 
 ** Org Roam UI
@@ -1811,68 +1750,15 @@ Source: [[https://github.com/org-roam/org-roam-ui][GitHub: org-roam/org-roam-ui]
 
 #+begin_src emacs-lisp
 (use-package websocket
-  :disabled t
   :after org-roam)
 
 (use-package org-roam-ui
-  :disabled t
   :after (org-roam websocket)
   :config
   (setq org-roam-ui-sync-theme t
         org-roam-ui-follow t
         org-roam-ui-update-on-save t
         org-roam-ui-open-on-start t))
-#+end_src
-
-** Helm Bibtex
-
-Search and manage bibliographies in Emacs.
-
-Source: [[https://github.com/tmalsburg/helm-bibtex][GitHub: tmalsburg/helm-bibtex]]
-
-#+begin_src emacs-lisp
-(use-package ivy-bibtex
-  :disabled t
-  :after ivy
-  :config
-  (setq bibtex-completion-bibliography "~/org/roam/bibliography.bib")
-  (setq bibtex-completion-library-path "~/papers")
-  (setq bibtex-completion-notes-path "~/org/roam")
-  (setq bibtex-completion-find-additional-pdfs t))
-#+end_src
-
-** Org Ref
-
-org-mode modules for citations, cross-references, bibliographies in org-mode and useful bibtex tools to go with it.
-
-Source: [[https://github.com/jkitchin/org-ref][Github: jkitchin/org-ref]]
-
-#+begin_src emacs-lisp
-(use-package org-ref
-  :disabled t
-  :after org
-  :config
-  (setq org-ref-default-bibliography '("~/org/roam/bibliography.bib"))
-  (setq org-ref-pdf-directory "~/papers/")
-  (setq org-ref-notes-directory "~/org/roam")
-  (setq reftex-default-bibliography org-ref-default-bibliography)
-  (setq bibtex-completion-bibliography org-ref-default-bibliography)
-  (setq bibtex-completion-library-path org-ref-pdf-directory)
-  (setq bibtex-completion-notes-path org-ref-notes-directory))
-#+end_src
-
-** Org Noter
-
-A synchronized, Org-mode, document annotator
-
-Source: [[https://github.com/weirdNox/org-noter][GitHub: weirdNorx/org-noter]]
-
-#+begin_src emacs-lisp
-(use-package org-noter
-  :disabled t
-  :after (:any org pdf-tools)
-  :config
-  (setq org-noter-notes-search-path '("~/org/roam")))
 #+end_src
 
 * LaTeX configuration
