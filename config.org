@@ -653,19 +653,6 @@ Source: [[https://github.com/iqbalansari/emacs-emojify][iqbalansari/emacs-emojif
   :commands emojify-mode)
 #+end_src
 
-** Spacious Padding
-
-Increase the padding/spacing of GNU Emacs frames and windows
-
-Source: [[https://git.sr.ht/~protesilaos/spacious-padding][sr.ht: ~protesilaos/spacious-padding]]
-
-#+begin_src emacs-lisp
-(use-package spacious-padding
-  :after ef-themes
-  :config
-  (spacious-padding-mode 1))
-#+end_src
-
 ** Line Spacing
 
 I found out that a bit more line spacing makes Emacs look more nicely and increases the readability a bit. At least for me 🙂
