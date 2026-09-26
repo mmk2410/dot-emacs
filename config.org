@@ -2615,7 +2615,7 @@ Since I already have a msmtp client configured and would also use it in case I w
                              (message-fetch-field "from")))
                      (account (cond
                                ((string-match "@uni-ulm.de" from) "alumni")
-                               ((string-match "@emplify-software.de" from) "work")
+                               ((string-match "@qwint.de" from) "qwint")
                                (t "mailbox"))))
                 (setq message-sendmail-extra-arguments (list '"-a" account))))))
 #+end_src
@@ -2644,6 +2644,9 @@ I don't really like the default bookmarks that mu4e sets. Thats why I overwrite 
           ( :name "Unread alumni messages"
                   :key ?a
                   :query "(flag:unread and m:/alumni/*) or m:/alumni/inbox" )
+          ( :name "Unread Qwint messages"
+                  :key ?q
+                  :query "(flag:unread and m:/qwint/*) or m:/qwint/inbox" )
           ( :name "Unread private messages"
                   :key ?p
                   :query "(flag:unread and m:/mailbox/*) or m:/mailbox/inbox" ))))
@@ -2660,6 +2663,7 @@ I like to get to some maildir quite fast and with a shortcut.
             (:maildir "/mailbox/inbox" :key ?p)))
     (setq mu4e-maildir-shortcuts
           '((:maildir "/alumni/inbox" :key ?a)
+            (:maildir "/qwint/inbox" :key ?q)
             (:maildir "/mailbox/inbox" :key ?p))))
 #+end_src
 
@@ -2746,6 +2750,19 @@ Now define the contexts.
                       ( mu4e-sent-folder . "/alumni/Sent" )
                       ( mu4e-drafts-folder . "/alumni/Drafts" )
                       ( mu4e-trash-folder . "/alumni/Trash" )
+                      ( mu4e-refile-folder . "/alumni/Archives" )))
+           ,(make-mu4e-context
+             :name "Qwint"
+             :enter-func (lambda () (mu4e-message "Entering Qwint context"))
+             :match-func (lambda (msg)
+                           (when msg
+                             (or (string-prefix-p "/qwint" (mu4e-message-field msg :maildir)))))
+             :vars '( ( user-mail-address . "m.kapfer@qwint.de" )
+                      ( user-full-name . "Marcel Kapfer" )
+                      ( message-signature-file . nil)
+                      ( mu4e-sent-folder . "/alumni/Sent Items" )
+                      ( mu4e-drafts-folder . "/alumni/Drafts" )
+                      ( mu4e-trash-folder . "/alumni/Deleted Items" )
                       ( mu4e-refile-folder . "/alumni/Archives" )))
            ,(make-mu4e-context
              :name "Alumni"
